@@ -12,66 +12,59 @@ import {
   drawFirstImage,
 } from "./utils";
 
+let renderCount = 0;
+
 const TlopCanvas = ({}) => {
   const canvasRef = useRef();
   const [ctx, setCtx] = useState(null);
-  const [inputvalues, setInputvalues] = useState({
-    bgColor: "#F78C58",
-    titleContent: "THE LIFE OF PABLO",
-    belowContent: "WHICH / ONE",
-    firstImg: { content: null, x: 100, y: 500 },
+  const [bgColor, setBgColor] = useState("#F78C58");
+  const [titleContent, setTitleContent] = useState("THE LIFE OF PABLO");
+  const [belowContent, setBelowContent] = useState("WHICH / ONE");
+  const [image, setImage] = useState({
+    content: "/TLOP_SAMPLE.png",
+    size: 1,
+    x: 10,
+    y: 50,
   });
-
-  const generateStateChanger = (key) => {
-    const copy = { ...inputvalues };
-    return (value) => {
-      copy[key] = value;
-      setInputvalues(copy);
-    };
-  };
+  const [imageLoaded, setImageLoaded] = useState(false);
 
   useEffect(() => {
     if (ctx) {
-      const { bgColor, belowContent, titleContent, firstImg } = inputvalues;
       changeBg(ctx, bgColor);
       drawBelowText(ctx, belowContent);
       drawTitleText(ctx, titleContent);
-      drawFirstImage(firstImg.content, ctx, firstImg.x, firstImg.y);
+      drawFirstImage(image, ctx, setImageLoaded);
       return () => {
         clearCanvas(ctx);
       };
     }
-  }, [ctx, inputvalues]);
+  }, [ctx, bgColor, titleContent, belowContent, image, imageLoaded]);
 
   useEffect(() => {
     setCtx(canvasRef.current.getContext("2d"));
   }, [canvasRef.current]);
 
   return (
-    <div className="grid sm:grid-cols-2">
+    <div className="grid sm:grid-cols-2 py-2">
       {ctx !== null ? (
-        <>
-          <div className="m-2 flex flex-col">
-            <ColorPicker
-              bgColor={inputvalues.bgColor}
-              setBgColor={generateStateChanger("bgColor")}
-            />
-            <TitleTextHandler
-              titleContent={inputvalues.titleContent}
-              setTitleContent={generateStateChanger("titleContent")}
-            />
-            <BelowTextHandler
-              belowContent={inputvalues.belowContent}
-              setBelowContent={generateStateChanger("belowContent")}
-            />
-            <ImageHandler
-              firstImage={inputvalues.firstImg}
-              setFirstImage={generateStateChanger("firstImg")}
-            />
-          </div>
-        </>
+        <div className="flex flex-col">
+          <ColorPicker bgColor={bgColor} setBgColor={setBgColor} />
+          <TitleTextHandler
+            titleContent={titleContent}
+            setTitleContent={setTitleContent}
+          />
+          <BelowTextHandler
+            belowContent={belowContent}
+            setBelowContent={setBelowContent}
+          />
+          <ImageHandler
+            image={image}
+            setImage={setImage}
+            setImageLoaded={setImageLoaded}
+          />
+        </div>
       ) : null}
-      <div className="flex justify-center py-8 sm:py-2">
+      <div className="flex items-center justify-center py-8 sm:py-2">
         <Canvas canvasRef={canvasRef} />
       </div>
     </div>

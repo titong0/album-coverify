@@ -6,7 +6,7 @@ const Canvas = memo(({ canvasRef }) => {
       ref={canvasRef}
       width="1000"
       height="1000"
-      className="w-2/3 border border-black sm:w-3/4 h-auto"
+      className="aspect-square w-2/3 border border-black sm:w-3/4 "
     ></canvas>
   );
 });

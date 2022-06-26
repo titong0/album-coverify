@@ -1,6 +1,6 @@
 const ColorPicker = ({ bgColor, setBgColor }) => {
   return (
-    <div className="flex flex-col w-100 ">
+    <div className="flex flex-col w-100 p-2 ">
       <label>Background color</label>
       <input
         className="w-32 my-1 bg-orange-300"

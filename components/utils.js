@@ -54,11 +54,23 @@ const drawWhichOneText = (content, x, y, ctx) => {
   ctx.fillText(content, x, y + 90);
 };
 
-export const drawFirstImage = (image, ctx, x, y) => {
-  if (image === null) return;
+export const drawFirstImage = (image, ctx, setImgLoaded) => {
+  const { content, x, y, size } = image;
   const img = new Image();
-  img.src = image;
-  // img.onload(() => {
-  ctx.drawImage(img, x, y, 300, 200);
-  // });
+  img.src = content;
+
+  // update canvas on load only with default image
+  img.onload = () => {
+    setImgLoaded(true);
+  };
+
+  const multiplier = (300 / img.naturalWidth) * size;
+
+  ctx.drawImage(
+    img,
+    x * 10,
+    y * 10,
+    img.naturalWidth * multiplier,
+    img.naturalHeight * multiplier
+  );
 };

@@ -1,6 +1,6 @@
 const BelowTextHandler = ({ belowContent, setBelowContent }) => {
   return (
-    <div className="flex flex-col w-100">
+    <div className="flex flex-col w-100 p-2">
       <label>"WHICH / ONE" Text</label>
       <input
         type="text"
