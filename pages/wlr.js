@@ -1,10 +1,15 @@
 import WlrEditor from "../components/WlrEditor";
-
+import Head from "next/head";
 const Wlr = () => {
   return (
-    <div>
-      <WlrEditor />
-    </div>
+    <>
+      <Head>
+        <title>Whole lotta red generator</title>
+      </Head>
+      <div>
+        <WlrEditor />
+      </div>
+    </>
   );
 };
 

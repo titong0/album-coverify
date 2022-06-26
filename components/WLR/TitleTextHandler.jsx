@@ -5,7 +5,7 @@ const TitleTextHandler = ({ titleText, setTitleText }) => {
     <div className="flex flex-col">
       <label>Title text</label>
       <input
-        className="bg-slate-400 w-2/3 p-1"
+        className="bg-slate-400   p-1"
         maxLength="24"
         type="text"
         value={titleText}

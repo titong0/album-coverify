@@ -12,11 +12,13 @@ const WlrEditor = () => {
   const [image, setImage] = useState("/WLR_SAMPLE.png");
   const [imageLoaded, setImageLoaded] = useState(null);
   const [tresholdLimit, setTresholdLimit] = useState(140);
+  const [finishedImage, setFinishedImage] = useState(null);
 
   useEffect(() => {
     const draw = async () => {
       await drawImage(image, ctx, tresholdLimit);
       drawTitle(titleText, ctx);
+      setFinishedImage(canvasRef.current.toDataURL("image/png"));
     };
     if (ctx) {
       draw();
@@ -32,7 +34,7 @@ const WlrEditor = () => {
 
   return (
     <div>
-      <div className="grid grid-cols-2">
+      <div className="sm:grid grid-cols-2">
         <div className="flex flex-col p-2">
           <TitleTextHandler titleText={titleText} setTitleText={setTitleText} />
           <ImageHandler
