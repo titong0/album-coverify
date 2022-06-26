@@ -9,7 +9,7 @@ const TLOP = () => {
       </Head>
 
       <div className="bg-orange-300">
-        <h2 className="m-2 text-xl">THE LIFE OF PABLO</h2>
+        <h2 className="pt-2 text-xl">THE LIFE OF PABLO</h2>
         <TlopCanvas />
       </div>
     </>

@@ -64,7 +64,7 @@ const TlopCanvas = ({}) => {
           />
         </div>
       ) : null}
-      <div className="flex items-center justify-center py-8 sm:py-2">
+      <div className="flex items-center justify-center py-8 sm:py-2 w-full">
         <Canvas canvasRef={canvasRef} />
       </div>
     </div>
