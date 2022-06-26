@@ -59,18 +59,16 @@ export const drawFirstImage = (image, ctx, setImgLoaded) => {
   const img = new Image();
   img.src = content;
 
-  // update canvas on load only with default image
   img.onload = () => {
     setImgLoaded(true);
+    const multiplier = (300 / img.naturalWidth) * size;
+
+    ctx.drawImage(
+      img,
+      x * 10,
+      y * 10,
+      img.naturalWidth * multiplier,
+      img.naturalHeight * multiplier
+    );
   };
-
-  const multiplier = (300 / img.naturalWidth) * size;
-
-  ctx.drawImage(
-    img,
-    x * 10,
-    y * 10,
-    img.naturalWidth * multiplier,
-    img.naturalHeight * multiplier
-  );
 };

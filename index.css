@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: "Slash";
+  src: url("/Slash-Signature.ttf");
+}

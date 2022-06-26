@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import TlopCanvas from "../components/tlopCanvas";
 import Head from "next/head";
+import TlopEditor from "../components/TlopEditor";
 const TLOP = () => {
   return (
     <>
@@ -9,8 +9,8 @@ const TLOP = () => {
       </Head>
 
       <div className="bg-orange-300">
-        <h2 className="pt-2 text-xl">THE LIFE OF PABLO</h2>
-        <TlopCanvas />
+        <h2 className="p-2 pb-0 text-xl">THE LIFE OF PABLO</h2>
+        <TlopEditor />
       </div>
     </>
   );

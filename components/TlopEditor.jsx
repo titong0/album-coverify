@@ -10,11 +10,9 @@ import {
   drawBelowText,
   clearCanvas,
   drawFirstImage,
-} from "./utils";
+} from "./TLOP/tlopFunctions";
 
-let renderCount = 0;
-
-const TlopCanvas = ({}) => {
+const TlopEditor = ({}) => {
   const canvasRef = useRef();
   const [ctx, setCtx] = useState(null);
   const [bgColor, setBgColor] = useState("#F78C58");
@@ -71,4 +69,4 @@ const TlopCanvas = ({}) => {
   );
 };
 
-export default TlopCanvas;
+export default TlopEditor;
