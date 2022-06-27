@@ -19,8 +19,8 @@ function MyApp({ Component, pageProps }) {
               <Link href={link.path}>
                 <span
                   className={`${
-                    link.path === Router.asPath ? "underline" : ""
-                  } cursor-pointer hover:underline`}
+                    link.path === Router.pathname ? "underline " : ""
+                  }cursor-pointer hover:underline`}
                 >
                   {link.display}
                 </span>

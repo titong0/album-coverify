@@ -1,15 +1,13 @@
-import React from "react";
-
-const TitleTextHandler = ({ titleText, setTitleText }) => {
+const TitleTextHandler = () => {
   return (
     <div className="flex flex-col">
-      <label>Title text</label>
+      <label htmlFor="titleText">Title text</label>
       <input
-        className="bg-slate-400   p-1"
+        name="titleText"
+        className="bg-gray-800 text-white p-1"
         maxLength="24"
         type="text"
-        value={titleText}
-        onChange={(e) => setTitleText(e.target.value)}
+        defaultValue={"Red"}
       />
     </div>
   );

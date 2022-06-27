@@ -1,17 +1,15 @@
-import React from "react";
+import { useState } from "react";
 
-const ImageHandler = ({ image, setImage, setImageLoaded }) => {
-  const changeImg = (e) => {
-    if (!e.target.files[0]) return;
-    setImageLoaded(false);
-    const img = e.target.files[0];
-    const obj = URL.createObjectURL(img);
-    setImage(obj);
-  };
+const ImageHandler = ({ image, setImageLoaded }) => {
   return (
     <div className="flex flex-col gap-2">
-      <label>Your image</label>
-      <input type="file" accept={"image/*"} onChange={changeImg} />
+      <label htmlFor="image">Your image</label>
+      <input
+        name="image"
+        type="file"
+        accept={"image/*"}
+        onChange={() => setImageLoaded(false)}
+      />
       {image !== null && <img width="200" src={image} />}
     </div>
   );

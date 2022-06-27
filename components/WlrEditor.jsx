@@ -15,11 +15,26 @@ const WlrEditor = () => {
   const canvasRef = useRef();
   const [ctx, setCtx] = useState(null);
 
-  const [titleText, setTitleText] = useState("Red");
-  const [image, setImage] = useState("/WLR_SAMPLE.png");
+  const [formValues, setFormValues] = useState({
+    titleText: "Red",
+    image: "/WLR_SAMPLE.png",
+    tresholdLimit: 140,
+  });
+  const { image, titleText, tresholdLimit } = formValues;
+
   const [imageLoaded, setImageLoaded] = useState(null);
-  const [tresholdLimit, setTresholdLimit] = useState(140);
   const [finishedImage, setFinishedImage] = useState(null);
+
+  const handleChange = (e) => {
+    const copy = { ...formValues };
+    if (e.target.name === "image") {
+      const url = URL.createObjectURL(e.target.files[0]);
+      copy["image"] = url;
+    } else {
+      copy[e.target.name] = e.target.value;
+    }
+    setFormValues(copy);
+  };
 
   useEffect(() => {
     const draw = async () => {
@@ -29,13 +44,11 @@ const WlrEditor = () => {
       drawTitle(titleText, ctx);
       setFinishedImage(canvasRef.current.toDataURL("image/png"));
     };
+
     if (ctx) {
       draw();
-      return () => {
-        clearCanvas(ctx);
-      };
     }
-  }, [ctx, titleText, image, imageLoaded, tresholdLimit]);
+  }, [ctx, formValues, imageLoaded]);
 
   useEffect(() => {
     setCtx(canvasRef.current.getContext("2d"));
@@ -43,29 +56,23 @@ const WlrEditor = () => {
 
   return (
     <div>
-      <div className="sm:grid grid-cols-2 min-h-screen">
-        <div className="flex flex-col p-2">
-          <TitleTextHandler titleText={titleText} setTitleText={setTitleText} />
-          <ImageHandler
-            image={image}
-            setImage={setImage}
-            setImageLoaded={setImageLoaded}
-          />
-          <TresholdRange
-            tresholdLimit={tresholdLimit}
-            setTresholdLimit={setTresholdLimit}
-          />
-        </div>
+      <div className="sm:grid grid-cols-2 mb-32">
+        <form className="flex flex-col p-2" onChange={handleChange}>
+          <TitleTextHandler />
+          <ImageHandler image={image} setImageLoaded={setImageLoaded} />
+          <TresholdRange tresholdLimit={formValues.tresholdLimit} />
+        </form>
         <div className="flex items-center justify-center w-full">
           <Canvas canvasRef={canvasRef} />
         </div>
       </div>
+
       <div className="sm:flex items-start gap-2 sm:gap-2 p-2 mt-4 min-h-screen bg-black">
         <img className="w-full sm:w-1/3 bg-red-300" src={finishedImage} />
         <a
           className="block p-3 text-white border rounded-sm bg-gradient-to-b from-red-500 to-red-900"
           href={finishedImage}
-          download={`Slatt-${titleText}.png`}
+          download={`Slatt-${formValues.titleText}.png`}
         >
           Download Image
         </a>
