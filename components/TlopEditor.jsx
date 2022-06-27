@@ -43,29 +43,31 @@ const TlopEditor = ({}) => {
   }, [canvasRef.current]);
 
   return (
-    <div className="grid sm:grid-cols-2 py-2">
-      {ctx !== null ? (
-        <div className="flex flex-col">
-          <ColorPicker bgColor={bgColor} setBgColor={setBgColor} />
-          <TitleTextHandler
-            titleContent={titleContent}
-            setTitleContent={setTitleContent}
-          />
-          <BelowTextHandler
-            belowContent={belowContent}
-            setBelowContent={setBelowContent}
-          />
-          <ImageHandler
-            image={image}
-            setImage={setImage}
-            setImageLoaded={setImageLoaded}
-          />
+    <>
+      <div className="grid sm:grid-cols-2 py-2">
+        {ctx !== null ? (
+          <div className="flex flex-col">
+            <ColorPicker bgColor={bgColor} setBgColor={setBgColor} />
+            <TitleTextHandler
+              titleContent={titleContent}
+              setTitleContent={setTitleContent}
+            />
+            <BelowTextHandler
+              belowContent={belowContent}
+              setBelowContent={setBelowContent}
+            />
+            <ImageHandler
+              image={image}
+              setImage={setImage}
+              setImageLoaded={setImageLoaded}
+            />
+          </div>
+        ) : null}
+        <div className="flex items-center justify-center py-8 sm:py-2 w-full">
+          <Canvas canvasRef={canvasRef} />
         </div>
-      ) : null}
-      <div className="flex items-center justify-center py-8 sm:py-2 w-full">
-        <Canvas canvasRef={canvasRef} />
       </div>
-    </div>
+    </>
   );
 };
 
