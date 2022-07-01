@@ -22,33 +22,32 @@ const WlrEditor = () => {
   });
   const { image, titleText, tresholdLimit } = formValues;
 
-  const [imageLoaded, setImageLoaded] = useState(null);
   const [finishedImage, setFinishedImage] = useState(null);
 
   const handleChange = (e) => {
     const copy = { ...formValues };
     if (e.target.name === "image") {
       const url = URL.createObjectURL(e.target.files[0]);
-      copy["image"] = url;
+      copy.image = url;
     } else {
       copy[e.target.name] = e.target.value;
     }
     setFormValues(copy);
   };
 
-  useEffect(() => {
-    const draw = async () => {
-      bg(ctx);
-      await drawImage(image, ctx, tresholdLimit);
-      await drawText(ctx);
-      drawTitle(titleText, ctx);
-      setFinishedImage(canvasRef.current.toDataURL("image/png"));
-    };
+  const draw = async () => {
+    bg(ctx);
+    await drawImage(image, ctx, tresholdLimit);
+    await drawText(ctx);
+    drawTitle(titleText, ctx);
+    setFinishedImage(canvasRef.current.toDataURL("image/png"));
+  };
 
+  useEffect(() => {
     if (ctx) {
       draw();
     }
-  }, [ctx, formValues, imageLoaded]);
+  }, [ctx, formValues]);
 
   useEffect(() => {
     setCtx(canvasRef.current.getContext("2d"));
@@ -59,7 +58,7 @@ const WlrEditor = () => {
       <div className="sm:grid grid-cols-2 mb-32">
         <form className="flex flex-col p-2" onChange={handleChange}>
           <TitleTextHandler />
-          <ImageHandler image={image} setImageLoaded={setImageLoaded} />
+          <ImageHandler image={image} />
           <TresholdRange tresholdLimit={formValues.tresholdLimit} />
         </form>
         <div className="flex items-center justify-center w-full">

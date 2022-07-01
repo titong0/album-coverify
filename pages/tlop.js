@@ -8,7 +8,7 @@ const TLOP = () => {
         <title>The life of pablo generator</title>
       </Head>
 
-      <div className="bg-orange-300">
+      <div>
         <h2 className="p-2 pb-0 text-xl">THE LIFE OF PABLO</h2>
         <TlopEditor />
       </div>

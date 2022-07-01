@@ -1,13 +1,13 @@
 const TitleTextHandler = ({ titleContent, setTitleContent }) => {
   return (
-    <div className="flex flex-col w-100 p-2">
-      <label>"THE LIFE OF PABLO" Text</label>
+    <div className="flex flex-col w-100 p-2 ">
+      <label htmlFor="title">Cover title</label>
       <input
+        name="title"
         type="text"
-        className="w-64 my-1 p-1"
-        defaultValue={titleContent}
+        className="my-1 p-2 bg-orange-300 border-b-2 border-black outline-offset-4 focus:bg-red-500 transition"
+        defaultValue="THE LIFE OF PABLO"
         maxLength={30}
-        onChange={(e) => setTitleContent(e.target.value)}
       />
     </div>
   );

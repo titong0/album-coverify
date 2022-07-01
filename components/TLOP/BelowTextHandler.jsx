@@ -1,13 +1,13 @@
-const BelowTextHandler = ({ belowContent, setBelowContent }) => {
+const BelowTextHandler = () => {
   return (
     <div className="flex flex-col w-100 p-2">
-      <label>"WHICH / ONE" Text</label>
+      <label>Secondary Text</label>
       <input
+        name="belowText"
         type="text"
-        className="w-64 p-1 my-1"
-        defaultValue={belowContent}
+        className="my-1 p-2 bg-orange-300 border-b-2 border-black outline-offset-4 focus:bg-red-500 transition"
+        defaultValue="WHICH / ONE"
         maxLength={18}
-        onChange={(e) => setBelowContent(e.target.value)}
       />
     </div>
   );

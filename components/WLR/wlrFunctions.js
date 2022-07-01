@@ -1,3 +1,5 @@
+const CACHED_IMAGES = [];
+
 export const clearCanvas = (ctx) => {
   ctx.clearRect(0, 0, 1000, 1000);
 };
@@ -20,14 +22,22 @@ export const drawTitle = (title, ctx) => {
 };
 
 /**
- * @param {string} image
+ * @param {string} imageUrl
  * @param {CanvasRenderingContext2D} ctx
  */
-export const drawImage = async (image, ctx, tresholdLimit) => {
-  const img = new Image();
-  img.src = image;
-  await img.decode();
-  ctx.drawImage(img, 180, 70, 640, 850);
+export const drawImage = async (imageUrl, ctx, tresholdLimit) => {
+  const mainImg = CACHED_IMAGES.find((img) => img.id === imageUrl);
+
+  if (!mainImg) {
+    mainImg = new Image();
+    mainImg.src = imageUrl;
+    mainImg.id = imageUrl;
+    console.log("loaded");
+    await mainImg.decode();
+    CACHED_IMAGES.push(mainImg);
+  }
+
+  ctx.drawImage(mainImg, 180, 70, 640, 850);
   treshold(tresholdLimit, ctx);
 };
 
@@ -46,9 +56,13 @@ export const drawText = async (ctx) => {
   ctx.fillText("MAYDAY ISSUE 12 / 25", 530, 940);
   ctx.fillText("OPIUM", 780, 940);
 
-  const parentAdvSticker = new Image();
-  parentAdvSticker.src = "/parental_advisory.png";
-  await parentAdvSticker
-    .decode()
-    .then(() => ctx.drawImage(parentAdvSticker, 10, 940, 100, 50));
+  let parentAdvSticker = CACHED_IMAGES.find((img) => img.id === "par_adv");
+  if (!parentAdvSticker) {
+    parentAdvSticker = new Image();
+    parentAdvSticker.src = "/parental_advisory.png";
+    parentAdvSticker.id = "par_adv";
+    await parentAdvSticker.decode();
+    CACHED_IMAGES.push(parentAdvSticker);
+  }
+  ctx.drawImage(parentAdvSticker, 10, 940, 100, 50);
 };

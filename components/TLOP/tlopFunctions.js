@@ -1,8 +1,6 @@
-/**
- *
- * @param {CanvasRenderingContext2D} ctx
- */
-export const changeBg = (ctx, bgColor) => {
+const CACHED_IMAGES = [];
+
+export const changeBg = (bgColor, ctx) => {
   ctx.fillStyle = bgColor;
   ctx.rect(0, 0, 1000, 1000);
   ctx.fill();
@@ -12,7 +10,7 @@ export const clearCanvas = (ctx) => {
   ctx.clearRect(0, 0, 1000, 1000);
 };
 
-export const drawTitleText = (ctx, content) => {
+export const drawTitleText = (content, ctx) => {
   for (let i = 1; i < 8; i++) {
     if (i === 7) {
       drawPabloText(content, 100, 70 * (i + 1), ctx);
@@ -39,7 +37,7 @@ const drawPabloText = (text, x, y, ctx) => {
   second && ctx.fillText(second, secondX, y);
 };
 
-export const drawBelowText = (ctx, content) => {
+export const drawBelowText = (content, ctx) => {
   for (let i = 0; i < 10; i++) {
     drawWhichOneText(content, 120, 500 + i * 40, ctx);
   }
@@ -54,21 +52,27 @@ const drawWhichOneText = (content, x, y, ctx) => {
   ctx.fillText(content, x, y + 90);
 };
 
-export const drawFirstImage = (image, ctx, setImgLoaded) => {
+export const drawImage = async (image, ctx) => {
   const { content, x, y, size } = image;
-  const img = new Image();
+  const cachedImg = CACHED_IMAGES.find((img) => img.id === content);
+
+  let img = new Image();
   img.src = content;
+  img.id = content;
 
-  img.onload = () => {
-    setImgLoaded(true);
-    const multiplier = (300 / img.naturalWidth) * size;
+  if (!cachedImg) {
+    await img.decode();
+    CACHED_IMAGES.push(img);
+  } else {
+    img = cachedImg;
+  }
 
-    ctx.drawImage(
-      img,
-      x * 10,
-      y * 10,
-      img.naturalWidth * multiplier,
-      img.naturalHeight * multiplier
-    );
-  };
+  const multiplier = (300 / img.naturalWidth) * size;
+  ctx.drawImage(
+    img,
+    x * 10,
+    y * 10,
+    img.naturalWidth * multiplier,
+    img.naturalHeight * multiplier
+  );
 };

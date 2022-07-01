@@ -1,12 +1,12 @@
-const ColorPicker = ({ bgColor, setBgColor }) => {
+const ColorPicker = () => {
   return (
     <div className="flex flex-col w-100 p-2 ">
-      <label>Background color</label>
+      <label htmlFor="bgColor">Background color</label>
       <input
-        className="w-32 my-1 bg-orange-300"
+        name="bgColor"
+        className="w-32 h-16 my-1"
         type="color"
-        value={bgColor}
-        onChange={(e) => setBgColor(e.target.value)}
+        defaultValue="#F78C58"
       />
     </div>
   );

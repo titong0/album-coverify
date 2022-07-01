@@ -1,10 +1,9 @@
-const TLOPImageHandler = ({ image, setImage, setImageLoaded }) => {
+const TLOPImageHandler = ({ image, setImage, second }) => {
   const changeImg = (e) => {
     if (!e.target.files[0]) return;
     const img = e.target.files[0];
     const obj = URL.createObjectURL(img);
     changeOneValue("content", obj);
-    setImageLoaded(false);
   };
 
   const changeOneValue = (key, value) => {
@@ -14,16 +13,17 @@ const TLOPImageHandler = ({ image, setImage, setImageLoaded }) => {
   };
 
   return (
-    <div className="flex flex-col w-100 bg-opacity-60 bg-red-500 p-2 mr-2 border-2 border-l-0">
-      <label>FIRST IMAGE</label>
+    <div className="flex flex-col w-100 bg-orange-400 p-4 mr-2 my-4 border border-black border-l-0">
+      <label>{second ? "Second" : "First"} image</label>
       <input
+        name="image"
         type={"file"}
         accept="image/*"
-        className="w-full p-1 my-1"
+        className="w-full my-1 cursor-pointer"
         onChange={changeImg}
       />
-      <label>
-        SIZE: <strong> {image.size}</strong>
+      <label htmlFor="image">
+        Size: <strong> {image.size}</strong>
       </label>
       <input
         className="w-1/3"
@@ -35,7 +35,7 @@ const TLOPImageHandler = ({ image, setImage, setImageLoaded }) => {
         onChange={(e) => changeOneValue("size", e.target.value)}
       />
       <label>
-        X POSITION OF IMAGE: <strong> {image.x}</strong>
+        X position: <strong> {image.x}</strong>
       </label>
       <input
         className="w-2/3"
@@ -46,7 +46,7 @@ const TLOPImageHandler = ({ image, setImage, setImageLoaded }) => {
         onChange={(e) => changeOneValue("x", e.target.value)}
       />
       <label>
-        Y POSITION OF IMAGE: <strong> {image.y}</strong>
+        Y position: <strong> {image.y}</strong>
       </label>
       <input
         className="w-2/3"

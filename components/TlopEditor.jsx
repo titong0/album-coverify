@@ -9,34 +9,55 @@ import {
   drawTitleText,
   drawBelowText,
   clearCanvas,
-  drawFirstImage,
+  drawImage,
 } from "./TLOP/tlopFunctions";
 
 const TlopEditor = ({}) => {
   const canvasRef = useRef();
   const [ctx, setCtx] = useState(null);
-  const [bgColor, setBgColor] = useState("#F78C58");
-  const [titleContent, setTitleContent] = useState("THE LIFE OF PABLO");
-  const [belowContent, setBelowContent] = useState("WHICH / ONE");
-  const [image, setImage] = useState({
-    content: "/TLOP_SAMPLE.png",
+  const [finishedImage, setFinishedImage] = useState(null);
+
+  const [firstImage, setFirstImage] = useState({
+    content: "/TLOP_SAMPLE_1.png",
     size: 1,
     x: 10,
     y: 50,
   });
-  const [imageLoaded, setImageLoaded] = useState(false);
 
+  const [secondImage, setSecondImage] = useState({
+    content: "/TLOP_SAMPLE_2.png",
+    size: 1,
+    x: 40,
+    y: 20,
+  });
+
+  const [formValues, setFormValues] = useState({
+    bgColor: "#F78C58",
+    title: "THE LIFE OF PABLO",
+    belowText: "WHICH / ONE",
+  });
+  const { bgColor, title, belowText } = formValues;
+
+  const handleChange = (e) => {
+    const copy = { ...formValues };
+    if (e.target.name === "image") return;
+    copy[e.target.name] = e.target.value;
+    setFormValues(copy);
+  };
+
+  const draw = async () => {
+    changeBg(bgColor, ctx);
+    drawBelowText(belowText, ctx);
+    drawTitleText(title, ctx);
+    await drawImage(firstImage, ctx);
+    drawImage(secondImage, ctx);
+    setFinishedImage(canvasRef.current.toDataURL("image/png"));
+  };
   useEffect(() => {
     if (ctx) {
-      changeBg(ctx, bgColor);
-      drawBelowText(ctx, belowContent);
-      drawTitleText(ctx, titleContent);
-      drawFirstImage(image, ctx, setImageLoaded);
-      return () => {
-        clearCanvas(ctx);
-      };
+      draw();
     }
-  }, [ctx, bgColor, titleContent, belowContent, image, imageLoaded]);
+  }, [ctx, formValues, firstImage, secondImage]);
 
   useEffect(() => {
     setCtx(canvasRef.current.getContext("2d"));
@@ -46,26 +67,34 @@ const TlopEditor = ({}) => {
     <>
       <div className="grid sm:grid-cols-2 py-2">
         {ctx !== null ? (
-          <div className="flex flex-col">
-            <ColorPicker bgColor={bgColor} setBgColor={setBgColor} />
-            <TitleTextHandler
-              titleContent={titleContent}
-              setTitleContent={setTitleContent}
-            />
-            <BelowTextHandler
-              belowContent={belowContent}
-              setBelowContent={setBelowContent}
-            />
+          <form className="flex flex-col" onChange={handleChange}>
+            <ColorPicker />
+            <TitleTextHandler />
+            <BelowTextHandler />
+            <ImageHandler image={firstImage} setImage={setFirstImage} />
             <ImageHandler
-              image={image}
-              setImage={setImage}
-              setImageLoaded={setImageLoaded}
+              image={secondImage}
+              setImage={setSecondImage}
+              second
             />
-          </div>
+          </form>
         ) : null}
         <div className="flex items-center justify-center py-8 sm:py-2 w-full">
           <Canvas canvasRef={canvasRef} />
         </div>
+      </div>
+      <div className="sm:flex items-start gap-2 sm:gap-2 p-2 mt-4 min-h-screen bg-orange-400">
+        <img
+          className="w-full sm:w-1/3 bg-red-300 border-4"
+          src={finishedImage}
+        />
+        <a
+          className="block p-3 border-black border rounded-sm text-white bg-gradient-to-b from-red-500 to-orange-800"
+          href={finishedImage}
+          download={`PABLO-${formValues.titleText}.png`}
+        >
+          Download Image
+        </a>
       </div>
     </>
   );
