@@ -1,4 +1,5 @@
 import * as utils from "../utils";
+utils.loadFont("Slash", `url("/Slash-Signature.ttf")`);
 
 const CACHED_IMAGES = [];
 
