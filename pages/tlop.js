@@ -28,7 +28,7 @@ const TLOP = () => {
         />
         <meta
           property="og:image"
-          content="https://album-coverify.vercel.app/tlop.png"
+          content="https://album-coverify.vercel.app/TLOP.png"
         />
 
         {/* <!-- Twitter Meta Tags --> */}
@@ -48,16 +48,18 @@ const TLOP = () => {
         />
         <meta
           name="twitter:image"
-          content="https://album-coverify.vercel.app/tlop.png"
-        />
-        <meta
-          property="og:image:secure_url"
-          content="https://album-coverify.vercel.app/tlop.png"
+          content="https://album-coverify.vercel.app/TLOP.png"
         />
 
+        {/* <!-- Meta Tags Generated via https://www.opengraph.xyz --> */}
+        <meta
+          property="og:image:secure_url"
+          content="https://album-coverify.vercel.app/TLOP.png"
+        />
         <meta property="og:image:type" content="image/png" />
         <meta property="og:image:alt" content="Custom TLOP cover" />
-        {/* <!-- Meta Tags Generated via https://www.opengraph.xyz --> */}
+        <meta property="og:image:width" content="1000" />
+        <meta property="og:image:height" content="1000" />
       </Head>
 
       <div>
