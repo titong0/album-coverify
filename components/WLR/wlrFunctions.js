@@ -59,7 +59,7 @@ export const drawText = async (ctx) => {
   let parentAdvSticker = CACHED_IMAGES.find((img) => img.id === "par_adv");
   if (!parentAdvSticker) {
     parentAdvSticker = new Image();
-    parentAdvSticker.src = "/parental_advisory.png";
+    parentAdvSticker.src = "/assets/parental_advisory.png";
     parentAdvSticker.id = "par_adv";
     await parentAdvSticker.decode();
     CACHED_IMAGES.push(parentAdvSticker);

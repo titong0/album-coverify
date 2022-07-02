@@ -2,13 +2,7 @@ import TitleTextHandler from "./WLR/TitleTextHandler";
 import ImageHandler from "./WLR/ImageHandler";
 import TresholdRange from "./WLR/TresholdRange";
 import Canvas from "./Canvas";
-import {
-  drawImage,
-  clearCanvas,
-  drawTitle,
-  drawText,
-  bg,
-} from "./WLR/wlrFunctions";
+import { drawImage, drawTitle, drawText, bg } from "./WLR/wlrFunctions";
 import { useRef, useEffect, useState } from "react";
 
 const WlrEditor = () => {
@@ -17,7 +11,7 @@ const WlrEditor = () => {
 
   const [formValues, setFormValues] = useState({
     titleText: "Red",
-    image: "/WLR_SAMPLE.png",
+    image: "/assets/WLR_DEFAULT.png",
     tresholdLimit: 140,
   });
   const { image, titleText, tresholdLimit } = formValues;

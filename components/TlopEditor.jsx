@@ -18,14 +18,14 @@ const TlopEditor = ({}) => {
   const [finishedImage, setFinishedImage] = useState(null);
 
   const [firstImage, setFirstImage] = useState({
-    content: "/TLOP_SAMPLE_1.png",
+    content: "/assets/TLOP_DEFAULT_1.png",
     size: 1,
     x: 10,
     y: 50,
   });
 
   const [secondImage, setSecondImage] = useState({
-    content: "/TLOP_SAMPLE_2.png",
+    content: "/assets/TLOP_DEFAULT_2.png",
     size: 1,
     x: 40,
     y: 20,
@@ -91,7 +91,7 @@ const TlopEditor = ({}) => {
         <a
           className="block p-3 border-black border rounded-sm text-white bg-gradient-to-b from-red-500 to-orange-800"
           href={finishedImage}
-          download={`PABLO-${formValues.titleText}.png`}
+          download={`PABLO-${formValues.title}.png`}
         >
           Download Image
         </a>
