@@ -12,7 +12,6 @@ export const fillBg = (ctx, color) => {
 export const colorText = (ctx, color, text, x, y, options = {}) => {
   let [prevFillStyle, prevAlign] = [ctx.fillStyle, ctx.textAlign];
   ctx.textAlign = options.textAlign;
-  console.log(ctx.textAlign);
   ctx.fillStyle = color;
   ctx.fillText(text, x, y, options.maxWidth);
   ctx.fillStyle = prevFillStyle;
@@ -34,4 +33,11 @@ export const loadAndCacheImage = async (url, cache) => {
     return img;
   }
   return img;
+};
+
+export const loadFont = async (fontName, fontUrl) => {
+  if (typeof FontFace === undefined) return;
+  const font = new FontFace(fontName, fontUrl);
+  await font.load();
+  document.fonts.add(font);
 };

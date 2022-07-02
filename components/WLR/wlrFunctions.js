@@ -22,12 +22,18 @@ export const drawImage = async (imageUrl, ctx, tresholdLimit) => {
 };
 
 const applyTreshold = (limit, ctx) => {
-  const d = ctx.getImageData(180, 70, 640, 850);
-  // prettier-ignore
-  for (var i = 0; i < d.data.length; i += 4) {
-    d.data[i] = d.data[i + 1] = d.data[i + 2] = d.data[i + 1] > limit ? 255 : 0;
+  const imageData = ctx.getImageData(180, 70, 640, 850);
+  const pixels = imageData.data;
+
+  for (let i = 0; i < pixels.length; i += 4) {
+    const r = pixels[i];
+    const g = pixels[i + 1];
+    const b = pixels[i + 2];
+    const v = 0.2126 * r + 0.7152 * g + 0.0722 * b >= limit ? 255 : 0;
+    pixels[i] = pixels[i + 1] = pixels[i + 2] = v;
   }
-  ctx.putImageData(d, 180, 70);
+  // console.log(d);
+  ctx.putImageData(imageData, 180, 70);
 };
 
 export const drawText = async (ctx) => {

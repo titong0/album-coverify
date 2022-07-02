@@ -22,6 +22,7 @@ const WlrEditor = () => {
   const handleChange = (e) => {
     const copy = { ...formValues };
     if (e.target.name === "image") {
+      if (!e.target.fils[0]) return;
       const url = URL.createObjectURL(e.target.files[0]);
       copy.image = url;
     } else {
