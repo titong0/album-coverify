@@ -19,7 +19,7 @@ const TLOPImageHandler = ({ image, setImage, second }) => {
         name="image"
         type={"file"}
         accept="image/*"
-        className="w-full my-1 cursor-pointer"
+        className="w-full p-2 my-1 transition border border-black cursor-pointer bg-red-500 hover:bg-red-100"
         onChange={changeImg}
       />
       <label htmlFor="image">

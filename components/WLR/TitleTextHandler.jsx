@@ -4,7 +4,7 @@ const TitleTextHandler = () => {
       <label htmlFor="titleText">Title text</label>
       <input
         name="titleText"
-        className="bg-gray-800 text-white p-1"
+        className="bg-zinc-800 text-red-600 p-1"
         maxLength="24"
         type="text"
         defaultValue={"Red"}
