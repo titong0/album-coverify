@@ -32,6 +32,7 @@ const TLOP = () => {
         />
 
         {/* <!-- Twitter Meta Tags --> */}
+
         <meta name="twitter:card" content="summary_large_image" />
         <meta property="twitter:domain" content="album-coverify.vercel.app" />
         <meta
