@@ -2,7 +2,8 @@ import TitleTextHandler from "./WLR/TitleTextHandler";
 import ImageHandler from "./WLR/ImageHandler";
 import TresholdRange from "./WLR/TresholdRange";
 import Canvas from "./Canvas";
-import { drawImage, drawTitle, drawText, bg } from "./WLR/wlrFunctions";
+import { drawImage, drawTitle, drawText } from "./WLR/wlrFunctions";
+import { fillBg } from "./utils";
 import { useRef, useEffect, useState } from "react";
 
 const WlrEditor = () => {
@@ -30,7 +31,7 @@ const WlrEditor = () => {
   };
 
   const draw = async () => {
-    bg(ctx);
+    fillBg(ctx);
     await drawImage(image, ctx, tresholdLimit);
     await drawText(ctx);
     drawTitle(titleText, ctx);

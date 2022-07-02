@@ -1,14 +1,6 @@
+import { colorText, loadAndCacheImage } from "../utils";
+
 const CACHED_IMAGES = [];
-
-export const changeBg = (bgColor, ctx) => {
-  ctx.fillStyle = bgColor;
-  ctx.rect(0, 0, 1000, 1000);
-  ctx.fill();
-};
-
-export const clearCanvas = (ctx) => {
-  ctx.clearRect(0, 0, 1000, 1000);
-};
 
 export const drawTitleText = (content, ctx) => {
   for (let i = 1; i < 8; i++) {
@@ -26,7 +18,6 @@ const drawPabloText = (text, x, y, ctx) => {
   const second = separated.splice(3).join(" ");
 
   ctx.font = "bold 60px Helvetica";
-  ctx.fillStyle = "black";
   let secondX = first.length * 54;
 
   if (text.length > 17) {
@@ -39,33 +30,21 @@ const drawPabloText = (text, x, y, ctx) => {
 
 export const drawBelowText = (content, ctx) => {
   for (let i = 0; i < 10; i++) {
-    drawWhichOneText(content, 120, 500 + i * 40, ctx);
+    drawWhichOneText(content, 250, 500 + i * 40, ctx);
   }
   for (let i = 0; i < 10; i++) {
-    drawWhichOneText(content, 600, 500 + i * 40, ctx);
+    drawWhichOneText(content, 750, 500 + i * 40, ctx);
   }
 };
 
 const drawWhichOneText = (content, x, y, ctx) => {
   ctx.font = "bold 30px Helvetica";
-  ctx.fillStyle = "black";
-  ctx.fillText(content, x, y + 90);
+  colorText(ctx, "black", content, x, y + 90, { textAlign: "center" });
 };
 
 export const drawImage = async (image, ctx) => {
   const { content, x, y, size } = image;
-  const cachedImg = CACHED_IMAGES.find((img) => img.id === content);
-
-  let img = new Image();
-  img.src = content;
-  img.id = content;
-
-  if (!cachedImg) {
-    await img.decode();
-    CACHED_IMAGES.push(img);
-  } else {
-    img = cachedImg;
-  }
+  const img = await loadAndCacheImage(content, CACHED_IMAGES);
 
   const multiplier = (300 / img.naturalWidth) * size;
   ctx.drawImage(

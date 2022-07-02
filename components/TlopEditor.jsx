@@ -4,13 +4,8 @@ import ImageHandler from "./TLOP/ImageHandler";
 import BelowTextHandler from "./TLOP/BelowTextHandler";
 import TitleTextHandler from "./TLOP/TitleTextHandler";
 import ColorPicker from "./TLOP/ColorPicker";
-import {
-  changeBg,
-  drawTitleText,
-  drawBelowText,
-  clearCanvas,
-  drawImage,
-} from "./TLOP/tlopFunctions";
+import { drawTitleText, drawBelowText, drawImage } from "./TLOP/tlopFunctions";
+import { fillBg } from "./utils";
 
 const TlopEditor = ({}) => {
   const canvasRef = useRef();
@@ -46,7 +41,7 @@ const TlopEditor = ({}) => {
   };
 
   const draw = async () => {
-    changeBg(bgColor, ctx);
+    fillBg(ctx, bgColor);
     drawBelowText(belowText, ctx);
     drawTitleText(title, ctx);
     await drawImage(firstImage, ctx);
