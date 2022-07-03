@@ -1,0 +1,35 @@
+import AlbumCard from "./AlbumCard";
+
+const ALBUMS_INFO = [
+  {
+    title: "The Life Of Pablo",
+    author: "Kanye West",
+    href: "/tlop",
+    imageUrl: "/TLOP.PNG",
+  },
+  {
+    title: "Whole Lotta Red",
+    author: "Playboi Carti",
+    href: "/wlr",
+    imageUrl: "/WLR.PNG",
+  },
+];
+
+const AlbumCardsDisplay = () => {
+  return (
+    <div
+      className={`grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 sm:m-12 justify-center`}
+    >
+      {ALBUMS_INFO.map((ALBUM) => (
+        <AlbumCard
+          title={ALBUM.title}
+          author={ALBUM.author}
+          href={ALBUM.href}
+          imageUrl={ALBUM.imageUrl}
+        />
+      ))}
+    </div>
+  );
+};
+
+export default AlbumCardsDisplay;

@@ -1,5 +1,4 @@
-import { useRouter } from "next/router";
-import Link from "next/link";
+import NavLinks from "../components/NavLinks";
 import "../index.css";
 
 const NAV_LINKS = [
@@ -9,25 +8,10 @@ const NAV_LINKS = [
 ];
 
 function MyApp({ Component, pageProps }) {
-  const Router = useRouter();
   return (
     <>
       <nav className="w-full bg-white py-2 shadow-md z-10 relative">
-        <ul className="flex justify-around ">
-          {NAV_LINKS.map((link) => (
-            <li key={link.path}>
-              <Link href={link.path}>
-                <span
-                  className={`${
-                    link.path === Router.pathname ? "underline " : ""
-                  }cursor-pointer hover:underline`}
-                >
-                  {link.display}
-                </span>
-              </Link>
-            </li>
-          ))}
-        </ul>
+        <NavLinks NAV_LINKS={NAV_LINKS} />
       </nav>
       <Component {...pageProps} />
     </>
