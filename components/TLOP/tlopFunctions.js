@@ -39,7 +39,8 @@ export const drawBelowText = (content, ctx) => {
 
 const drawWhichOneText = (content, x, y, ctx) => {
   ctx.font = "bold 30px Helvetica";
-  colorText(ctx, "black", content, x, y + 90, { textAlign: "center" });
+  const options = { textAlign: "center" };
+  colorText(ctx, "black", content, x, y + 90, 1000, options);
 };
 
 export const drawImage = async (image, ctx) => {

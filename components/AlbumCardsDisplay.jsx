@@ -26,6 +26,7 @@ const AlbumCardsDisplay = () => {
           author={ALBUM.author}
           href={ALBUM.href}
           imageUrl={ALBUM.imageUrl}
+          key={ALBUM.title}
         />
       ))}
     </div>

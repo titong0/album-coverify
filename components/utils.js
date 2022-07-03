@@ -10,6 +10,7 @@ export const fillBg = (ctx, color) => {
 };
 
 export const colorText = (ctx, color, text, x, y, maxWidth, options = {}) => {
+  console.log({ ctx, color, text, x, y, maxWidth, options });
   let [prevFillStyle, prevAlign] = [ctx.fillStyle, ctx.textAlign];
   ctx.textAlign = options.textAlign;
   ctx.fillStyle = color;
