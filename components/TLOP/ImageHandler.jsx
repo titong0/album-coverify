@@ -22,6 +22,7 @@ const TLOPImageHandler = ({ image, setImage, second }) => {
         className="w-full p-2 my-1 transition border border-black cursor-pointer bg-red-500 hover:bg-red-100"
         onChange={changeImg}
       />
+
       <label htmlFor="image">
         Size: <strong> {image.size}</strong>
       </label>

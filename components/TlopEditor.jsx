@@ -45,7 +45,7 @@ const TlopEditor = ({}) => {
     drawBelowText(belowText, ctx);
     drawTitleText(title, ctx);
     await drawImage(firstImage, ctx);
-    drawImage(secondImage, ctx);
+    await drawImage(secondImage, ctx);
     setFinishedImage(canvasRef.current.toDataURL("image/png"));
   };
   useEffect(() => {
