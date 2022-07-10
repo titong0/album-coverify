@@ -37,7 +37,7 @@ export const loadAndCacheImage = async (url, cache) => {
 };
 
 export const loadFont = async (fontName, fontUrl) => {
-  if (typeof FontFace === undefined) return;
+  if (typeof FontFace === "undefined") return;
   const font = new FontFace(fontName, fontUrl);
   await font.load();
   document.fonts.add(font);
