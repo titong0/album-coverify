@@ -1,12 +1,7 @@
-import ReactCrop from "react-image-crop/";
-import React, { useState, useRef, useEffect } from "react";
-import { asyncBlob, canvasPreview } from "../utils";
+import React, { useState } from "react";
+import Cropper from "../Cropper";
 
-const ImageHandler = ({ image, setImage }) => {
-  const [crop, setCrop] = useState(null);
-  const [completedCrop, setCompletedCrop] = useState(null);
-  const croppedRef = useRef(null);
-  const srcRef = useRef(null);
+const ImageHandler = ({ setImage }) => {
   const [imageSrc, setImageSrc] = useState("/assets/WLR_DEFAULT.png");
 
   const updateImg = (e) => {
@@ -14,21 +9,6 @@ const ImageHandler = ({ image, setImage }) => {
     const img = URL.createObjectURL(e.target.files[0]);
     setImage(img);
     setImageSrc(img);
-  };
-
-  const cancelCrop = (e) => {
-    e.preventDefault();
-    setCompletedCrop(null);
-    setCrop(null);
-  };
-  const cropImg = async (e) => {
-    e.preventDefault();
-    if (completedCrop.width === 0) return;
-    canvasPreview(srcRef.current, croppedRef.current, completedCrop);
-    const blob = await asyncBlob(croppedRef.current);
-    await setImage(URL.createObjectURL(blob));
-    setCompletedCrop(null);
-    setCrop(null);
   };
 
   return (
@@ -45,35 +25,15 @@ const ImageHandler = ({ image, setImage }) => {
           />
         </div>
       </div>
-      <p className="bg-gray-200 p-2 w-fit rounded-md">
+      <p className="bg-gray-200 p-2 w-fit">
         Click and hold the image to crop it
       </p>
-      <div className="w-fit">
-        <ReactCrop
-          aspect={640 / 850}
-          crop={crop}
-          onComplete={(c) => setCompletedCrop(c)}
-          onChange={(c) => {
-            setCrop(c);
-          }}
-        >
-          <img width="200" className="hidden" ref={srcRef} src={imageSrc} />
-        </ReactCrop>
-        {completedCrop && (
-          <div className="flex gap-4 p-2 bg-gray-100">
-            <button className="border border-black p-2" onClick={cancelCrop}>
-              Cancel
-            </button>
-            <button
-              className="bg-red-700 text-white p-2 w-full"
-              onClick={cropImg}
-            >
-              Crop
-            </button>
-          </div>
-        )}
-        <canvas className="hidden" ref={croppedRef}></canvas>
-      </div>
+      <Cropper
+        cropOptions={{ aspect: 650 / 840 }}
+        imageSrc={imageSrc}
+        setImage={setImage}
+        CTAstyle="bg-red-700"
+      />
     </div>
   );
 };

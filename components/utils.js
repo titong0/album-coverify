@@ -43,6 +43,7 @@ export const loadFont = async (fontName, fontUrl) => {
   document.fonts.add(font);
 };
 
+// original code is from https://github.com/DominicTobias/react-image-crop
 const TO_RADIANS = Math.PI / 180;
 export async function canvasPreview(image, canvas, crop, scale, rotate) {
   // image = await loadAndCacheImage(image, CACHE);

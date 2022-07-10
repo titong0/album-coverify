@@ -19,7 +19,6 @@ export const drawImage = async (image, ctx, tresholdLimit) => {
   if (typeof image === "string") {
     image = await utils.loadAndCacheImage(image, CACHED_IMAGES);
   }
-  console.log(image);
   ctx.drawImage(image, 180, 70, 640, 850);
   applyTreshold(tresholdLimit, ctx);
 };

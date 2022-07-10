@@ -1,7 +1,16 @@
-import React from "react";
-
+import IgorEditor from "../components/IgorEditor";
+import Head from "next/head";
 const IGOR = () => {
-  return <div>igor</div>;
+  return (
+    <>
+      <Head>
+        <title>IGOR generator</title>
+      </Head>
+      <div>
+        <IgorEditor />
+      </div>
+    </>
+  );
 };
 
 export default IGOR;
