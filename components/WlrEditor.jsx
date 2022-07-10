@@ -46,7 +46,7 @@ const WlrEditor = () => {
       <div className="sm:grid grid-cols-2 mb-32">
         <form className="flex flex-col p-2" onChange={handleChange}>
           <TitleTextHandler />
-          <ImageHandler image={image} setImage={setImage} />
+          <ImageHandler setImage={setImage} />
           <TresholdRange tresholdLimit={formValues.tresholdLimit} />
         </form>
         <div className="flex items-center justify-center w-full">
