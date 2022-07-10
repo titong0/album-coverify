@@ -3,7 +3,7 @@ import ImageHandler from "./WLR/ImageHandler";
 import TresholdRange from "./WLR/TresholdRange";
 import Canvas from "./Canvas";
 import { drawImage, drawTitle, drawText } from "./WLR/wlrFunctions";
-import { fillBg } from "./utils";
+import { asyncBlob, fillBg } from "./utils";
 import { useRef, useEffect, useState } from "react";
 
 const WlrEditor = () => {
@@ -12,22 +12,15 @@ const WlrEditor = () => {
 
   const [formValues, setFormValues] = useState({
     titleText: "Red",
-    image: "/assets/WLR_DEFAULT.png",
     tresholdLimit: 140,
   });
-  const { image, titleText, tresholdLimit } = formValues;
-
+  const { titleText, tresholdLimit } = formValues;
+  const [image, setImage] = useState("/assets/WLR_DEFAULT.png");
   const [finishedImage, setFinishedImage] = useState(null);
 
   const handleChange = (e) => {
     const copy = { ...formValues };
-    if (e.target.name === "image") {
-      if (!e.target.files[0]) return;
-      const url = URL.createObjectURL(e.target.files[0]);
-      copy.image = url;
-    } else {
-      copy[e.target.name] = e.target.value;
-    }
+    copy[e.target.name] = e.target.value;
     setFormValues(copy);
   };
 
@@ -36,14 +29,13 @@ const WlrEditor = () => {
     await drawImage(image, ctx, tresholdLimit);
     await drawText(ctx);
     drawTitle(titleText, ctx);
-    setFinishedImage(canvasRef.current.toDataURL("image/png"));
+    const img = await asyncBlob(canvasRef.current);
+    setFinishedImage(URL.createObjectURL(img));
   };
 
   useEffect(() => {
-    if (ctx) {
-      draw();
-    }
-  }, [ctx, formValues]);
+    ctx && draw();
+  }, [ctx, formValues, image]);
 
   useEffect(() => {
     setCtx(canvasRef.current.getContext("2d"));
@@ -54,7 +46,7 @@ const WlrEditor = () => {
       <div className="sm:grid grid-cols-2 mb-32">
         <form className="flex flex-col p-2" onChange={handleChange}>
           <TitleTextHandler />
-          <ImageHandler image={image} />
+          <ImageHandler image={image} setImage={setImage} />
           <TresholdRange tresholdLimit={formValues.tresholdLimit} />
         </form>
         <div className="flex items-center justify-center w-full">
@@ -67,7 +59,7 @@ const WlrEditor = () => {
         <a
           className="block p-3 text-white border rounded-sm bg-gradient-to-b from-red-500 to-red-900"
           href={finishedImage}
-          download={`Slatt-${formValues.titleText}.png`}
+          download={`Slatt-${formValues.titleText || ""}.png`}
         >
           Download Image
         </a>

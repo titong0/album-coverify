@@ -1,5 +1,6 @@
 import NavBar from "../components/NavBar";
 import "../index.css";
+import "react-image-crop/dist/ReactCrop.css";
 
 const NAV_LINKS = [
   { display: "Home", path: "/" },

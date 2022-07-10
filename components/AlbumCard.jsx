@@ -6,8 +6,8 @@ const AlbumCard = ({ title, author, href, imageUrl }) => {
   return (
     <Link href={href}>
       <div
-        className="flex flex-col max-w-sm border-2 rounded-md bg-amber-50 transition duration-200
-     hover:shadow-lg hover:bg-amber-200 hover:-translate-y-1 cursor-pointer"
+        className="flex flex-col max-w-sm rounded-md border border-gray-700 bg-gray-200 transition duration-200
+     hover:shadow-lg hover:bg-blue-200 hover:-translate-y-1 cursor-pointer"
       >
         <Image className="rounded-md" src={imageUrl} width="500" height="500" />
         <h3 className="text-l px-2 py-1 font-bold font-sans">{title}</h3>

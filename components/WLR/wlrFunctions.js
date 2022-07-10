@@ -12,12 +12,15 @@ export const drawTitle = (title, ctx) => {
 };
 
 /**
- * @param {string} imageUrl
+ * @param {string} image
  * @param {CanvasRenderingContext2D} ctx
  */
-export const drawImage = async (imageUrl, ctx, tresholdLimit) => {
-  const mainImg = await utils.loadAndCacheImage(imageUrl, CACHED_IMAGES);
-  ctx.drawImage(mainImg, 180, 70, 640, 850);
+export const drawImage = async (image, ctx, tresholdLimit) => {
+  if (typeof image === "string") {
+    image = await utils.loadAndCacheImage(image, CACHED_IMAGES);
+  }
+  console.log(image);
+  ctx.drawImage(image, 180, 70, 640, 850);
   applyTreshold(tresholdLimit, ctx);
 };
 
