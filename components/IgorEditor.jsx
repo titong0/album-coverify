@@ -1,7 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
 import ImageHandler from "./IGOR/ImageHandler";
-import Canvas from "./Canvas";
+import Canvas from "./General/Canvas";
 import { fillBg } from "./utils";
+
 const IgorEditor = () => {
   const [ctx, setCtx] = useState(null);
   const [image, setImage] = useState("/WLR.png");
