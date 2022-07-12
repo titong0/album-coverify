@@ -1,11 +1,11 @@
 import TitleTextHandler from "./WLR/TitleTextHandler";
 import ImageHandler from "./WLR/ImageHandler";
 import TresholdRange from "./WLR/TresholdRange";
-import Canvas from "./Canvas";
+import Canvas from "./General/Canvas";
 import { drawImage, drawTitle, drawText } from "./WLR/wlrFunctions";
 import { asyncBlob, fillBg } from "./utils";
 import { useRef, useEffect, useState } from "react";
-import Download from "./Download";
+import Download from "./General/Download";
 
 const WlrEditor = () => {
   const canvasRef = useRef();

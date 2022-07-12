@@ -1,6 +1,6 @@
 import React, { useState } from "react";
+import Cropper from "../General/Cropper";
 
-import Cropper from "../Cropper";
 const ImageHandler = ({ image, setImage }) => {
   const [imageSrc, setImageSrc] = useState("WLR.png");
 
@@ -15,7 +15,6 @@ const ImageHandler = ({ image, setImage }) => {
       <div className="bg-gray-300">
         <input type="file" accept="image/*" onChange={changeImg} />
       </div>
-      {/* <img src={image} width="200" alt="" /> */}
       <Cropper
         setImage={setImage}
         cropOptions={{ aspect: 1 / 1 }}

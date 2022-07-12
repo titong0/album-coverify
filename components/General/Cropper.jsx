@@ -1,10 +1,10 @@
 import React, { useRef, useEffect, useState } from "react";
 import ReactCrop from "react-image-crop";
-import { canvasPreview, asyncBlob } from "./utils";
+import { canvasPreview, asyncBlob } from "../utils";
 
 /**
  * @param {{
- * cropOptions? : import("react-easy-crop").CropperProps,
+ * cropOptions? : import("react-image-crop").ReactCropProps,
  * imageSrc: string,
  * setImage?: void,
  * CTAstyle?: string
@@ -16,8 +16,8 @@ const Cropper = ({ imageSrc, setImage, CTAstyle, cropOptions }) => {
   const croppedRef = useRef(null);
   const srcRef = useRef(null);
   const [completedCrop, setCompletedCrop] = useState(null);
-  const [fixedAspect, setFixedAspect] = useState(true);
-  cropOptions.aspect = fixedAspect ? cropOptions.aspect : null;
+  const [usefixedAspect, toggleUseFixedAspect] = useState(true);
+  cropOptions.aspect = usefixedAspect ? cropOptions.aspect : null;
 
   const cancelCrop = (e) => {
     e.preventDefault();
@@ -40,7 +40,8 @@ const Cropper = ({ imageSrc, setImage, CTAstyle, cropOptions }) => {
         <input
           className="ml-2 p-3"
           type="checkbox"
-          onChange={() => setFixedAspect(!fixedAspect)}
+          defaultChecked
+          onChange={() => toggleUseFixedAspect(!usefixedAspect)}
         />
       </label>
 

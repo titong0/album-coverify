@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Cropper from "../Cropper";
+import Cropper from "../General/Cropper";
 
 const ImageHandler = ({ setImage }) => {
   const [imageSrc, setImageSrc] = useState("/assets/WLR_DEFAULT.png");

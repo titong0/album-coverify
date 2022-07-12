@@ -1,12 +1,12 @@
 import { useEffect, useRef, useState } from "react";
-import Canvas from "./Canvas";
+import Canvas from "./General/Canvas";
 import ImageHandler from "./TLOP/ImageHandler";
 import BelowTextHandler from "./TLOP/BelowTextHandler";
 import TitleTextHandler from "./TLOP/TitleTextHandler";
 import ColorPicker from "./TLOP/ColorPicker";
+import Download from "./General/Download";
 import { drawTitleText, drawBelowText, drawImage } from "./TLOP/tlopFunctions";
 import { fillBg } from "./utils";
-import Download from "./Download";
 
 const TlopEditor = ({}) => {
   const canvasRef = useRef();

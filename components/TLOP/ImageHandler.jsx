@@ -1,4 +1,4 @@
-import Cropper from "../Cropper";
+import Cropper from "../General/Cropper";
 import React, { useState } from "react";
 
 const TLOPImageHandler = ({ image, setImage, second }) => {
@@ -31,6 +31,7 @@ const TLOPImageHandler = ({ image, setImage, second }) => {
       <Cropper
         setImage={(url) => changeOneValue("srcUrl", url)}
         imageSrc={imageSrc}
+        cropOptions={{ aspect: 3 / 2 }}
         CTAstyle="bg-orange-500"
       />
       <label htmlFor="image">
