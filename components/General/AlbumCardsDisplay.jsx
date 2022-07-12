@@ -13,6 +13,12 @@ const ALBUMS_INFO = [
     href: "/wlr",
     imageUrl: "/WLR.png",
   },
+  {
+    title: "My beautiful Dark Twisted Fantasy",
+    author: "Kanye west",
+    href: "/mbdtf",
+    imageUrl: "/MBDTF.png",
+  },
 ];
 
 const AlbumCardsDisplay = () => {

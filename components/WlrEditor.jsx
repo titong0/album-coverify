@@ -58,7 +58,7 @@ const WlrEditor = () => {
         fileName="Slatt"
         title={formValues.titleText}
         finishedImage={finishedImage}
-        buttonStyle="text-white border rounded-sm bg-gradient-to-b from-red-500 to-red-900"
+        buttonStyle="text-white bg-gradient-to-b from-red-500 to-red-900"
         bg="bg-black"
       />
     </div>

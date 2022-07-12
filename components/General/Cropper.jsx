@@ -38,40 +38,41 @@ const Cropper = ({ imageSrc, setImage, CTAstyle, cropOptions }) => {
   };
   return (
     <div className="w-fit flex flex-col items-start">
-      <label>
+      <label className="flex items-center">
         Use recommended aspect ratio
         <input
-          className="ml-2 p-3"
+          className="ml-2"
           type="checkbox"
           defaultChecked
           onChange={() => toggleUseFixedAspect(!usefixedAspect)}
         />
       </label>
+      <div className="mt-2">
+        <ReactCrop
+          {...cropOptions}
+          crop={crop}
+          onComplete={(c) => setCompletedCrop(c)}
+          onChange={(c) => {
+            setCrop(c);
+          }}
+        >
+          <img width="200" className="hidden" ref={srcRef} src={imageSrc} />
+        </ReactCrop>
 
-      <ReactCrop
-        {...cropOptions}
-        crop={crop}
-        onComplete={(c) => setCompletedCrop(c)}
-        onChange={(c) => {
-          setCrop(c);
-        }}
-      >
-        <img width="200" className="hidden" ref={srcRef} src={imageSrc} />
-      </ReactCrop>
-
-      {completedCrop && (
-        <div className="flex gap-4 p-2 bg-gray-100">
-          <button className="border border-black p-2" onClick={cancelCrop}>
-            Cancel
-          </button>
-          <button
-            className={`${CTAstyle} text-white p-2 w-full`}
-            onClick={cropImg}
-          >
-            Crop
-          </button>
-        </div>
-      )}
+        {completedCrop && (
+          <div className="flex gap-4 py-2 bg-gray-100 w-full ">
+            <button className="border border-black p-2" onClick={cancelCrop}>
+              Cancel
+            </button>
+            <button
+              className={`${CTAstyle} text-white p-2 w-full`}
+              onClick={cropImg}
+            >
+              Crop
+            </button>
+          </div>
+        )}
+      </div>
       <canvas className="hidden" ref={croppedRef}></canvas>
     </div>
   );

@@ -2,7 +2,12 @@ import React from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-const NavBar = ({ NAV_LINKS }) => {
+const NAV_LINKS = [
+  { display: "Home", path: "/" },
+  { display: "Contact", path: "/contact" },
+];
+
+const NavBar = () => {
   const Router = useRouter();
 
   return (

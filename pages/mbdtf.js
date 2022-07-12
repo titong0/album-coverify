@@ -64,7 +64,9 @@ const TLOP = () => {
       </Head>
 
       <div>
-        <h2 className="p-2 pb-0 text-xl">THE LIFE OF PABLO</h2>
+        <h2 className="p-12 text-4xl text-center">
+          My Beautiful Dark Twisted Fantasy
+        </h2>
         <MbdtfEditor />
       </div>
     </>

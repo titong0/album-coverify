@@ -1,36 +1,27 @@
-import ImageHandler from "./WLR/ImageHandler";
-import Canvas from "./General/Canvas";
-import { drawImage, drawTitle, drawText } from "./WLR/wlrFunctions";
-import { asyncBlob, fillBg } from "./utils";
 import { useRef, useEffect, useState } from "react";
+import ImageHandler from "./MBDTF/ImageHandler";
+import Canvas from "./General/Canvas";
 import Download from "./General/Download";
+import { asyncBlob, fillBg } from "./utils";
+import { drawBg, drawMainImg } from "./MBDTF/mbdtfFunctions";
 
 const WlrEditor = () => {
   const canvasRef = useRef();
   const [ctx, setCtx] = useState(null);
-
-  const { titleText, tresholdLimit } = formValues;
-  const [image, setImage] = useState("/assets/WLR_DEFAULT.png");
+  const [image, setImage] = useState("/assets/MBDTF_DEFAULT.png");
   const [finishedImage, setFinishedImage] = useState(null);
-
-  const handleChange = (e) => {
-    const copy = { ...formValues };
-    copy[e.target.name] = e.target.value;
-    setFormValues(copy);
-  };
+  const [border, setBorder] = useState(true);
 
   const draw = async () => {
-    fillBg(ctx);
-    await drawImage(image, ctx, tresholdLimit);
-    await drawText(ctx);
-    drawTitle(titleText, ctx);
+    await drawBg(ctx);
+    await drawMainImg(ctx, image, border);
     const img = await asyncBlob(canvasRef.current);
     setFinishedImage(URL.createObjectURL(img));
   };
 
   useEffect(() => {
     ctx && draw();
-  }, [ctx, formValues, image]);
+  }, [ctx, image, border]);
 
   useEffect(() => {
     setCtx(canvasRef.current.getContext("2d"));
@@ -39,8 +30,17 @@ const WlrEditor = () => {
   return (
     <div>
       <div className="sm:grid grid-cols-2 mb-32">
-        <form className="flex flex-col p-2" onChange={handleChange}>
+        <form className="flex flex-col p-2">
           <ImageHandler setImage={setImage} />
+          <label className="flex items-center p-4 bg-amber-400 w-fit">
+            Golden border
+            <input
+              className="ml-2"
+              type="checkbox"
+              defaultChecked
+              onChange={(e) => setBorder(e.target.checked)}
+            />
+          </label>
         </form>
         <div className="flex items-center justify-center w-full">
           <Canvas canvasRef={canvasRef} />
@@ -49,8 +49,8 @@ const WlrEditor = () => {
       <Download
         fileName="MBDTF"
         finishedImage={finishedImage}
-        buttonStyle="text-white border rounded-sm bg-gradient-to-b from-red-500 to-red-900"
-        bg="bg-black"
+        buttonStyle="text-white rounded-sm bg-gradient-to-b from-red-500 to-red-700"
+        bg="bg-red-900"
       />
     </div>
   );

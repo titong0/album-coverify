@@ -83,7 +83,7 @@ const TlopEditor = ({}) => {
         fileName="PABLO"
         finishedImage={finishedImage}
         title={formValues.title}
-        buttonStyle="border border-black text-white bg-gradient-to-b from-red-500 to-orange-800"
+        buttonStyle="text-white bg-gradient-to-b from-red-500 to-orange-800"
         bg="bg-orange-400"
       />
     </>
