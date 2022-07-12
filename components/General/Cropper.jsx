@@ -17,7 +17,10 @@ const Cropper = ({ imageSrc, setImage, CTAstyle, cropOptions }) => {
   const srcRef = useRef(null);
   const [completedCrop, setCompletedCrop] = useState(null);
   const [usefixedAspect, toggleUseFixedAspect] = useState(true);
-  cropOptions.aspect = usefixedAspect ? cropOptions.aspect : null;
+
+  if (!usefixedAspect) {
+    cropOptions.aspect = null;
+  }
 
   const cancelCrop = (e) => {
     e.preventDefault();
