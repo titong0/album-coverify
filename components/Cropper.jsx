@@ -16,6 +16,8 @@ const Cropper = ({ imageSrc, setImage, CTAstyle, cropOptions }) => {
   const croppedRef = useRef(null);
   const srcRef = useRef(null);
   const [completedCrop, setCompletedCrop] = useState(null);
+  const [fixedAspect, setFixedAspect] = useState(true);
+  cropOptions.aspect = fixedAspect ? cropOptions.aspect : null;
 
   const cancelCrop = (e) => {
     e.preventDefault();
@@ -32,7 +34,16 @@ const Cropper = ({ imageSrc, setImage, CTAstyle, cropOptions }) => {
     setCrop(null);
   };
   return (
-    <div className="w-fit">
+    <div className="w-fit flex flex-col items-start">
+      <label>
+        Use recommended aspect ratio
+        <input
+          className="ml-2 p-3"
+          type="checkbox"
+          onChange={() => setFixedAspect(!fixedAspect)}
+        />
+      </label>
+
       <ReactCrop
         {...cropOptions}
         crop={crop}
