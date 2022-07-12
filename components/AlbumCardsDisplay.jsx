@@ -5,13 +5,13 @@ const ALBUMS_INFO = [
     title: "The Life Of Pablo",
     author: "Kanye West",
     href: "/tlop",
-    imageUrl: "/TLOP.PNG",
+    imageUrl: "/TLOP.png",
   },
   {
     title: "Whole Lotta Red",
     author: "Playboi Carti",
     href: "/wlr",
-    imageUrl: "/WLR.PNG",
+    imageUrl: "/WLR.png",
   },
 ];
 

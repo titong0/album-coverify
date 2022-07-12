@@ -44,8 +44,8 @@ const drawWhichOneText = (content, x, y, ctx) => {
 };
 
 export const drawImage = async (image, ctx) => {
-  const { content, x, y, size } = image;
-  const img = await loadAndCacheImage(content, CACHED_IMAGES);
+  const { srcUrl, x, y, size } = image;
+  const img = await loadAndCacheImage(srcUrl, CACHED_IMAGES);
 
   const multiplier = (300 / img.naturalWidth) * size;
   ctx.drawImage(

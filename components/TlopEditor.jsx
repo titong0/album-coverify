@@ -6,6 +6,7 @@ import TitleTextHandler from "./TLOP/TitleTextHandler";
 import ColorPicker from "./TLOP/ColorPicker";
 import { drawTitleText, drawBelowText, drawImage } from "./TLOP/tlopFunctions";
 import { fillBg } from "./utils";
+import Download from "./Download";
 
 const TlopEditor = ({}) => {
   const canvasRef = useRef();
@@ -13,14 +14,14 @@ const TlopEditor = ({}) => {
   const [finishedImage, setFinishedImage] = useState(null);
 
   const [firstImage, setFirstImage] = useState({
-    content: "/assets/TLOP_DEFAULT_1.png",
+    srcUrl: "/assets/TLOP_DEFAULT_1.png",
     size: 1,
     x: 10,
     y: 50,
   });
 
   const [secondImage, setSecondImage] = useState({
-    content: "/assets/TLOP_DEFAULT_2.png",
+    srcUrl: "/assets/TLOP_DEFAULT_2.png",
     size: 1,
     x: 40,
     y: 20,
@@ -74,23 +75,17 @@ const TlopEditor = ({}) => {
             />
           </form>
         ) : null}
-        <div className="flex items-center justify-center py-8 sm:py-2 w-full">
+        <div className="flex items-center justify-center py-8 sm:py-2 w-full ">
           <Canvas canvasRef={canvasRef} />
         </div>
       </div>
-      <div className="sm:flex items-start gap-2 sm:gap-2 p-2 mt-4 min-h-screen bg-orange-400">
-        <img
-          className="w-full sm:w-1/3 bg-red-300 border-4"
-          src={finishedImage}
-        />
-        <a
-          className="block p-3 border-black border rounded-sm text-white bg-gradient-to-b from-red-500 to-orange-800"
-          href={finishedImage}
-          download={`PABLO-${formValues.title}.png`}
-        >
-          Download Image
-        </a>
-      </div>
+      <Download
+        fileName="PABLO"
+        finishedImage={finishedImage}
+        title={formValues.title}
+        buttonStyle="border border-black text-white bg-gradient-to-b from-red-500 to-orange-800"
+        bg="bg-orange-400"
+      />
     </>
   );
 };

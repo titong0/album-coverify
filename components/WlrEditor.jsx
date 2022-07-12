@@ -5,6 +5,7 @@ import Canvas from "./Canvas";
 import { drawImage, drawTitle, drawText } from "./WLR/wlrFunctions";
 import { asyncBlob, fillBg } from "./utils";
 import { useRef, useEffect, useState } from "react";
+import Download from "./Download";
 
 const WlrEditor = () => {
   const canvasRef = useRef();
@@ -53,17 +54,13 @@ const WlrEditor = () => {
           <Canvas canvasRef={canvasRef} />
         </div>
       </div>
-
-      <div className="sm:flex items-start gap-2 sm:gap-2 p-2 mt-4 min-h-screen bg-black">
-        <img className="w-full sm:w-1/3 bg-red-300" src={finishedImage} />
-        <a
-          className="block p-3 text-white border rounded-sm bg-gradient-to-b from-red-500 to-red-900"
-          href={finishedImage}
-          download={`Slatt-${formValues.titleText || ""}.png`}
-        >
-          Download Image
-        </a>
-      </div>
+      <Download
+        fileName="Slatt"
+        title={formValues.titleText}
+        finishedImage={finishedImage}
+        buttonStyle="text-white border rounded-sm bg-gradient-to-b from-red-500 to-red-900"
+        bg="bg-black"
+      />
     </div>
   );
 };

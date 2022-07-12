@@ -1,9 +1,15 @@
+import Cropper from "../Cropper";
+import React, { useState } from "react";
+
 const TLOPImageHandler = ({ image, setImage, second }) => {
+  const [imageSrc, setImageSrc] = useState(image.srcUrl);
+
   const changeImg = (e) => {
     if (!e.target.files[0]) return;
     const img = e.target.files[0];
     const obj = URL.createObjectURL(img);
-    changeOneValue("content", obj);
+    changeOneValue("srcUrl", obj);
+    setImageSrc(obj);
   };
 
   const changeOneValue = (key, value) => {
@@ -13,16 +19,20 @@ const TLOPImageHandler = ({ image, setImage, second }) => {
   };
 
   return (
-    <div className="flex flex-col w-100 bg-orange-400 p-4 mr-2 my-4 border border-black border-l-0">
+    <div className="flex flex-col w-100 bg-gray-200 p-4 mr-2 my-4 border border-black border-l-0">
       <label>{second ? "Second" : "First"} image</label>
       <input
         name="image"
         type={"file"}
         accept="image/*"
-        className="w-full p-2 my-1 transition border border-black cursor-pointer bg-red-500 hover:bg-red-100"
+        className="w-full p-2 my-1  transition border border-black cursor-pointer bg-red-500 hover:bg-red-100"
         onChange={changeImg}
       />
-
+      <Cropper
+        setImage={(url) => changeOneValue("srcUrl", url)}
+        imageSrc={imageSrc}
+        CTAstyle="bg-orange-500"
+      />
       <label htmlFor="image">
         Size: <strong> {image.size}</strong>
       </label>
