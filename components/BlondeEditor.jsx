@@ -37,6 +37,7 @@ const BlondeEditor = () => {
             className="mt-2 p-2 border-b-2 border-black bg-yellow-900 text-gray-200 w-96"
             type="text"
             maxLength="20"
+            value={title}
             onChange={(e) => setTitle(e.target.value)}
           />
           <ImageHandler setImage={setImage} />

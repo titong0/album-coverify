@@ -19,6 +19,12 @@ const ALBUMS_INFO = [
     href: "/mbdtf",
     imageUrl: "/MBDTF.png",
   },
+  {
+    title: "Blonde",
+    author: "Frank Ocean",
+    href: "/blonde",
+    imageUrl: "/BLONDE.png",
+  },
 ];
 
 const AlbumCardsDisplay = () => {
