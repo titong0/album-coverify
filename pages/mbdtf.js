@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Head from "next/head";
 import MbdtfEditor from "../components/MbdtfEditor";
-const TLOP = () => {
+const MBDTF = () => {
   return (
     <>
       <Head>
@@ -41,11 +41,11 @@ const TLOP = () => {
         />
         <meta
           name="twitter:title"
-          content="The life of pablo album cover generator"
+          content="My Beautiful Dark Twisted Fantasy album cover generator"
         />
         <meta
           name="twitter:description"
-          content="Turn your photos into a cover like the life of pablo"
+          content="Turn your photos into a cover like My Beautiful Dark Twisted Fantasy"
         />
         <meta
           name="twitter:image"
@@ -63,7 +63,7 @@ const TLOP = () => {
         <meta property="og:image:height" content="1000" />
       </Head>
 
-      <div>
+      <div className="bg-zinc-200">
         <h2 className="p-12 text-4xl text-center">
           My Beautiful Dark Twisted Fantasy
         </h2>
@@ -73,4 +73,4 @@ const TLOP = () => {
   );
 };
 
-export default TLOP;
+export default MBDTF;

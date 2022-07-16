@@ -1,16 +1,13 @@
-import { loadAndCacheImage } from "../utils";
+import { imgBg, loadAndCacheImage } from "../utils";
 
 const CACHED_IMAGES = [];
 
 export const drawBg = async (ctx) => {
-  const img = await loadAndCacheImage("/assets/MBDTF_BG.png", CACHED_IMAGES);
-  ctx.drawImage(img, 0, 0, 1000, 1000);
-  console.log("bg");
+  imgBg(ctx, "/assets/MBDTF_BG.png", CACHED_IMAGES);
 };
 
 export const drawMainImg = async (ctx, src, hasBorder) => {
   const img = await loadAndCacheImage(src, CACHED_IMAGES);
-
   if (hasBorder) {
     return ctx.drawImage(img, 310, 310, 380, 380);
   }

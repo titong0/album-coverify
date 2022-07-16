@@ -2,19 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
-.landing {
-  position: relative;
-}
-.landing-bg::after {
-  content: "";
+body {
   background-image: url("/assets/endless-clouds.svg");
-  background-color: #fff;
-  background-size: 300px 150px;
-  background-cover: cover;
+  background-color: rgb(226, 226, 226);
+  background-size: 20vw;
+}
+/* .landing-bg::after {
+  content: "";
+  height: 100%;
+  background-size: contain;
+  background-repeat: repeat-y;
   top: 0;
   left: 0;
   bottom: 0;
   right: 0;
   position: absolute;
   z-index: -2;
-}
+} 
+*/

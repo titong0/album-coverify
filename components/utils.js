@@ -1,4 +1,3 @@
-const CACHE = [];
 export const clearCanvas = (ctx) => {
   ctx.clearRect(0, 0, 1000, 1000);
 };
@@ -10,6 +9,11 @@ export const fillBg = (ctx, color) => {
   ctx.fillStyle = previousColor;
 };
 
+export const imgBg = async (ctx, url, cache) => {
+  const img = await loadAndCacheImage(url, cache);
+  ctx.drawImage(img, 0, 0, 1000, 1000);
+};
+
 export const colorText = (ctx, color, text, x, y, maxWidth, options = {}) => {
   let [prevFillStyle, prevAlign] = [ctx.fillStyle, ctx.textAlign];
   ctx.textAlign = options.textAlign;
@@ -17,10 +21,6 @@ export const colorText = (ctx, color, text, x, y, maxWidth, options = {}) => {
   ctx.fillText(text, x, y, maxWidth);
   ctx.fillStyle = prevFillStyle;
   ctx.textAlign = prevAlign;
-};
-
-export const applyFilter = (image, filter) => {
-  filter(image);
 };
 
 export const loadAndCacheImage = async (url, cache) => {
@@ -43,11 +43,13 @@ export const loadFont = async (fontName, fontUrl) => {
   document.fonts.add(font);
 };
 
-// original code is from https://github.com/DominicTobias/react-image-crop
+export const asyncBlob = async (element) => {
+  return new Promise((resolve) => element.toBlob(resolve));
+};
+
+// original code is from https://github.com/DominicTobias/react-image-crop#example
 const TO_RADIANS = Math.PI / 180;
 export async function canvasPreview(image, canvas, crop, scale, rotate) {
-  // image = await loadAndCacheImage(image, CACHE);
-
   const ctx = canvas.getContext("2d");
 
   if (!ctx) {
@@ -102,7 +104,3 @@ export async function canvasPreview(image, canvas, crop, scale, rotate) {
 
   ctx.restore();
 }
-
-export const asyncBlob = async (element) => {
-  return new Promise((resolve) => element.toBlob(resolve));
-};

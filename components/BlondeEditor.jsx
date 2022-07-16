@@ -1,27 +1,28 @@
 import { useRef, useEffect, useState } from "react";
-import ImageHandler from "./MBDTF/ImageHandler";
+import ImageHandler from "./BLONDE/ImageHandler";
 import Canvas from "./General/Canvas";
 import Download from "./General/Download";
 import { asyncBlob } from "./utils";
-import { drawBg, drawMainImg } from "./MBDTF/mbdtfFunctions";
+import { drawBg, drawMainImg, drawTitle } from "./BLONDE/blondeFunctions";
 
-const MbdtfEditor = () => {
+const BlondeEditor = () => {
   const canvasRef = useRef();
   const [ctx, setCtx] = useState(null);
-  const [image, setImage] = useState("/assets/MBDTF_DEFAULT.png");
+  const [image, setImage] = useState("/assets/BLONDE_DEFAULT.png");
+  const [title, setTitle] = useState("blond");
   const [finishedImage, setFinishedImage] = useState(null);
-  const [border, setBorder] = useState(true);
 
   const draw = async () => {
     await drawBg(ctx);
-    await drawMainImg(ctx, image, border);
+    await drawMainImg(ctx, image);
+    await drawTitle(ctx, title);
     const img = await asyncBlob(canvasRef.current);
     setFinishedImage(URL.createObjectURL(img));
   };
 
   useEffect(() => {
     ctx && draw();
-  }, [ctx, image, border]);
+  }, [ctx, image, title]);
 
   useEffect(() => {
     setCtx(canvasRef.current.getContext("2d"));
@@ -31,29 +32,28 @@ const MbdtfEditor = () => {
     <div>
       <div className="sm:grid grid-cols-2 mb-32">
         <form className="flex flex-col p-2">
+          <label className="flex items-center w-fit">Cover title</label>
+          <input
+            className="mt-2 p-2 border-b-2 border-black bg-yellow-900 text-gray-200 w-96"
+            type="text"
+            maxLength="20"
+            onChange={(e) => setTitle(e.target.value)}
+          />
           <ImageHandler setImage={setImage} />
-          <label className="flex items-center p-4 bg-amber-400 w-fit">
-            Golden border
-            <input
-              className="ml-2"
-              type="checkbox"
-              defaultChecked
-              onChange={(e) => setBorder(e.target.checked)}
-            />
-          </label>
         </form>
         <div className="flex items-center justify-center w-full">
           <Canvas canvasRef={canvasRef} />
         </div>
       </div>
       <Download
-        fileName="MBDTF"
+        fileName="BLONDE"
         finishedImage={finishedImage}
-        buttonStyle="text-white rounded-sm bg-gradient-to-b from-red-500 to-red-700"
-        bg="bg-red-900"
+        title={title}
+        buttonStyle="text-black rounded-sm bg-green-500"
+        bg="bg-green-900"
       />
     </div>
   );
 };
 
-export default MbdtfEditor;
+export default BlondeEditor;

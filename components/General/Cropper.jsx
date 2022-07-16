@@ -12,11 +12,12 @@ import { canvasPreview, asyncBlob } from "../utils";
  * }} param0
  */
 const Cropper = ({ imageSrc, setImage, CTAstyle, cropOptions }) => {
-  const [crop, setCrop] = useState(null);
   const croppedRef = useRef(null);
   const srcRef = useRef(null);
+  const [crop, setCrop] = useState(null);
   const [completedCrop, setCompletedCrop] = useState(null);
   const [usefixedAspect, toggleUseFixedAspect] = useState(true);
+  const [showCropLabel, setShowCropLabel] = useState(true);
 
   if (!usefixedAspect) {
     cropOptions.aspect = null;
@@ -27,6 +28,7 @@ const Cropper = ({ imageSrc, setImage, CTAstyle, cropOptions }) => {
     setCompletedCrop(null);
     setCrop(null);
   };
+
   const cropImg = async (e) => {
     e.preventDefault();
     if (completedCrop.width === 0) return;
@@ -36,10 +38,11 @@ const Cropper = ({ imageSrc, setImage, CTAstyle, cropOptions }) => {
     setCompletedCrop(null);
     setCrop(null);
   };
+
   return (
     <div className="w-fit flex flex-col items-start">
       <label className="flex items-center">
-        Use recommended aspect ratio
+        <span> Use recommended aspect ratio</span>
         <input
           className="ml-2"
           type="checkbox"
@@ -47,16 +50,28 @@ const Cropper = ({ imageSrc, setImage, CTAstyle, cropOptions }) => {
           onChange={() => toggleUseFixedAspect(!usefixedAspect)}
         />
       </label>
-      <div className="mt-2">
+      <div className="mt-2 ">
         <ReactCrop
           {...cropOptions}
           crop={crop}
+          className="relative"
           onComplete={(c) => setCompletedCrop(c)}
           onChange={(c) => {
             setCrop(c);
+            setShowCropLabel(false);
           }}
         >
-          <img width="200" className="hidden" ref={srcRef} src={imageSrc} />
+          {showCropLabel && (
+            <span className="absolute z-10 text-center text-white text-lg w-full mt-4 px-3">
+              You can crop your image by clicking here!
+            </span>
+          )}
+          <img
+            width="200"
+            className={`filter ${showCropLabel ? "brightness-50" : ""} hidden`}
+            ref={srcRef}
+            src={imageSrc}
+          />
         </ReactCrop>
 
         {completedCrop && (

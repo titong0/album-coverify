@@ -1,4 +1,4 @@
-const TitleTextHandler = ({ titleContent, setTitleContent }) => {
+const TitleTextHandler = () => {
   return (
     <div className="flex flex-col w-100 p-2 ">
       <label htmlFor="title">Cover title</label>

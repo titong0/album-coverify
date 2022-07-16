@@ -63,8 +63,8 @@ const TLOP = () => {
         <meta property="og:image:height" content="1000" />
       </Head>
 
-      <div>
-        <h2 className="p-2 pb-0 text-xl">THE LIFE OF PABLO</h2>
+      <div className="bg-zinc-200">
+        <h2 className="p-12 text-4xl text-center">The Life Of Pablo</h2>
         <TlopEditor />
       </div>
     </>

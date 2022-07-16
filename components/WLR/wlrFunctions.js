@@ -34,7 +34,6 @@ const applyTreshold = (limit, ctx) => {
     const v = 0.2126 * r + 0.7152 * g + 0.0722 * b >= limit ? 255 : 0;
     pixels[i] = pixels[i + 1] = pixels[i + 2] = v;
   }
-  // console.log(d);
   ctx.putImageData(imageData, 180, 70);
 };
 
