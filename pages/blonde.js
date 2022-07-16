@@ -25,7 +25,7 @@ const TLOP = () => {
         />
         <meta
           property="og:image"
-          content="https://album-coverify.vercel.app/blonde.png"
+          content="https://album-coverify.vercel.app/BLONDE.png"
         />
 
         {/* <!-- Twitter Meta Tags --> */}
@@ -34,7 +34,7 @@ const TLOP = () => {
         <meta property="twitter:domain" content="album-coverify.vercel.app" />
         <meta
           property="twitter:url"
-          content="https://album-coverify.vercel.app/Blonde/"
+          content="https://album-coverify.vercel.app/blonde/"
         />
         <meta name="twitter:title" content="Blonde album cover generator" />
         <meta
@@ -43,13 +43,13 @@ const TLOP = () => {
         />
         <meta
           name="twitter:image"
-          content="https://album-coverify.vercel.app/blonde.png"
+          content="https://album-coverify.vercel.app/BLONDE.png"
         />
 
         {/* <!-- Meta Tags Generated via https://www.opengraph.xyz --> */}
         <meta
           property="og:image:secure_url"
-          content="https://album-coverify.vercel.app/blonde.png"
+          content="https://album-coverify.vercel.app/BLONDE.png"
         />
         <meta property="og:image:type" content="image/png" />
         <meta property="og:image:alt" content="Custom Blonde cover" />

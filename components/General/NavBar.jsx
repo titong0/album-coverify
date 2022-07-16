@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 const NAV_LINKS = [
   { display: "Home", path: "/" },
   { display: "Contact", path: "/contact" },
+  { display: "Credits", path: "/credits" },
 ];
 
 const NavBar = () => {
