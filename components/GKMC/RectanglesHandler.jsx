@@ -53,7 +53,7 @@ const RectanglesHandler = ({
           />
         ))}
       </div>
-      <button onClick={newRect} className="border p-4 bg-green-400 w-fit">
+      <button onClick={newRect} className="border p-2 bg-green-400 w-fit">
         ➕
       </button>
     </div>

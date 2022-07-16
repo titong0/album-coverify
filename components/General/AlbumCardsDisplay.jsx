@@ -25,6 +25,12 @@ const ALBUMS_INFO = [
     href: "/blonde",
     imageUrl: "/BLONDE.png",
   },
+  {
+    title: "Good kid, m.A.A.d city",
+    author: "Kendrick Lamar",
+    href: "/gkmc",
+    imageUrl: "/GKMC.png",
+  },
 ];
 
 const AlbumCardsDisplay = () => {

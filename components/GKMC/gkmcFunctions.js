@@ -19,7 +19,7 @@ export const drawRectangles = (ctx, rectangles, selectedId) => {
     if (rect.ID === selectedId) {
       ctx.fillStyle = "#aaffaa";
     }
-    ctx.fillRect(rect.x, rect.y, 150, 25);
+    ctx.fillRect(rect.x, rect.y, 110, 25);
     ctx.fillStyle = "black";
   });
 };

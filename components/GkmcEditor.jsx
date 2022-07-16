@@ -48,7 +48,7 @@ const GkmcEditor = () => {
         </div>
       </div>
       <Download
-        fileName="BLONDE"
+        fileName="GKMC"
         finishedImage={finishedImage}
         buttonStyle="text-black rounded-sm bg-green-500"
         bg="bg-green-900"
