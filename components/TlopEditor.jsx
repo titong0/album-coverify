@@ -49,6 +49,7 @@ const TlopEditor = ({}) => {
     await drawImage(secondImage, ctx);
     setFinishedImage(canvasRef.current.toDataURL("image/png"));
   };
+
   useEffect(() => {
     if (ctx) {
       draw();

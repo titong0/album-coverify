@@ -19,9 +19,7 @@ const Cropper = ({ imageSrc, setImage, CTAstyle, cropOptions }) => {
   const [usefixedAspect, toggleUseFixedAspect] = useState(true);
   const [showCropLabel, setShowCropLabel] = useState(true);
 
-  if (!usefixedAspect) {
-    cropOptions.aspect = null;
-  }
+  const aspect = usefixedAspect ? cropOptions.aspect : null;
 
   const cancelCrop = (e) => {
     e.preventDefault();
@@ -47,12 +45,12 @@ const Cropper = ({ imageSrc, setImage, CTAstyle, cropOptions }) => {
           className="ml-2"
           type="checkbox"
           defaultChecked
-          onChange={() => toggleUseFixedAspect(!usefixedAspect)}
+          onChange={(e) => toggleUseFixedAspect(e.target.checked)}
         />
       </label>
       <div className="mt-2 ">
         <ReactCrop
-          {...cropOptions}
+          aspect={aspect}
           crop={crop}
           className="relative"
           onComplete={(c) => setCompletedCrop(c)}

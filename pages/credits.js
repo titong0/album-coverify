@@ -1,5 +1,5 @@
 import Head from "next/head";
-const Contact = () => {
+const Credits = () => {
   return (
     <>
       <Head>
@@ -28,4 +28,4 @@ const Contact = () => {
   );
 };
 
-export default Contact;
+export default Credits;

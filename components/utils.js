@@ -29,7 +29,11 @@ export const loadAndCacheImage = async (url, cache) => {
     img = new Image();
     img.src = url;
     img.id = url;
-    await img.decode();
+    try {
+      await img.decode();
+    } catch (error) {
+      throw new Error(error);
+    }
     cache.push(img);
     return img;
   }
@@ -42,6 +46,18 @@ export const loadFont = async (fontName, fontUrl) => {
   await font.load();
   document.fonts.add(font);
 };
+
+export function getMousePos(canvas, evt) {
+  var rect = canvas.getBoundingClientRect();
+  return {
+    x: Math.floor(
+      ((evt.clientX - rect.left) / (rect.right - rect.left)) * canvas.width
+    ),
+    y: Math.floor(
+      ((evt.clientY - rect.top) / (rect.bottom - rect.top)) * canvas.height
+    ),
+  };
+}
 
 export const asyncBlob = async (element) => {
   return new Promise((resolve) => element.toBlob(resolve));
