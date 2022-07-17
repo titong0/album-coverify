@@ -11,7 +11,6 @@ export const drawMainImg = async (ctx, src) => {
   ctx.filter = "contrast(120%) saturation(50%)";
   ctx.drawImage(img, 40, 42, 920, 790);
   ctx.filter = "none";
-  applyGreenTint(ctx);
 };
 
 export const drawRectangles = (ctx, rectangles, selectedId) => {
@@ -28,8 +27,8 @@ export const drawRectangles = (ctx, rectangles, selectedId) => {
  * @param {CanvasRenderingContext2D} ctx
  */
 
-export const applyGreenTint = (ctx) => {
-  ctx.fillStyle = "rgba(20, 70, 20, 0.3)";
+export const applyGreenTint = (ctx, opacity) => {
+  ctx.fillStyle = `rgba(90, 150, 90, ${opacity})`;
   ctx.fillRect(40, 42, 920, 790);
   ctx.fillStyle = "black";
 };

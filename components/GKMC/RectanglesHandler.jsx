@@ -42,14 +42,14 @@ const RectanglesHandler = ({
         <p>Select a rectangle below and click on the image</p>
       ) : null}
       <div className="flex flex-col gap-3 my-1">
-        {rectanglesData.map((rect) => (
+        {rectanglesData.map((rect, index) => (
           <RectangleControl
             key={rect.ID}
-            data={rect}
             selected={rect.ID === selectedId}
             setSelected={() => setSelectedId(rect.ID)}
             cancelSelected={() => setSelectedId("")}
             deleteSelf={() => delRect(rect.ID)}
+            number={index}
           />
         ))}
       </div>

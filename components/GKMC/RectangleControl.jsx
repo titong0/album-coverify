@@ -1,22 +1,22 @@
 import React from "react";
 
 const RectangleControl = ({
-  data,
   setSelected,
   selected,
   cancelSelected,
   deleteSelf,
+  number,
 }) => {
   const selectedStyle = selected
-    ? "bg-green-800 hover:bg-green-800 text-white"
-    : "";
+    ? "bg-green-800 text-white"
+    : "bg-gray-300 hover:bg-gray-600";
   return (
     <div>
       <button
-        className={`border border-black p-1 bg-gray-300 hover:bg-gray-600 transition ${selectedStyle} text-left w-2/3`}
+        className={`border border-black p-1 transition ${selectedStyle} text-left w-2/3`}
         onClick={setSelected}
       >
-        Move rectangle
+        Rectangle number {number + 1}
       </button>
       <button
         onClick={deleteSelf}

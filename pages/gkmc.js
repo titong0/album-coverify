@@ -6,7 +6,7 @@ const Gkmc = () => {
     <>
       <Head>
         {/* <!-- HTML Meta Tags --> */}
-        <title>Good kid m.A.A.d cityalbum cover generator</title>
+        <title>Good kid m.A.A.d city album cover generator</title>
         <meta
           name="description"
           content="Turn your photos into a cover like Good kid m.A.A.d city"

@@ -3,7 +3,7 @@ const Credits = () => {
   return (
     <>
       <Head>
-        <title>Contact</title>
+        <title>Credits</title>
       </Head>
       <div className="flex justify-center bg-stone-800 min-h-screen">
         <div className="bg-stone-100 sm:p-4 sm:m-2 max-w-2xl p-2">
@@ -19,7 +19,17 @@ const Credits = () => {
                 href="https://www.youtube.com/c/GameHAX"
               >
                 gamehax
-              </a>
+              </a>{" "}
+              for the blonde font
+            </li>
+            <li>
+              <a
+                className="text-blue-600"
+                href="https://github.com/DominicTobias/"
+              >
+                DominicTobias
+              </a>{" "}
+              for cropping library used, react-easy-crop
             </li>
           </ul>
         </div>
