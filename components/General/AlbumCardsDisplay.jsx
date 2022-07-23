@@ -37,6 +37,12 @@ const ALBUMS_INFO = [
     href: "/igor",
     imageUrl: "/IGOR.png",
   },
+  {
+    title: "IGOR (alt cover)",
+    author: "Tyler, the creator",
+    href: "/alt-igor",
+    imageUrl: "/ALT-IGOR.png",
+  },
 ];
 
 const AlbumCardsDisplay = () => {
