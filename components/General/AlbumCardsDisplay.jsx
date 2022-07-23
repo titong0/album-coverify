@@ -31,6 +31,12 @@ const ALBUMS_INFO = [
     href: "/gkmc",
     imageUrl: "/GKMC.png",
   },
+  {
+    title: "IGOR",
+    author: "Tyler, the creator",
+    href: "/igor",
+    imageUrl: "/IGOR.png",
+  },
 ];
 
 const AlbumCardsDisplay = () => {
