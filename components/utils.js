@@ -3,6 +3,7 @@ export const clearCanvas = (ctx) => {
 };
 
 export const fillBg = (ctx, color) => {
+  console.log("filled bg");
   let previousColor = ctx.fillStyle;
   ctx.fillStyle = color;
   ctx.fillRect(0, 0, 1000, 1000);
@@ -43,7 +44,11 @@ export const loadAndCacheImage = async (url, cache) => {
 export const loadFont = async (fontName, fontUrl) => {
   if (typeof FontFace === "undefined") return;
   const font = new FontFace(fontName, fontUrl);
-  await font.load();
+  try {
+    await font.load();
+  } catch (error) {
+    throw new Error(error);
+  }
   document.fonts.add(font);
 };
 
