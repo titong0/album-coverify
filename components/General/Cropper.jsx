@@ -66,7 +66,9 @@ const Cropper = ({ imageSrc, setImage, CTAstyle, cropOptions }) => {
           )}
           <img
             width="200"
-            className={`filter ${showCropLabel ? "brightness-50" : ""} hidden`}
+            className={`filter ${
+              showCropLabel ? "brightness-20 bg-zinc-800" : ""
+            } hidden`}
             ref={srcRef}
             src={imageSrc}
           />

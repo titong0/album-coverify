@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import Cropper from "../General/Cropper";
 
 const ImageHandler = ({ image, setImage }) => {
-  const [imageSrc, setImageSrc] = useState("WLR.png");
+  const [imageSrc, setImageSrc] = useState("/assets/IGOR_DEFAULT.png");
 
   const changeImg = (e) => {
     if (!e.target.files[0]) return;
-    setImageSrc(URL.createObjectURL(e.target.files[0]));
+    const url = URL.createObjectURL(e.target.files[0]);
+    setImageSrc(url);
+    setImage(url);
   };
 
   return (
@@ -17,7 +19,6 @@ const ImageHandler = ({ image, setImage }) => {
       </div>
       <Cropper
         setImage={setImage}
-        
         cropOptions={{ aspect: 1 / 1 }}
         imageSrc={imageSrc}
         CTAstyle="bg-pink-500"
