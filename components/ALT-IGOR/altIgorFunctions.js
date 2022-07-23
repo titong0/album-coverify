@@ -1,7 +1,7 @@
 import { colorText, loadAndCacheImage, loadFont } from "../utils";
 const CACHE = [];
 
-loadFont("IGOR", `url("/IGOR-Bolditalic.ttf")`);
+loadFont("IGOR", `url("/IGOR-BoldItalic.ttf")`);
 
 export const drawMainImg = async (ctx, src) => {
   ctx.filter = `grayscale(1) contrast(180%)`;

@@ -1,5 +1,4 @@
 import React from "react";
-import Head from "next/head";
 import MbdtfEditor from "../components/MbdtfEditor";
 import CustomHead from "../components/General/CustomHead";
 const MBDTF = () => {
