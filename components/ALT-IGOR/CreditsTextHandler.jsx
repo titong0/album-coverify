@@ -1,7 +1,7 @@
 const CreditsTextHandler = ({ creditsText, setCreditsText }) => {
   return (
     <div className="flex flex-col m-2">
-      <label htmlFor="titleText">Credited author</label>
+      <label htmlFor="titleText">Credits text</label>
       <input
         className="bg-gray-400 text-gray-800 p-1"
         type="text"
