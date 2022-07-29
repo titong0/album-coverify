@@ -3,9 +3,10 @@ import ImageHandler from "./WLR/ImageHandler";
 import TresholdRange from "./WLR/TresholdRange";
 import Canvas from "./General/Canvas";
 import { drawImage, drawTitle, drawText } from "./WLR/wlrFunctions";
-import { asyncBlob, fillBg } from "./utils";
-import { useRef, useEffect, useState } from "react";
+import { fillBg } from "./utils";
+import { useRef, useState } from "react";
 import Download from "./General/Download";
+import { CtxSetter, EditorContainer } from "./General/EditorContainer";
 
 const WlrEditor = () => {
   const canvasRef = useRef();
@@ -26,24 +27,21 @@ const WlrEditor = () => {
   };
 
   const draw = async () => {
+    if (!ctx) return;
     fillBg(ctx);
     await drawImage(image, ctx, tresholdLimit);
     await drawText(ctx);
     drawTitle(titleText, ctx);
-    const img = await asyncBlob(canvasRef.current);
-    setFinishedImage(URL.createObjectURL(img));
   };
 
-  useEffect(() => {
-    ctx && draw();
-  }, [ctx, formValues, image]);
-
-  useEffect(() => {
-    setCtx(canvasRef.current.getContext("2d"));
-  }, [canvasRef.current]);
-
   return (
-    <div>
+    <EditorContainer
+      canvasRef={canvasRef}
+      dependencies={[ctx, formValues, image]}
+      drawMethod={draw}
+      setFinishedImage={setFinishedImage}
+      setCtx={setCtx}
+    >
       <div className="sm:grid grid-cols-2 mb-32">
         <form className="flex flex-col p-2" onChange={handleChange}>
           <TitleTextHandler />
@@ -61,7 +59,7 @@ const WlrEditor = () => {
         buttonStyle="text-white bg-gradient-to-b from-red-500 to-red-900"
         bg="bg-black"
       />
-    </div>
+    </EditorContainer>
   );
 };
 

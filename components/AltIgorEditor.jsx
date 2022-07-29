@@ -10,6 +10,7 @@ import {
   drawMainImg,
   drawTitle,
 } from "./ALT-IGOR/altIgorFunctions";
+import { EditorContainer } from "./General/EditorContainer";
 
 const creditsDefault =
   "ALL SONGS WRITTEN, PRODUCED AND ARRANGED BY TYLER OKONMA";
@@ -27,20 +28,16 @@ const AltIgorEditor = () => {
     await drawMainImg(ctx, image);
     drawTitle(ctx, title);
     drawCredits(ctx, creditsText);
-    const img = await asyncBlob(canvasRef.current);
-    setFinishedImage(URL.createObjectURL(img));
   };
 
-  useEffect(() => {
-    ctx && draw();
-  }, [ctx, image, creditsText, title]);
-
-  useEffect(() => {
-    canvasRef.current && setCtx(canvasRef.current.getContext("2d"));
-  }, [canvasRef.current]);
-
   return (
-    <>
+    <EditorContainer
+      canvasRef={canvasRef}
+      drawMethod={draw}
+      setFinishedImage={setFinishedImage}
+      dependencies={[ctx, image, creditsText, title]}
+      setCtx={setCtx}
+    >
       <div className="sm:grid grid-cols-2 mb-32 min-h-screen">
         <form>
           <CreditsTextHandler
@@ -61,7 +58,7 @@ const AltIgorEditor = () => {
         finishedImage={finishedImage}
         buttonStyle="bg-pink-400"
       />
-    </>
+    </EditorContainer>
   );
 };
 

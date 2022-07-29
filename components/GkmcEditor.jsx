@@ -11,6 +11,7 @@ import {
 } from "./GKMC/gkmcFunctions";
 import RectanglesHandler from "./GKMC/RectanglesHandler";
 import GreenTintHandler from "./GKMC/GreenTintHandler";
+import { CtxSetter, EditorContainer } from "./General/EditorContainer";
 
 const GkmcEditor = () => {
   const canvasRef = useRef();
@@ -22,24 +23,21 @@ const GkmcEditor = () => {
   const [greenTintOpacity, setGreenTintOpacity] = useState(0.5);
 
   const draw = async () => {
+    if (!ctx) return;
     await drawBg(ctx);
     await drawMainImg(ctx, image);
     applyGreenTint(ctx, greenTintOpacity);
     drawRectangles(ctx, rectanglesData, selectedId);
-    const img = await asyncBlob(canvasRef.current);
-    setFinishedImage(URL.createObjectURL(img));
   };
 
-  useEffect(() => {
-    ctx && draw();
-  }, [ctx, image, rectanglesData, selectedId, greenTintOpacity]);
-
-  useEffect(() => {
-    setCtx(canvasRef.current.getContext("2d"));
-  }, [canvasRef.current]);
-
   return (
-    <div>
+    <EditorContainer
+      canvasRef={canvasRef}
+      drawMethod={draw}
+      setFinishedImage={setFinishedImage}
+      dependencies={[ctx, image, rectanglesData, selectedId, greenTintOpacity]}
+      setCtx={setCtx}
+    >
       <div className="sm:grid grid-cols-2 mb-32">
         <div className="flex flex-col gap-4 p-2">
           <ImageHandler setImage={setImage} />
@@ -65,7 +63,7 @@ const GkmcEditor = () => {
         buttonStyle="text-black rounded-sm bg-green-500"
         bg="bg-green-900"
       />
-    </div>
+    </EditorContainer>
   );
 };
 

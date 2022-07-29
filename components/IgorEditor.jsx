@@ -5,6 +5,7 @@ import { fillBg, asyncBlob } from "./utils";
 import Download from "./General/Download";
 import AuthorHandler from "./IGOR/AuthorHandler";
 import { drawCredits, drawMainImg } from "./IGOR/igorFunctions";
+import { CtxSetter, EditorContainer } from "./General/EditorContainer";
 
 const IgorEditor = () => {
   const [ctx, setCtx] = useState(null);
@@ -21,16 +22,14 @@ const IgorEditor = () => {
     setFinishedImage(URL.createObjectURL(img));
   };
 
-  useEffect(() => {
-    ctx && draw();
-  }, [ctx, image, author]);
-
-  useEffect(() => {
-    canvasRef.current && setCtx(canvasRef.current.getContext("2d"));
-  }, [canvasRef.current]);
-
   return (
-    <>
+    <EditorContainer
+      canvasRef={canvasRef}
+      drawMethod={draw}
+      setFinishedImage={setFinishedImage}
+      dependencies={[ctx, image, author]}
+      setCtx={setCtx}
+    >
       <div className="sm:grid grid-cols-2 mb-32 min-h-screen">
         <form>
           <AuthorHandler author={author} setAuthor={setAuthor} />
@@ -47,7 +46,7 @@ const IgorEditor = () => {
         finishedImage={finishedImage}
         buttonStyle="bg-pink-400"
       />
-    </>
+    </EditorContainer>
   );
 };
 

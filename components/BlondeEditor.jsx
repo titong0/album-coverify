@@ -2,8 +2,8 @@ import { useRef, useEffect, useState } from "react";
 import ImageHandler from "./BLONDE/ImageHandler";
 import Canvas from "./General/Canvas";
 import Download from "./General/Download";
-import { asyncBlob } from "./utils";
 import { drawBg, drawMainImg, drawTitle } from "./BLONDE/blondeFunctions";
+import { CtxSetter, EditorContainer } from "./General/EditorContainer";
 
 const BlondeEditor = () => {
   const canvasRef = useRef();
@@ -13,23 +13,20 @@ const BlondeEditor = () => {
   const [finishedImage, setFinishedImage] = useState(null);
 
   const draw = async () => {
+    if (!ctx) return;
     await drawBg(ctx);
     await drawMainImg(ctx, image);
     drawTitle(ctx, title);
-    const img = await asyncBlob(canvasRef.current);
-    setFinishedImage(URL.createObjectURL(img));
   };
 
-  useEffect(() => {
-    ctx && draw();
-  }, [ctx, image, title]);
-
-  useEffect(() => {
-    setCtx(canvasRef.current.getContext("2d"));
-  }, [canvasRef.current]);
-
   return (
-    <div>
+    <EditorContainer
+      canvasRef={canvasRef}
+      drawMethod={draw}
+      setFinishedImage={setFinishedImage}
+      dependencies={[ctx, image, title]}
+      setCtx={setCtx}
+    >
       <div className="sm:grid grid-cols-2 mb-32">
         <div className="flex flex-col p-2">
           <label className="flex items-center w-fit">Cover title</label>
@@ -54,7 +51,7 @@ const BlondeEditor = () => {
         buttonStyle="text-black rounded-sm bg-green-500"
         bg="bg-green-900"
       />
-    </div>
+    </EditorContainer>
   );
 };
 

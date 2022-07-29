@@ -56,34 +56,33 @@ const TlopEditor = ({}) => {
       dependencies={[ctx, formValues, firstImage, secondImage]}
       canvasRef={canvasRef}
       drawMethod={draw}
+      setCtx={setCtx}
     >
-      <CtxSetter canvasRef={canvasRef} setCtx={setCtx}>
-        <div className="grid sm:grid-cols-2 py-2">
-          {ctx !== null ? (
-            <form className="flex flex-col" onChange={handleChange}>
-              <ColorPicker />
-              <TitleTextHandler />
-              <BelowTextHandler />
-              <ImageHandler image={firstImage} setImage={setFirstImage} />
-              <ImageHandler
-                image={secondImage}
-                setImage={setSecondImage}
-                second
-              />
-            </form>
-          ) : null}
-          <div className="flex items-center justify-center py-8 sm:py-2 w-full ">
-            <Canvas canvasRef={canvasRef} />
-          </div>
+      <div className="grid sm:grid-cols-2 py-2">
+        {ctx !== null ? (
+          <form className="flex flex-col" onChange={handleChange}>
+            <ColorPicker />
+            <TitleTextHandler />
+            <BelowTextHandler />
+            <ImageHandler image={firstImage} setImage={setFirstImage} />
+            <ImageHandler
+              image={secondImage}
+              setImage={setSecondImage}
+              second
+            />
+          </form>
+        ) : null}
+        <div className="flex items-center justify-center py-8 sm:py-2 w-full ">
+          <Canvas canvasRef={canvasRef} />
         </div>
-        <Download
-          fileName="PABLO"
-          finishedImage={finishedImage}
-          title={formValues.title}
-          buttonStyle="text-white bg-gradient-to-b from-red-500 to-orange-800"
-          bg="bg-orange-400"
-        />
-      </CtxSetter>
+      </div>
+      <Download
+        fileName="PABLO"
+        finishedImage={finishedImage}
+        title={formValues.title}
+        buttonStyle="text-white bg-gradient-to-b from-red-500 to-orange-800"
+        bg="bg-orange-400"
+      />
     </EditorContainer>
   );
 };

@@ -2,8 +2,8 @@ import { useRef, useEffect, useState } from "react";
 import ImageHandler from "./MBDTF/ImageHandler";
 import Canvas from "./General/Canvas";
 import Download from "./General/Download";
-import { asyncBlob } from "./utils";
 import { drawBg, drawMainImg } from "./MBDTF/mbdtfFunctions";
+import { CtxSetter, EditorContainer } from "./General/EditorContainer";
 
 const MbdtfEditor = () => {
   const canvasRef = useRef();
@@ -13,22 +13,19 @@ const MbdtfEditor = () => {
   const [border, setBorder] = useState(true);
 
   const draw = async () => {
+    if (!ctx) return;
     await drawBg(ctx);
     await drawMainImg(ctx, image, border);
-    const img = await asyncBlob(canvasRef.current);
-    setFinishedImage(URL.createObjectURL(img));
   };
 
-  useEffect(() => {
-    ctx && draw();
-  }, [ctx, image, border]);
-
-  useEffect(() => {
-    setCtx(canvasRef.current.getContext("2d"));
-  }, [canvasRef.current]);
-
   return (
-    <div>
+    <EditorContainer
+      canvasRef={canvasRef}
+      drawMethod={draw}
+      setFinishedImage={setFinishedImage}
+      dependencies={[ctx, image, border]}
+      setCtx={setCtx}
+    >
       <div className="sm:grid grid-cols-2 mb-32">
         <form className="flex flex-col p-2">
           <ImageHandler setImage={setImage} />
@@ -52,7 +49,7 @@ const MbdtfEditor = () => {
         buttonStyle="text-white rounded-sm bg-gradient-to-b from-red-500 to-red-700"
         bg="bg-red-900"
       />
-    </div>
+    </EditorContainer>
   );
 };
 

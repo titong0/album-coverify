@@ -39,9 +39,11 @@ const RectanglesHandler = ({
     <div className="flex flex-col bg-gray-500 p-2">
       <label className="text-lg mb-2">Eye rectangles</label>
       {rectanglesData.length ? (
-        <p>Select a rectangle below and click on the image</p>
-      ) : null}
-      <div className="flex flex-col gap-3 my-1">
+        <p className="mb-1">Select a rectangle below and click on the image</p>
+      ) : (
+        <div>No rectangles added yet.</div>
+      )}
+      <div className="flex flex-col gap-2 mb-3">
         {rectanglesData.map((rect, index) => (
           <RectangleControl
             key={rect.ID}
