@@ -66,8 +66,8 @@ const SocEditor = () => {
         </div>
       </div>
       <Download
-        fileName="Slatt"
-        title={formValues.titleText}
+        fileName="SOC"
+        title={formValues.albumName}
         finishedImage={finishedImage}
         buttonStyle="text-white bg-gradient-to-b from-red-500 to-red-900"
         bg="bg-black"

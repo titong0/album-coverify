@@ -43,6 +43,12 @@ const ALBUMS_INFO = [
     href: "/alt-igor",
     imageUrl: "/ALT-IGOR.png",
   },
+  {
+    title: "Straight Outta Compton",
+    author: "N.W.A.",
+    href: "/soc",
+    imageUrl: "/SOC.png",
+  },
 ];
 
 const AlbumCardsDisplay = () => {
