@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import Canvas from "./General/Canvas";
 import ImageHandler from "./TLOP/ImageHandler";
 import BelowTextHandler from "./TLOP/BelowTextHandler";
@@ -7,12 +7,12 @@ import ColorPicker from "./TLOP/ColorPicker";
 import Download from "./General/Download";
 import { drawTitleText, drawBelowText, drawImage } from "./TLOP/tlopFunctions";
 import { fillBg } from "./utils";
+import { CtxSetter, EditorContainer } from "./General/EditorContainer";
 
 const TlopEditor = ({}) => {
   const canvasRef = useRef();
   const [ctx, setCtx] = useState(null);
   const [finishedImage, setFinishedImage] = useState(null);
-
   const [firstImage, setFirstImage] = useState({
     srcUrl: "/assets/TLOP_DEFAULT_1.png",
     size: 1,
@@ -42,52 +42,49 @@ const TlopEditor = ({}) => {
   };
 
   const draw = async () => {
+    if (!ctx) return;
     fillBg(ctx, bgColor);
     drawBelowText(belowText, ctx);
     drawTitleText(title, ctx);
     await drawImage(firstImage, ctx);
     await drawImage(secondImage, ctx);
-    setFinishedImage(canvasRef.current.toDataURL("image/png"));
   };
 
-  useEffect(() => {
-    if (ctx) {
-      draw();
-    }
-  }, [ctx, formValues, firstImage, secondImage]);
-
-  useEffect(() => {
-    setCtx(canvasRef.current.getContext("2d"));
-  }, [canvasRef.current]);
-
   return (
-    <>
-      <div className="grid sm:grid-cols-2 py-2">
-        {ctx !== null ? (
-          <form className="flex flex-col" onChange={handleChange}>
-            <ColorPicker />
-            <TitleTextHandler />
-            <BelowTextHandler />
-            <ImageHandler image={firstImage} setImage={setFirstImage} />
-            <ImageHandler
-              image={secondImage}
-              setImage={setSecondImage}
-              second
-            />
-          </form>
-        ) : null}
-        <div className="flex items-center justify-center py-8 sm:py-2 w-full ">
-          <Canvas canvasRef={canvasRef} />
+    <EditorContainer
+      setFinishedImage={setFinishedImage}
+      dependencies={[ctx, formValues, firstImage, secondImage]}
+      canvasRef={canvasRef}
+      drawMethod={draw}
+    >
+      <CtxSetter canvasRef={canvasRef} setCtx={setCtx}>
+        <div className="grid sm:grid-cols-2 py-2">
+          {ctx !== null ? (
+            <form className="flex flex-col" onChange={handleChange}>
+              <ColorPicker />
+              <TitleTextHandler />
+              <BelowTextHandler />
+              <ImageHandler image={firstImage} setImage={setFirstImage} />
+              <ImageHandler
+                image={secondImage}
+                setImage={setSecondImage}
+                second
+              />
+            </form>
+          ) : null}
+          <div className="flex items-center justify-center py-8 sm:py-2 w-full ">
+            <Canvas canvasRef={canvasRef} />
+          </div>
         </div>
-      </div>
-      <Download
-        fileName="PABLO"
-        finishedImage={finishedImage}
-        title={formValues.title}
-        buttonStyle="text-white bg-gradient-to-b from-red-500 to-orange-800"
-        bg="bg-orange-400"
-      />
-    </>
+        <Download
+          fileName="PABLO"
+          finishedImage={finishedImage}
+          title={formValues.title}
+          buttonStyle="text-white bg-gradient-to-b from-red-500 to-orange-800"
+          bg="bg-orange-400"
+        />
+      </CtxSetter>
+    </EditorContainer>
   );
 };
 

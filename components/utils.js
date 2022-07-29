@@ -3,7 +3,6 @@ export const clearCanvas = (ctx) => {
 };
 
 export const fillBg = (ctx, color) => {
-  console.log("filled bg");
   let previousColor = ctx.fillStyle;
   ctx.fillStyle = color;
   ctx.fillRect(0, 0, 1000, 1000);
