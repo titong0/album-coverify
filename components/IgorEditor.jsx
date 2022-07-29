@@ -18,8 +18,6 @@ const IgorEditor = () => {
     fillBg(ctx, "#f7b4c6");
     await drawMainImg(ctx, image);
     drawCredits(ctx, author);
-    const img = await asyncBlob(canvasRef.current);
-    setFinishedImage(URL.createObjectURL(img));
   };
 
   return (
