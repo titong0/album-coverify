@@ -3,7 +3,7 @@ import { imgBg, loadAndCacheImage } from "../utils";
 const CACHED_IMAGES = [];
 
 export const drawBg = async (ctx) => {
-  imgBg(ctx, "/assets/MBDTF_BG.png", CACHED_IMAGES);
+  return imgBg(ctx, "/assets/MBDTF_BG.png", CACHED_IMAGES);
 };
 
 export const drawMainImg = async (ctx, src, hasBorder) => {

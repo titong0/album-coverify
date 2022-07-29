@@ -3,9 +3,8 @@ loadFont("Blonde", `url("/blonded_futura_lite.ttf")`);
 
 const CACHED_IMAGES = [];
 
-export const drawBg = async (ctx) => {
+export const drawBg = async (ctx) =>
   imgBg(ctx, "/assets/BLONDE_BG.png", CACHED_IMAGES);
-};
 
 export const drawMainImg = async (ctx, src) => {
   const img = await loadAndCacheImage(src, CACHED_IMAGES);

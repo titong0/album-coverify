@@ -14,16 +14,17 @@ const NavBar = () => {
   return (
     <nav className="w-full bg-white py-2 shadow-md z-10 relative">
       <ul className="flex justify-around ">
-        {NAV_LINKS.map((link) => (
+        {NAV_LINKS.map((link, index) => (
           <li key={link.path}>
-            <Link href={link.path}>
-              <span
+            <Link href={link.path} passHref>
+              <a
+                tabIndex={index + 1}
                 className={`${
                   link.path === Router.pathname ? "underline " : ""
                 }cursor-pointer hover:underline`}
               >
                 {link.display}
-              </span>
+              </a>
             </Link>
           </li>
         ))}
