@@ -18,7 +18,7 @@ const Cropper = ({ imageSrc, setImage, CTAstyle, cropOptions }) => {
   const [completedCrop, setCompletedCrop] = useState(null);
   const [usefixedAspect, toggleUseFixedAspect] = useState(true);
   const [showCropLabel, setShowCropLabel] = useState(true);
-  const [cropping, setCropping] = useState(true);
+  const [cropping, setCropping] = useState(false);
 
   const aspect = usefixedAspect ? cropOptions.aspect : null;
 
