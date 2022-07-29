@@ -6,7 +6,7 @@ import { drawImage, drawTitle, drawText } from "./WLR/wlrFunctions";
 import { fillBg } from "./utils";
 import { useRef, useState } from "react";
 import Download from "./General/Download";
-import { CtxSetter, EditorContainer } from "./General/EditorContainer";
+import EditorContainer from "./General/EditorContainer";
 
 const WlrEditor = () => {
   const canvasRef = useRef();

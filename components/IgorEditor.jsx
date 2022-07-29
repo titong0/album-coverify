@@ -1,11 +1,11 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import ImageHandler from "./IGOR/ImageHandler";
 import Canvas from "./General/Canvas";
-import { fillBg, asyncBlob } from "./utils";
+import { fillBg } from "./utils";
 import Download from "./General/Download";
 import AuthorHandler from "./IGOR/AuthorHandler";
 import { drawCredits, drawMainImg } from "./IGOR/igorFunctions";
-import { CtxSetter, EditorContainer } from "./General/EditorContainer";
+import EditorContainer from "./General/EditorContainer";
 
 const IgorEditor = () => {
   const [ctx, setCtx] = useState(null);

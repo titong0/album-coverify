@@ -1,5 +1,5 @@
-import { useState, useRef, useEffect } from "react";
-import { fillBg, asyncBlob } from "./utils";
+import { useState, useRef } from "react";
+import { fillBg } from "./utils";
 import Canvas from "./General/Canvas";
 import Download from "./General/Download";
 import ImageHandler from "./IGOR/ImageHandler";
@@ -10,7 +10,7 @@ import {
   drawMainImg,
   drawTitle,
 } from "./ALT-IGOR/altIgorFunctions";
-import { EditorContainer } from "./General/EditorContainer";
+import EditorContainer from "./General/EditorContainer";
 
 const creditsDefault =
   "ALL SONGS WRITTEN, PRODUCED AND ARRANGED BY TYLER OKONMA";

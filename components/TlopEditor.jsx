@@ -7,7 +7,7 @@ import ColorPicker from "./TLOP/ColorPicker";
 import Download from "./General/Download";
 import { drawTitleText, drawBelowText, drawImage } from "./TLOP/tlopFunctions";
 import { fillBg } from "./utils";
-import { CtxSetter, EditorContainer } from "./General/EditorContainer";
+import EditorContainer from "./General/EditorContainer";
 
 const TlopEditor = ({}) => {
   const canvasRef = useRef();

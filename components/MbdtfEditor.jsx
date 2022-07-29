@@ -3,7 +3,7 @@ import ImageHandler from "./MBDTF/ImageHandler";
 import Canvas from "./General/Canvas";
 import Download from "./General/Download";
 import { drawBg, drawMainImg } from "./MBDTF/mbdtfFunctions";
-import { CtxSetter, EditorContainer } from "./General/EditorContainer";
+import EditorContainer from "./General/EditorContainer";
 
 const MbdtfEditor = () => {
   const canvasRef = useRef();
@@ -15,7 +15,12 @@ const MbdtfEditor = () => {
   const draw = async () => {
     if (!ctx) return;
     await drawBg(ctx);
-    await drawMainImg(ctx, image, border);
+    try {
+      await drawMainImg(ctx, image, border);
+      console.log("Drawn");
+    } catch (error) {
+      throw new Error(error);
+    }
   };
 
   return (

@@ -25,9 +25,6 @@ const ImageHandler = ({ setImage }) => {
           />
         </div>
       </div>
-      <p className="bg-gray-200 p-2 w-fit">
-        Click and hold the image to crop it
-      </p>
       <Cropper
         cropOptions={{ aspect: 650 / 840 }}
         imageSrc={imageSrc}

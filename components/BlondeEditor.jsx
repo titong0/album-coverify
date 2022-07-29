@@ -1,9 +1,9 @@
-import { useRef, useEffect, useState } from "react";
+import { useRef, useState } from "react";
 import ImageHandler from "./BLONDE/ImageHandler";
 import Canvas from "./General/Canvas";
 import Download from "./General/Download";
 import { drawBg, drawMainImg, drawTitle } from "./BLONDE/blondeFunctions";
-import { CtxSetter, EditorContainer } from "./General/EditorContainer";
+import EditorContainer from "./General/EditorContainer";
 
 const BlondeEditor = () => {
   const canvasRef = useRef();

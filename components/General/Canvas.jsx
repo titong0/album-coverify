@@ -1,4 +1,4 @@
-import { useEffect, memo, forwardRef } from "react";
+import { memo } from "react";
 
 const Canvas = memo(({ canvasRef }) => {
   return (

@@ -1,7 +1,6 @@
-import { useRef, useEffect, useState } from "react";
+import { useRef, useState } from "react";
 import Canvas from "./General/Canvas";
 import Download from "./General/Download";
-import { asyncBlob } from "./utils";
 import ImageHandler from "./GKMC/ImageHandler";
 import {
   drawBg,
@@ -11,7 +10,7 @@ import {
 } from "./GKMC/gkmcFunctions";
 import RectanglesHandler from "./GKMC/RectanglesHandler";
 import GreenTintHandler from "./GKMC/GreenTintHandler";
-import { CtxSetter, EditorContainer } from "./General/EditorContainer";
+import EditorContainer from "./General/EditorContainer";
 
 const GkmcEditor = () => {
   const canvasRef = useRef();

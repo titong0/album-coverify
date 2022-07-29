@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { asyncBlob } from "../utils";
 
-export const EditorContainer = ({
+const EditorContainer = ({
   drawMethod,
   dependencies,
   canvasRef,
@@ -11,14 +11,23 @@ export const EditorContainer = ({
 }) => {
   useEffect(() => {
     let ignore = false;
-    drawMethod().then(() => {
+    // wait 200ms between canvas draws to prevent
+    // too many redraws when text input changes
+    new Promise((res) => setTimeout(res, 200)).then(() => {
       if (!ignore) {
-        asyncBlob(canvasRef.current).then((blob) =>
-          setFinishedImage(URL.createObjectURL(blob))
-        );
+        drawMethod().then(() => {
+          if (!ignore) {
+            asyncBlob(canvasRef.current).then((blob) =>
+              setFinishedImage(URL.createObjectURL(blob))
+            );
+          }
+        });
       }
     });
     return () => {
+      // if the draw method is called again before the previous call finishes
+      // set ignore to true in order to prevent race conditions and improve
+      // perf
       ignore = true;
     };
   }, dependencies);
@@ -29,3 +38,5 @@ export const EditorContainer = ({
 
   return <div>{children}</div>;
 };
+
+export default EditorContainer;
