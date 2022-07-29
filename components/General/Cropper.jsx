@@ -18,6 +18,7 @@ const Cropper = ({ imageSrc, setImage, CTAstyle, cropOptions }) => {
   const [completedCrop, setCompletedCrop] = useState(null);
   const [usefixedAspect, toggleUseFixedAspect] = useState(true);
   const [showCropLabel, setShowCropLabel] = useState(true);
+  const [cropping, setCropping] = useState(true);
 
   const aspect = usefixedAspect ? cropOptions.aspect : null;
 
@@ -30,15 +31,17 @@ const Cropper = ({ imageSrc, setImage, CTAstyle, cropOptions }) => {
   const cropImg = async (e) => {
     e.preventDefault();
     if (completedCrop.width === 0) return;
+    setCropping(true);
     canvasPreview(srcRef.current, croppedRef.current, completedCrop);
     const blob = await asyncBlob(croppedRef.current);
     await setImage(URL.createObjectURL(blob));
     setCompletedCrop(null);
     setCrop(null);
+    setCropping(false);
   };
 
   return (
-    <div className="w-fit flex flex-col items-start">
+    <div className="w-fit flex flex-col items-start mb-2">
       <label className="flex items-center">
         <span> Use recommended aspect ratio</span>
         <input
@@ -74,19 +77,32 @@ const Cropper = ({ imageSrc, setImage, CTAstyle, cropOptions }) => {
           />
         </ReactCrop>
 
-        {completedCrop && (
-          <div className="flex gap-4 py-2 bg-gray-100 w-full ">
-            <button className="border border-black p-2" onClick={cancelCrop}>
-              Cancel
-            </button>
-            <button
-              className={`${CTAstyle} text-white p-2 w-full`}
-              onClick={cropImg}
+        {completedCrop &&
+          (!cropping ? (
+            <div className={`flex gap-4 py-2 bg-gray-100 w-full p-2`}>
+              <button
+                className="border border-black p-2 hover:outline outline-2 outline-offset-4 outline-black"
+                onClick={cancelCrop}
+              >
+                Cancel
+              </button>
+              <button
+                className={`${CTAstyle} text-white p-2 w-full hover:outline outline-2 outline-offset-4 outline-black `}
+                onClick={cropImg}
+              >
+                Crop
+              </button>
+            </div>
+          ) : (
+            <div
+              className={`flex gap-4 py-2 bg-gray-700 w-full p-2 disabled-effect border relative`}
             >
-              Crop
-            </button>
-          </div>
-        )}
+              <div className="p-2 cursor-not-allowed">Cancel</div>
+              <div className="p-2 w-full text-center cursor-not-allowed">
+                Crop
+              </div>
+            </div>
+          ))}
       </div>
       <canvas className="hidden" ref={croppedRef}></canvas>
     </div>
