@@ -1,15 +1,14 @@
 import Cropper from "../General/Cropper";
 import React, { useState } from "react";
+import { imgFromInputEvent } from "../utils";
 
 const TLOPImageHandler = ({ image, setImage, second }) => {
   const [imageSrc, setImageSrc] = useState(image.srcUrl);
 
   const changeImg = (e) => {
-    if (!e.target.files[0]) return;
-    const img = e.target.files[0];
-    const obj = URL.createObjectURL(img);
-    changeOneValue("srcUrl", obj);
-    setImageSrc(obj);
+    const url = imgFromInputEvent(e);
+    changeOneValue("srcUrl", url);
+    setImageSrc(url);
   };
 
   const changeOneValue = (key, value) => {

@@ -67,6 +67,12 @@ export const asyncBlob = async (element) => {
   return new Promise((resolve) => element.toBlob(resolve));
 };
 
+export const imgFromInputEvent = (e) => {
+  if (!e.target.files[0]) return;
+  const img = e.target.files[0];
+  return URL.createObjectURL(img);
+};
+
 // original code is from https://github.com/DominicTobias/react-image-crop#example
 const TO_RADIANS = Math.PI / 180;
 export async function canvasPreview(image, canvas, crop, scale, rotate) {

@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import Cropper from "../General/Cropper";
+import { imgFromInputEvent } from "../utils";
 
 const ImageHandler = ({ image, setImage }) => {
   const [imageSrc, setImageSrc] = useState("/assets/IGOR_DEFAULT.png");
 
   const changeImg = (e) => {
-    if (!e.target.files[0]) return;
-    const url = URL.createObjectURL(e.target.files[0]);
+    const url = imgFromInputEvent;
     setImageSrc(url);
     setImage(url);
   };

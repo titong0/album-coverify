@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import Cropper from "../General/Cropper";
+import { imgFromInputEvent } from "../utils";
 
 const ImageHandler = ({ setImage }) => {
   const [imageSrc, setImageSrc] = useState("/assets/GKMC_DEFAULT.png");
 
   const updateImg = (e) => {
-    if (!e.target.files[0]) return;
-    const img = URL.createObjectURL(e.target.files[0]);
-    setImage(img);
-    setImageSrc(img);
+    const url = imgFromInputEvent(e);
+    setImage(url);
+    setImageSrc(url);
   };
 
   return (
