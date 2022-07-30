@@ -41,7 +41,7 @@ const Cropper = ({ imageSrc, setImage, CTAstyle, cropOptions }) => {
   };
 
   return (
-    <div className="w-fit flex flex-col items-start mb-2">
+    <div className="w-fit flex flex-col items-start">
       <label className="flex items-center">
         <span> Use recommended aspect ratio</span>
         <input

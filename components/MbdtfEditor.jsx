@@ -4,23 +4,20 @@ import Canvas from "./General/Canvas";
 import Download from "./General/Download";
 import { drawBg, drawMainImg } from "./MBDTF/mbdtfFunctions";
 import EditorContainer from "./General/EditorContainer";
+import PixelationHandler from "./MBDTF/PixelationHandler";
 
 const MbdtfEditor = () => {
   const canvasRef = useRef();
   const [ctx, setCtx] = useState(null);
   const [image, setImage] = useState("/assets/MBDTF_DEFAULT.png");
-  const [finishedImage, setFinishedImage] = useState(null);
   const [border, setBorder] = useState(true);
+  const [pixelation, setPixelation] = useState(23);
+  const [finishedImage, setFinishedImage] = useState(null);
 
   const draw = async () => {
     if (!ctx) return;
     await drawBg(ctx);
-    try {
-      await drawMainImg(ctx, image, border);
-      console.log("Drawn");
-    } catch (error) {
-      throw new Error(error);
-    }
+    await drawMainImg(ctx, image, border, pixelation);
   };
 
   return (
@@ -28,7 +25,7 @@ const MbdtfEditor = () => {
       canvasRef={canvasRef}
       drawMethod={draw}
       setFinishedImage={setFinishedImage}
-      dependencies={[ctx, image, border]}
+      dependencies={[ctx, image, border, pixelation]}
       setCtx={setCtx}
     >
       <div className="sm:grid grid-cols-2 mb-32">
@@ -43,6 +40,10 @@ const MbdtfEditor = () => {
               onChange={(e) => setBorder(e.target.checked)}
             />
           </label>
+          <PixelationHandler
+            pixelation={pixelation}
+            setPixelation={setPixelation}
+          />
         </form>
         <div className="flex items-center justify-center w-full">
           <Canvas canvasRef={canvasRef} />
