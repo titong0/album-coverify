@@ -21,9 +21,15 @@ export const drawGroupName = (ctx, groupName) => {
 };
 
 export const drawAlbumName = (ctx, albumName) => {
-  const fontSize = albumName.length > 12 ? 1800 / albumName.length : 100;
-  const maxWidth = (albumName.length * fontSize) / 4;
+  const { length } = albumName;
+  const fontSize = length > 12 ? 1300 / length : 95;
+
   ctx.textAlign = "center";
   ctx.font = `${fontSize}px Mistral`;
+  const maxWidth =
+    length > 5
+      ? ctx.measureText(albumName).width / 1.3
+      : ctx.measureText(albumName).width / 1.1;
+
   colorText(ctx, "white", `"${albumName}"`, 500, 930, maxWidth);
 };
