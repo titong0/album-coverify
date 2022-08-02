@@ -44,8 +44,8 @@ const Index = () => {
         />
         <meta property="og:image:type" content="image/png" />
         <meta property="og:image:alt" content="Different album covers" />
-        <meta property="og:image:width" content="1000" />
-        <meta property="og:image:height" content="1000" />
+        <meta property="og:image:width" content="1920" />
+        <meta property="og:image:height" content="1080" />
       </Head>
       <div className="py-2 min-h-screen w-full landing-bg">
         <header className="p-3 py-4 sm:pl-12">
