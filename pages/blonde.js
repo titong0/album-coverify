@@ -6,7 +6,7 @@ const Blonde = () => {
     <>
       <CustomHead name="BLONDE" url="BLONDE" />
       <div className="bg-zinc-200">
-        <h2 className="p-12 text-4xl text-center">Blonde</h2>
+        <h1 className="p-12 text-4xl text-center">Blonde</h1>
         <BlondeEditor />
       </div>
     </>
