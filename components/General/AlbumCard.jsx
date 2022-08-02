@@ -6,7 +6,7 @@ const AlbumCard = ({ title, author, href, imageUrl }) => {
   return (
     <Link href={href} passHref>
       <a
-        className="flex flex-col max-w-sm rounded-md border border-gray-700 bg-gray-200 transition duration-200
+        className="flex flex-col max-w-sm m-1 rounded-md border border-gray-700 bg-gray-200 transition duration-200
      hover:shadow-lg hover:bg-blue-200 hover:-translate-y-1 cursor-pointer"
       >
         <Image

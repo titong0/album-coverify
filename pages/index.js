@@ -52,7 +52,7 @@ const Index = () => {
           <h1 className="text-3xl">
             Easily turn your images into album covers
           </h1>
-          <h3>No photo editing knowledge required</h3>
+          <h2>No photo editing knowledge required</h2>
         </header>
         <AlbumCardsDisplay />
       </div>
