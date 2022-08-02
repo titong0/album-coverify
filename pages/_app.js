@@ -1,4 +1,3 @@
-import "../wdyr";
 import NavBar from "../components/General/NavBar";
 import "../index.css";
 import "react-image-crop/dist/ReactCrop.css";
