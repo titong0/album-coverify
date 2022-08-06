@@ -74,6 +74,7 @@ const Cropper = ({ imageSrc, setImage, CTAstyle, cropOptions }) => {
             } hidden`}
             ref={srcRef}
             src={imageSrc}
+            alt=""
           />
         </ReactCrop>
 

@@ -6,9 +6,9 @@ const MBDTF = () => {
     <>
       <CustomHead name="My Beautiful Dark Twisted Fantasy" url="mbdtf" />
       <div className="bg-zinc-200">
-        <h2 className="p-12 text-4xl text-center">
+        <h1 className="p-12 text-4xl text-center">
           My Beautiful Dark Twisted Fantasy
-        </h2>
+        </h1>
         <MbdtfEditor />
       </div>
     </>
