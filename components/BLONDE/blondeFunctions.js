@@ -8,7 +8,7 @@ export const drawBg = async (ctx) =>
 
 export const drawMainImg = async (ctx, src) => {
   const img = await loadAndCacheImage(src, CACHED_IMAGES);
-  ctx.drawImage(img, 263, 155, 475, 710);
+  ctx.drawImage(img, 263, 205, 475, 660);
 };
 
 export const drawTitle = (ctx, title) => {

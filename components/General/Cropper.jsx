@@ -55,7 +55,7 @@ const Cropper = ({ imageSrc, setImage, CTAstyle, cropOptions }) => {
         <ReactCrop
           aspect={aspect}
           crop={crop}
-          className="relative"
+          className="relative border border-black"
           onComplete={(c) => setCompletedCrop(c)}
           onChange={(c) => {
             setCrop(c);
@@ -69,7 +69,7 @@ const Cropper = ({ imageSrc, setImage, CTAstyle, cropOptions }) => {
           )}
           <img
             width="200"
-            className={`filter border border-black ${
+            className={`filter ${
               showCropLabel ? "brightness-20 bg-zinc-800" : ""
             } hidden`}
             ref={srcRef}

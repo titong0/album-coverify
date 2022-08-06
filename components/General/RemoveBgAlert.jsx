@@ -4,7 +4,9 @@ const RemoveBgAlert = () => {
   return (
     <div className="p-3 py-6 bg-black text-gray-300">
       <h3 className="text-xl pb-3">
-        This cover requires a transparent background to look properly.
+        This cover requires a{" "}
+        <span className="text-amber-300">transparent background</span> to look
+        properly.
       </h3>
       <p>
         You can remove your background in

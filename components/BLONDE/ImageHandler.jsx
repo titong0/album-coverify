@@ -26,7 +26,7 @@ const ImageHandler = ({ setImage }) => {
         </div>
       </div>
       <Cropper
-        cropOptions={{ aspect: 475 / 710 }}
+        cropOptions={{ aspect: 475 / 660 }}
         imageSrc={imageSrc}
         setImage={setImage}
         CTAstyle="bg-green-600 border-black border"

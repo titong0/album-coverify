@@ -69,6 +69,7 @@ export const asyncBlob = async (element) => {
 
 export const imgFromInputEvent = (e) => {
   if (!e.target.files[0]) return;
+  if (e.target.files[0].size > 2097152) return alert("Image too big!");
   const img = e.target.files[0];
   return URL.createObjectURL(img);
 };
