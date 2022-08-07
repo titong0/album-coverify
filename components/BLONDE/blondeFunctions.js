@@ -1,4 +1,9 @@
-import { imgBg, loadAndCacheImage, loadFont } from "../utils";
+import {
+  getScaledWidthAndHeight,
+  imgBg,
+  loadAndCacheImage,
+  loadFont,
+} from "../utils";
 loadFont("Blonde", `url("/blonded_futura_lite.ttf")`);
 
 const CACHED_IMAGES = [];
@@ -6,9 +11,16 @@ const CACHED_IMAGES = [];
 export const drawBg = async (ctx) =>
   imgBg(ctx, "/assets/BLONDE_BG.png", CACHED_IMAGES);
 
-export const drawMainImg = async (ctx, src) => {
+export const drawMainImg = async (ctx, src, size) => {
   const img = await loadAndCacheImage(src, CACHED_IMAGES);
-  ctx.drawImage(img, 263, 205, 475, 660);
+  let [width, height] = getScaledWidthAndHeight(img, 470, 660);
+  width *= size;
+  height *= size;
+  // center of the image
+  const xPos = 500 - width / 2;
+  const YPos = 863 - height;
+
+  ctx.drawImage(img, xPos, YPos, width, height);
 };
 
 export const drawTitle = (ctx, title) => {

@@ -4,6 +4,7 @@ import Canvas from "./General/Canvas";
 import Download from "./General/Download";
 import { drawBg, drawMainImg, drawTitle } from "./BLONDE/blondeFunctions";
 import EditorContainer from "./General/EditorContainer";
+import Sizehandler from "./BLONDE/Sizehandler";
 
 const BlondeEditor = () => {
   const canvasRef = useRef();
@@ -11,11 +12,12 @@ const BlondeEditor = () => {
   const [image, setImage] = useState("/assets/BLONDE_DEFAULT.png");
   const [title, setTitle] = useState("blond");
   const [finishedImage, setFinishedImage] = useState(null);
+  const [size, setSize] = useState(1);
 
   const draw = async () => {
     if (!ctx) return;
     await drawBg(ctx);
-    await drawMainImg(ctx, image);
+    await drawMainImg(ctx, image, size);
     drawTitle(ctx, title);
   };
 
@@ -24,7 +26,7 @@ const BlondeEditor = () => {
       canvasRef={canvasRef}
       drawMethod={draw}
       setFinishedImage={setFinishedImage}
-      dependencies={[ctx, image, title]}
+      dependencies={[ctx, image, title, size]}
       setCtx={setCtx}
     >
       <div className="sm:grid grid-cols-2 mb-32">
@@ -37,8 +39,8 @@ const BlondeEditor = () => {
             value={title}
             onChange={(e) => setTitle(e.target.value)}
           />
-
           <ImageHandler setImage={setImage} />
+          <Sizehandler size={size} setSize={setSize} />
         </div>
         <div className="flex items-center justify-center w-full">
           <Canvas canvasRef={canvasRef} />

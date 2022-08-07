@@ -40,6 +40,20 @@ export const loadAndCacheImage = async (url, cache) => {
   return img;
 };
 
+// scale the image so that it reaches height or width without altering aspect ratio
+export const getScaledWidthAndHeight = (img, intendedWidth, intendedHeight) => {
+  const { naturalWidth, naturalHeight } = img;
+  console.log(naturalWidth, naturalHeight);
+
+  let multiplier = 1;
+  if (naturalWidth > naturalHeight) {
+    multiplier = intendedWidth / naturalWidth;
+  } else {
+    multiplier = intendedHeight / naturalHeight;
+  }
+  return [naturalWidth * multiplier, naturalHeight * multiplier];
+};
+
 export const loadFont = async (fontName, fontUrl) => {
   if (typeof FontFace === "undefined") return;
   const font = new FontFace(fontName, fontUrl);
