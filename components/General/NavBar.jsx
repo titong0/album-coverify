@@ -12,7 +12,7 @@ const NavBar = () => {
   const Router = useRouter();
 
   return (
-    <nav className="w-full bg-white py-2 shadow-md z-10 relative">
+    <nav className="w-full bg-white p-3 shadow-md z-10 relative">
       <ul className="flex justify-around ">
         {NAV_LINKS.map((link, index) => (
           <li key={link.path}>
@@ -20,8 +20,8 @@ const NavBar = () => {
               <a
                 tabIndex={index + 1}
                 className={`${
-                  link.path === Router.pathname ? "underline " : ""
-                }cursor-pointer hover:underline`}
+                  link.path === Router.pathname ? "underline" : ""
+                } cursor-pointer hover:underline text-lg`}
               >
                 {link.display}
               </a>

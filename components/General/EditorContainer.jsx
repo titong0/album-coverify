@@ -11,9 +11,9 @@ const EditorContainer = ({
 }) => {
   useEffect(() => {
     let ignore = false;
-    // wait 200ms between canvas draws to prevent
+    // wait 100ms between canvas draws to prevent
     // too many redraws when text input changes
-    new Promise((res) => setTimeout(res, 200)).then(() => {
+    new Promise((res) => setTimeout(res, 100)).then(() => {
       if (!ignore) {
         drawMethod().then(() => {
           if (!ignore) {
