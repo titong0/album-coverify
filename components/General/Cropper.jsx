@@ -29,7 +29,6 @@ const Cropper = ({ imageSrc, setImage, CTAstyle, cropOptions }) => {
   };
 
   const cropImg = async (e) => {
-    e.preventDefault();
     if (completedCrop.width === 0) return;
     setCropping(true);
     canvasPreview(srcRef.current, croppedRef.current, completedCrop);
@@ -51,60 +50,66 @@ const Cropper = ({ imageSrc, setImage, CTAstyle, cropOptions }) => {
           onChange={(e) => toggleUseFixedAspect(e.target.checked)}
         />
       </label>
-      <div className="mt-2 ">
-        <ReactCrop
-          aspect={aspect}
-          crop={crop}
-          className="relative border border-black"
-          onComplete={(c) => setCompletedCrop(c)}
-          onChange={(c) => {
-            setCrop(c);
-            setShowCropLabel(false);
-          }}
-        >
-          {showCropLabel && (
-            <span className="absolute z-10 text-center text-white text-lg w-full mt-4 px-3">
-              You can crop your image by clicking here!
-            </span>
-          )}
-          <img
-            width="200"
-            className={`filter ${
-              showCropLabel ? "brightness-20 bg-zinc-800" : ""
-            } hidden`}
-            ref={srcRef}
-            src={imageSrc}
-            alt=""
-          />
-        </ReactCrop>
+      {true ? (
+        <div className="mt-2">
+          <ReactCrop
+            aspect={aspect}
+            crop={crop}
+            className="relative border border-black"
+            onComplete={(c) => setCompletedCrop(c)}
+            onChange={(c) => {
+              setCrop(c);
+              setShowCropLabel(false);
+            }}
+          >
+            {showCropLabel && (
+              <span className="absolute z-10 text-center text-white text-lg w-full mt-4 px-3">
+                You can crop your image by clicking here!
+              </span>
+            )}
+            <img
+              width="200"
+              className={`filter 
+            ${showCropLabel ? "brightness-20 bg-zinc-800" : ""}
+            ${crop ? "w-80 sm:w-64" : ""}
+             hidden`}
+              ref={srcRef}
+              src={imageSrc}
+              alt=""
+            />
+          </ReactCrop>
 
-        {completedCrop &&
-          (!cropping ? (
-            <div className={`flex gap-4 py-2 bg-gray-100 w-full p-2`}>
+          {completedCrop && (
+            <div
+              className={`flex gap-4 py-2 bg-gray-100 w-full p-2 
+              ${cropping ? "brightness-20" : ""}`}
+            >
               <button
-                className="border border-black p-2 hover:outline outline-2 outline-offset-4 outline-black"
+                className={
+                  !cropping
+                    ? `border border-black p-2 hover:outline outline-2 outline-offset-4 outline-black`
+                    : "border border-transparent p-2 cursor-progress"
+                }
                 onClick={cancelCrop}
               >
                 Cancel
               </button>
               <button
-                className={`${CTAstyle} text-white p-2 w-full hover:outline outline-2 outline-offset-4 outline-black `}
-                onClick={cropImg}
+                className={
+                  !cropping
+                    ? `${CTAstyle} text-white p-2 w-full hover:outline outline-2 outline-offset-4 outline-black `
+                    : "w-full p-2 cursor-progress"
+                }
+                type={"button"}
+                onClick={!cropping ? cropImg : null}
+                // onClick={() => setCropping(!cropping)}
               >
                 Crop
               </button>
             </div>
-          ) : (
-            <div
-              className={`flex gap-4 py-2 bg-gray-700 w-full p-2 disabled-effect border relative`}
-            >
-              <div className="p-2 cursor-not-allowed">Cancel</div>
-              <div className="p-2 w-full text-center cursor-not-allowed">
-                Crop
-              </div>
-            </div>
-          ))}
-      </div>
+          )}
+        </div>
+      ) : null}
       <canvas className="hidden" ref={croppedRef}></canvas>
     </div>
   );
