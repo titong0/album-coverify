@@ -1,8 +1,10 @@
-export const clearCanvas = (ctx) => {
+type Ctx2d = CanvasRenderingContext2D;
+
+export const clearCanvas = (ctx: Ctx2d) => {
   ctx.clearRect(0, 0, 1000, 1000);
 };
 
-export const fillBg = (ctx, color) => {
+export const fillBg = (ctx: Ctx2d, color: string) => {
   let previousColor = ctx.fillStyle;
   ctx.fillStyle = color;
   ctx.fillRect(0, 0, 1000, 1000);
@@ -14,7 +16,15 @@ export const imgBg = async (ctx, url, cache) => {
   ctx.drawImage(img, 0, 0, 1000, 1000);
 };
 
-export const colorText = (ctx, color, text, x, y, maxWidth, options = {}) => {
+export const colorText = (
+  ctx: Ctx2d,
+  color: CanvasFillStrokeStyles["fillStyle"],
+  text: string,
+  x: number,
+  y: number,
+  maxWidth?: number,
+  options?: Ctx2d
+) => {
   let [prevFillStyle, prevAlign] = [ctx.fillStyle, ctx.textAlign];
   ctx.textAlign = options.textAlign;
   ctx.fillStyle = color;
@@ -41,7 +51,11 @@ export const loadAndCacheImage = async (url, cache) => {
 };
 
 // scale the image so that it reaches height or width without altering aspect ratio
-export const getScaledWidthAndHeight = (img, intendedWidth, intendedHeight) => {
+export const getScaledWidthAndHeight = (
+  img: HTMLImageElement,
+  intendedWidth: number,
+  intendedHeight: number
+) => {
   const { naturalWidth, naturalHeight } = img;
   console.log(naturalWidth, naturalHeight);
 
@@ -77,8 +91,10 @@ export function getMousePos(canvas, evt) {
   };
 }
 
-export const asyncBlob = async (element) => {
-  return new Promise((resolve) => element.toBlob(resolve));
+export const asyncBlob = async (element: HTMLCanvasElement) => {
+  return new Promise((resolve) => {
+    element.toBlob((blob) => resolve(blob));
+  }) as Promise<Blob>;
 };
 
 export const imgFromInputEvent = (e) => {

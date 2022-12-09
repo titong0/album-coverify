@@ -1,16 +1,15 @@
 import { useRef, useState } from "react";
 import Canvas from "./General/Canvas";
 import ImageHandler from "./TLOP/ImageHandler";
-import BelowTextHandler from "./TLOP/BelowTextHandler";
-import TitleTextHandler from "./TLOP/TitleTextHandler";
 import ColorPicker from "./TLOP/ColorPicker";
 import Download from "./General/Download";
 import { drawTitleText, drawBelowText, drawImage } from "./TLOP/tlopFunctions";
 import { fillBg } from "./utils";
 import EditorContainer from "./General/EditorContainer";
+import TextInput from "./General/TextInput";
 
 const TlopEditor = ({}) => {
-  const canvasRef = useRef();
+  const canvasRef = useRef<HTMLCanvasElement>();
   const [ctx, setCtx] = useState(null);
   const [finishedImage, setFinishedImage] = useState(null);
   const [firstImage, setFirstImage] = useState({
@@ -27,20 +26,9 @@ const TlopEditor = ({}) => {
     y: 20,
   });
 
-  const [formValues, setFormValues] = useState({
-    bgColor: "#F78C58",
-    title: "THE LIFE OF PABLO",
-    belowText: "WHICH / ONE",
-  });
-  const { bgColor, title, belowText } = formValues;
-
-  const handleChange = (e) => {
-    const copy = { ...formValues };
-    if (e.target.name === "image") return;
-    copy[e.target.name] = e.target.value;
-    setFormValues(copy);
-  };
-
+  const [title, setTitle] = useState("THE LIFE OF PABLO");
+  const [belowText, setBelowText] = useState("WHICH / ONE");
+  const [bgColor, setBgColor] = useState("#F78C58");
   const draw = async () => {
     if (!ctx) return;
     fillBg(ctx, bgColor);
@@ -53,33 +41,49 @@ const TlopEditor = ({}) => {
   return (
     <EditorContainer
       setFinishedImage={setFinishedImage}
-      dependencies={[ctx, formValues, firstImage, secondImage]}
-      canvasRef={canvasRef}
+      dependencies={[ctx, title, belowText, bgColor, firstImage, secondImage]}
       drawMethod={draw}
       setCtx={setCtx}
     >
       <div className="grid sm:grid-cols-2 py-2">
         {ctx !== null ? (
-          <form className="flex flex-col" onChange={handleChange}>
+          <div className="flex flex-col">
             <ColorPicker />
-            <TitleTextHandler />
-            <BelowTextHandler />
-            <ImageHandler image={firstImage} setImage={setFirstImage} />
+            <TextInput
+              value={title}
+              setValue={setTitle}
+              name="title"
+              label="Title"
+              className="bg-orange-300 focus:bg-red-500"
+            />
+            <TextInput
+              value={belowText}
+              setValue={setBelowText}
+              name="belowText"
+              label="Secondary Text"
+              maxLength={18}
+              className="bg-orange-300 focus:bg-red-500"
+            />
+            <ImageHandler
+              second={false}
+              image={firstImage}
+              setImage={setFirstImage}
+            />
             <ImageHandler
               image={secondImage}
               setImage={setSecondImage}
               second
             />
-          </form>
+          </div>
         ) : null}
         <div className="flex items-center justify-center py-8 sm:py-2 w-full ">
-          <Canvas canvasRef={canvasRef} />
+          <Canvas />
         </div>
       </div>
       <Download
         fileName="PABLO"
         finishedImage={finishedImage}
-        title={formValues.title}
+        title={title}
         buttonStyle="text-white bg-gradient-to-b from-red-500 to-orange-800"
         bg="bg-orange-400"
       />
