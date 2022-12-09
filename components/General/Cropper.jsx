@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState } from "react";
 import ReactCrop from "react-image-crop";
-import { canvasPreview, asyncBlob } from "../utils";
+import { canvasPreview, asyncBlob } from "../../src/utils";
 
 /**
  * @param {{

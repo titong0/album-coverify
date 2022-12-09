@@ -1,4 +1,4 @@
-import { colorText, loadAndCacheImage } from "../utils";
+import { colorText, loadAndCacheImage } from "../../src/utils";
 
 const CACHED_IMAGES = [];
 

@@ -1,9 +1,16 @@
 import React, { useEffect, useRef, createContext } from "react";
-import { asyncBlob } from "../utils";
+import { asyncBlob } from "../../src/utils";
 
 export const CanvasRefContext = createContext(null);
 
-const EditorContainer = ({
+type EditorContainerProps = {
+  drawMethod;
+  dependencies: any[];
+  setFinishedImage;
+  setCtx;
+  children: React.ReactNode;
+};
+const EditorContainer: React.FC<EditorContainerProps> = ({
   drawMethod,
   dependencies,
   children,
@@ -24,7 +31,9 @@ const EditorContainer = ({
     let ignore = false;
     // wait 100ms between canvas draws to prevent
     // too many redraws when text input changes
-    new Promise((res) => setTimeout(res, 100)).then(handleDrawing);
+    new Promise((res) => setTimeout(res, 100)).then(() =>
+      handleDrawing(ignore)
+    );
     return () => {
       // if the draw method is called again before the previous call finishes
       // set ignore to true in order to prevent race conditions and improve

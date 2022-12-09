@@ -1,6 +1,6 @@
 import Cropper from "../General/Cropper";
 import React, { useState } from "react";
-import { imgFromInputEvent } from "../utils";
+import { imgFromInputEvent } from "../../src/utils";
 
 const TLOPImageHandler = ({ image, setImage, second }) => {
   const [imageSrc, setImageSrc] = useState(image.srcUrl);

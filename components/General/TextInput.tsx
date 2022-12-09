@@ -6,7 +6,7 @@ type TextInputProps = InputHTMLAttributes<HTMLInputElement> & {
   name: string;
   label: string;
   className: string;
-  children?: React.ReactNode;
+  // children?: React.ReactNode;
 };
 
 const TextInput: React.FC<Omit<TextInputProps, "defaultValue">> = ({

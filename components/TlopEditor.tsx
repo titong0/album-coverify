@@ -1,15 +1,15 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 import Canvas from "./General/Canvas";
 import ImageHandler from "./TLOP/ImageHandler";
 import ColorPicker from "./TLOP/ColorPicker";
 import Download from "./General/Download";
 import { drawTitleText, drawBelowText, drawImage } from "./TLOP/tlopFunctions";
-import { fillBg } from "./utils";
+import { fillBg } from "../src/utils";
 import EditorContainer from "./General/EditorContainer";
 import TextInput from "./General/TextInput";
 
 const TlopEditor = ({}) => {
-  const canvasRef = useRef<HTMLCanvasElement>();
+  const [Drawer, setDrawer] = useState(null);
   const [ctx, setCtx] = useState(null);
   const [finishedImage, setFinishedImage] = useState(null);
   const [firstImage, setFirstImage] = useState({
