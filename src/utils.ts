@@ -1,6 +1,7 @@
-type Ctx2d = CanvasRenderingContext2D;
-
-export const loadAndCacheImage = async (url, cache) => {
+export const loadAndCacheImage = async (
+  url: string,
+  cache: HTMLImageElement[]
+) => {
   let img = cache.find((img) => img.id === url);
   if (!img) {
     img = new Image();
@@ -32,10 +33,13 @@ export const getScaledWidthAndHeight = (
   } else {
     multiplier = intendedHeight / naturalHeight;
   }
-  return [naturalWidth * multiplier, naturalHeight * multiplier];
+  return {
+    width: naturalWidth * multiplier,
+    height: naturalHeight * multiplier,
+  };
 };
 
-export const loadFont = async (fontName, fontUrl) => {
+export const loadFont = async (fontName: string, fontUrl: `url(${string})`) => {
   if (typeof FontFace === "undefined") return;
   const font = new FontFace(fontName, fontUrl);
   try {
@@ -46,8 +50,8 @@ export const loadFont = async (fontName, fontUrl) => {
   document.fonts.add(font);
 };
 
-export function getMousePos(canvas, evt) {
-  var rect = canvas.getBoundingClientRect();
+export function getMousePos(canvas: HTMLCanvasElement, evt: MouseEvent) {
+  const rect = canvas.getBoundingClientRect();
   return {
     x: Math.floor(
       ((evt.clientX - rect.left) / (rect.right - rect.left)) * canvas.width
@@ -73,7 +77,7 @@ export const imgFromInputEvent = (e) => {
 
 // original code is from https://github.com/DominicTobias/react-image-crop#example
 const TO_RADIANS = Math.PI / 180;
-export async function canvasPreview(image, canvas, crop, scale, rotate) {
+export async function canvasPreview(image, canvas, crop, scale?, rotate?) {
   const ctx = canvas.getContext("2d");
 
   if (!ctx) {
