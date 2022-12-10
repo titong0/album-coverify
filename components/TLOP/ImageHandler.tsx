@@ -11,7 +11,7 @@ const TLOPImageHandler = ({ image, setImage, second }) => {
     setImageSrc(url);
   };
 
-  const changeOneValue = (key, value) => {
+  const changeOneValue = (key: keyof typeof image, value) => {
     const copy = { ...image };
     copy[key] = value;
     setImage(copy);

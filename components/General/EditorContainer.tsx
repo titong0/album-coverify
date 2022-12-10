@@ -1,37 +1,38 @@
-import React, { useEffect, useRef, createContext } from "react";
+import React, { useEffect, useRef, createContext, useState } from "react";
+import { Drawer } from "../../src/Drawer";
 import { asyncBlob } from "../../src/utils";
 
 export const CanvasRefContext = createContext(null);
+export const FinishedImageContext = createContext(null);
 
 type EditorContainerProps = {
-  drawMethod;
+  drawMethod: (draw: Drawer) => Promise<void>;
   dependencies: any[];
-  setFinishedImage;
-  setCtx;
   children: React.ReactNode;
 };
 const EditorContainer: React.FC<EditorContainerProps> = ({
   drawMethod,
   dependencies,
   children,
-  setFinishedImage,
-  setCtx,
 }) => {
   const canvasRef = useRef<HTMLCanvasElement>();
+  const DrawerInstance = useRef<Drawer>(null);
+  const [finishedImage, setFinishedImage] = useState<string>(null);
 
   const handleDrawing = async (ignore: boolean) => {
-    if (ignore) return;
-    await drawMethod();
+    await drawMethod(DrawerInstance.current);
     if (ignore) return;
     const finishedBlob = await asyncBlob(canvasRef.current);
+    if (ignore) return;
     setFinishedImage(URL.createObjectURL(finishedBlob));
   };
 
   useEffect(() => {
+    const updateRate = 100;
     let ignore = false;
     // wait 100ms between canvas draws to prevent
     // too many redraws when text input changes
-    new Promise((res) => setTimeout(res, 100)).then(() =>
+    new Promise((res) => setTimeout(res, updateRate)).then(() =>
       handleDrawing(ignore)
     );
     return () => {
@@ -43,12 +44,16 @@ const EditorContainer: React.FC<EditorContainerProps> = ({
   }, dependencies);
 
   useEffect(() => {
-    setCtx(canvasRef.current.getContext("2d"));
+    const ctx = canvasRef.current.getContext("2d");
+    if (!ctx) return;
+    DrawerInstance.current = new Drawer(ctx);
   }, [canvasRef.current]);
 
   return (
     <CanvasRefContext.Provider value={canvasRef}>
-      {children}
+      <FinishedImageContext.Provider value={finishedImage}>
+        {children}
+      </FinishedImageContext.Provider>
     </CanvasRefContext.Provider>
   );
 };

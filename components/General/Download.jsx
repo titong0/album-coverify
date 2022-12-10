@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
+import { FinishedImageContext } from "./EditorContainer";
 
-const Download = ({ finishedImage, fileName, title, buttonStyle, bg }) => {
+const Download = ({ fileName, title, buttonStyle, bg }) => {
+  const finishedImage = useContext(FinishedImageContext);
   const formattedName = fileName + (title ? `-${title}.png` : ".png");
 
   return (

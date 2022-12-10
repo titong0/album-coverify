@@ -1,45 +1,68 @@
-import { loadAndCacheImage } from "./utils";
+import { CanvColor, Ctx2d, DetailedImage, Dimensions } from "./types";
+import { getScaledWidthAndHeight, loadAndCacheImage } from "./utils";
 
-type Ctx2d = CanvasRenderingContext2D;
-
-export const clearCanvas = (ctx: Ctx2d) => {
-  ctx.clearRect(0, 0, 1000, 1000);
-};
-
-export const fillBg = (ctx: Ctx2d, color: string) => {
-  let previousColor = ctx.fillStyle;
-  ctx.fillStyle = color;
-  ctx.fillRect(0, 0, 1000, 1000);
-  ctx.fillStyle = previousColor;
-};
-
-export const imgBg = async (ctx, url, cache) => {
-  const img = await loadAndCacheImage(url, cache);
-  ctx.drawImage(img, 0, 0, 1000, 1000);
-};
-
-const colorText = (
-  ctx: Ctx2d,
-  color: CanvasFillStrokeStyles["fillStyle"],
-  text: string,
-  x: number,
-  y: number,
-  maxWidth?: number,
-  options?: Ctx2d
-) => {
-  let [prevFillStyle, prevAlign] = [ctx.fillStyle, ctx.textAlign];
-  ctx.textAlign = options.textAlign;
-  ctx.fillStyle = color;
-  ctx.fillText(text, x, y, maxWidth);
-  ctx.fillStyle = prevFillStyle;
-  ctx.textAlign = prevAlign;
-};
 export class Drawer {
   ctx: Ctx2d;
+  IMAGE_CACHE = [];
+
   constructor(context: Ctx2d) {
     this.ctx = context;
   }
-  colorText(...args) {
-    colorText(this.ctx, ...args);
+
+  colorText(text: string, x: number, y: number, color: CanvColor) {
+    this.ctx.save();
+    this.ctx.fillStyle = color;
+    this.ctx.fillText(text, x, y);
+    this.ctx.restore();
+  }
+  colorBg(color: string) {
+    this.ctx.save();
+    this.ctx.fillStyle = color;
+    this.ctx.fillRect(0, 0, 1000, 1000);
+    this.ctx.restore();
+  }
+
+  async drawFixedImage(image: DetailedImage, dimensions: Dimensions) {
+    const { coordinates, srcUrl } = image;
+    const img = await loadAndCacheImage(srcUrl, this.IMAGE_CACHE);
+
+    this.ctx.drawImage(
+      img,
+      coordinates.x,
+      coordinates.y,
+      dimensions.width,
+      dimensions.height
+    );
+  }
+
+  async drawScalableImage(
+    image: DetailedImage,
+    defaultDimensions: Dimensions,
+    scale: number
+  ) {
+    const { coordinates, srcUrl } = image;
+    const img = await loadAndCacheImage(srcUrl, this.IMAGE_CACHE);
+    const adjustedDimensions = getScaledWidthAndHeight(
+      img,
+      defaultDimensions.width,
+      defaultDimensions.height
+    );
+    this.ctx.drawImage(
+      img,
+      coordinates.x,
+      coordinates.y,
+      adjustedDimensions.width * scale,
+      adjustedDimensions.height * scale
+    );
+  }
+  clearCanvas() {
+    this.ctx.clearRect(0, 0, 1000, 1000);
+  }
+  async imgBg(url: string) {
+    const img = await loadAndCacheImage(url, this.IMAGE_CACHE);
+    this.ctx.drawImage(img, 0, 0, 1000, 1000);
+  }
+  customDraw(customFn: (ctx: Ctx2d) => void) {
+    customFn(this.ctx);
   }
 }

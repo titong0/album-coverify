@@ -1,8 +1,9 @@
-import { colorText, loadAndCacheImage } from "../../src/utils";
+import { Ctx2d } from "../../src/types";
+import { loadAndCacheImage } from "../../src/utils";
 
 const CACHED_IMAGES = [];
 
-export const drawTitleText = (content, ctx) => {
+export const drawTitleText = (content: string, ctx: Ctx2d) => {
   for (let i = 1; i < 8; i++) {
     if (i === 7) {
       drawPabloText(content, 100, 70 * (i + 1), ctx);
@@ -12,9 +13,9 @@ export const drawTitleText = (content, ctx) => {
   }
 };
 
-const drawPabloText = (text, x, y, ctx) => {
+const drawPabloText = (text: string, x, y, ctx: Ctx2d) => {
   const separated = text.split(" ");
-  const first = [separated[0], separated[1], separated[2]].join(" ");
+  const first = separated.slice(0, 3).join(" ");
   const second = separated.splice(3).join(" ");
 
   ctx.font = "bold 60px Helvetica";
@@ -28,7 +29,7 @@ const drawPabloText = (text, x, y, ctx) => {
   second && ctx.fillText(second, secondX, y);
 };
 
-export const drawBelowText = (content, ctx) => {
+export const drawBelowText = (content: string, ctx: Ctx2d) => {
   for (let i = 0; i < 10; i++) {
     drawWhichOneText(content, 250, 500 + i * 40, ctx);
   }
@@ -37,13 +38,15 @@ export const drawBelowText = (content, ctx) => {
   }
 };
 
-const drawWhichOneText = (content, x, y, ctx) => {
+const drawWhichOneText = (content: string, x, y, ctx: Ctx2d) => {
+  ctx.save();
   ctx.font = "bold 30px Helvetica";
-  const options = { textAlign: "center" };
-  colorText(ctx, "black", content, x, y + 90, 1000, options);
+  ctx.textAlign = "center";
+  ctx.fillText(content, x, y + 90, 1000);
+  ctx.restore();
 };
 
-export const drawImage = async (image, ctx) => {
+export const drawImage = async (image, ctx: Ctx2d) => {
   const { srcUrl, x, y, size } = image;
   const img = await loadAndCacheImage(srcUrl, CACHED_IMAGES);
 
