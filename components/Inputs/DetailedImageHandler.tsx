@@ -3,8 +3,8 @@ import React, { useState } from "react";
 import { imgFromInputEvent } from "../../src/utils";
 import {
   ChangeOneProp,
-  Coordinates,
   DetailedImage,
+  InputProps,
   stateSetter,
 } from "../../src/types";
 import { createContext, useContext } from "react";
@@ -18,14 +18,14 @@ type ImageHandlerProps = {
 };
 
 type SubComponents = {
-  SizeHandler: () => JSX.Element;
-  CoordinatesHandler: () => JSX.Element;
-  OpacityHandler: () => JSX.Element;
+  SizeHandler: React.FC<SizeHandlerProps>;
+  CoordinatesHandler: React.FC<CoordinatesHandlerProps>;
+  OpacityHandler: React.FC<OpacityHandlerProps>;
 };
 
 const ImageValuesCtx = createContext<{
   image: DetailedImage;
-  changeOneValue: (key: any, value: any) => void;
+  changeOneValue: ChangeOneProp<DetailedImage>;
 }>(null);
 
 const DetailedImageHandler: React.FC<ImageHandlerProps> & SubComponents = ({
@@ -76,7 +76,8 @@ const DetailedImageHandler: React.FC<ImageHandlerProps> & SubComponents = ({
   );
 };
 
-DetailedImageHandler.SizeHandler = () => {
+type SizeHandlerProps = InputProps & {};
+const SizeHandler: React.FC<SizeHandlerProps> = ({ ...props }) => {
   const { image, changeOneValue } = useContext(ImageValuesCtx);
   return (
     <>
@@ -86,58 +87,76 @@ DetailedImageHandler.SizeHandler = () => {
       <input
         className="w-1/3"
         type="range"
-        min="0.5"
-        step="0.1"
-        max="3"
         value={image.size}
-        onChange={(e) => changeOneValue("size", e.target.value)}
+        onChange={(e) => changeOneValue("size", +e.target.value)}
+        {...props}
       />
     </>
   );
 };
 
-DetailedImageHandler.CoordinatesHandler = () => {
+type CoordinatesHandlerProps = {
+  pixelToUnitRatio: number;
+  xProps?: InputProps;
+  yProps?: InputProps;
+};
+const CoordinatesHandler: React.FC<CoordinatesHandlerProps> = ({
+  pixelToUnitRatio,
+  xProps,
+  yProps,
+}) => {
   const { image, changeOneValue } = useContext(ImageValuesCtx);
 
   return (
     <>
-      <label>
-        X position: <strong> {image.coordinates.x}</strong>
-      </label>
-      <input
-        className="w-2/3"
-        type="range"
-        min="5"
-        max="65"
-        value={image.coordinates.x}
-        onChange={(e) =>
-          changeOneValue("coordinates", {
-            x: parseInt(e.target.value),
-            y: image.coordinates.y,
-          })
-        }
-      />
-      <label>
-        Y position: <strong> {image.coordinates.y}</strong>
-      </label>
-      <input
-        className="w-2/3"
-        type="range"
-        min="5"
-        max="90"
-        value={image.coordinates.y}
-        onChange={(e) =>
-          changeOneValue("coordinates", {
-            x: image.coordinates.x,
-            y: parseInt(e.target.value),
-          })
-        }
-      />
+      {image.coordinates.x !== undefined && (
+        <>
+          <label>
+            X position:
+            <strong> {image.coordinates.x / pixelToUnitRatio}</strong>
+          </label>
+          <input
+            className="w-2/3"
+            type="range"
+            value={image.coordinates.x / pixelToUnitRatio}
+            onChange={(e) =>
+              changeOneValue("coordinates", {
+                x: parseInt(e.target.value) * pixelToUnitRatio,
+                y: image.coordinates.y,
+              })
+            }
+            {...xProps}
+          />
+        </>
+      )}
+      {image.coordinates.y !== undefined && (
+        <>
+          <label>
+            Y position: <strong> {image.coordinates.y}</strong>
+          </label>
+          <input
+            className="w-2/3"
+            type="range"
+            value={image.coordinates.y}
+            onChange={(e) =>
+              changeOneValue("coordinates", {
+                x: image.coordinates.x,
+                y: parseInt(e.target.value) * pixelToUnitRatio,
+              })
+            }
+            {...yProps}
+          />
+        </>
+      )}
     </>
   );
 };
-DetailedImageHandler.OpacityHandler = () => {
+type OpacityHandlerProps = {};
+const OpacityHandler: React.FC<OpacityHandlerProps> = () => {
   return null;
 };
 
+DetailedImageHandler.SizeHandler = SizeHandler;
+DetailedImageHandler.CoordinatesHandler = CoordinatesHandler;
+DetailedImageHandler.OpacityHandler = OpacityHandler;
 export default DetailedImageHandler;

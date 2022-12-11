@@ -1,11 +1,10 @@
 import { useState } from "react";
 import Canvas from "./General/Canvas";
-import ImageHandler from "./TLOP/ImageHandler";
-import ColorPicker from "./TLOP/ColorPicker";
+import ColorPicker from "./Inputs/ColorPicker";
 import Download from "./General/Download";
 import { drawTitleText, drawBelowText, drawImage } from "./TLOP/tlopFunctions";
 import EditorContainer from "./General/EditorContainer";
-import TextInput from "./General/TextInput";
+import TextInput from "./Inputs/TextInput";
 import { Drawer } from "../src/Drawer";
 import DetailedImageHandler from "./Inputs/DetailedImageHandler";
 import { DetailedImage } from "../src/types";
@@ -37,19 +36,9 @@ const TlopEditor = ({}) => {
     Ctx.colorBg(bgColor);
     Ctx.customDraw((ctx) => drawBelowText(belowText, ctx));
     Ctx.customDraw((ctx) => drawTitleText(title, ctx));
-    await Ctx.drawScalableImage(
-      firstImage,
-      { height: 300, width: 350 },
-      firstImage.size
-    );
-    await Ctx.drawScalableImage(
-      secondImage,
-      { height: 300, width: 350 },
-
-      secondImage.size
-    );
+    await Ctx.drawScalableImage(firstImage, { height: 300, width: 350 });
+    await Ctx.drawScalableImage(secondImage, { height: 300, width: 350 });
   };
-
   return (
     <EditorContainer
       dependencies={[title, belowText, bgColor, firstImage, secondImage]}
@@ -57,19 +46,23 @@ const TlopEditor = ({}) => {
     >
       <div className="grid sm:grid-cols-2 py-2">
         <div className="flex flex-col">
-          <ColorPicker />
+          <ColorPicker
+            label="Background color"
+            value={bgColor}
+            setValue={setBgColor}
+          />
           <TextInput
-            value={title}
-            setValue={setTitle}
             name="title"
             label="Title"
+            value={title}
+            setValue={setTitle}
             className="bg-orange-300 focus:bg-red-500"
           />
           <TextInput
-            value={belowText}
-            setValue={setBelowText}
             name="belowText"
             label="Secondary Text"
+            value={belowText}
+            setValue={setBelowText}
             maxLength={18}
             className="bg-orange-300 focus:bg-red-500"
           />
@@ -79,17 +72,40 @@ const TlopEditor = ({}) => {
             image={firstImage}
             setImage={setFirstImage}
           >
-            <DetailedImageHandler.SizeHandler />
-            <DetailedImageHandler.CoordinatesHandler />
+            <DetailedImageHandler.SizeHandler min="0.1" step="0.1" max="3" />
+            <DetailedImageHandler.CoordinatesHandler
+              pixelToUnitRatio={10}
+              xProps={{
+                min: -100,
+                max: 100,
+              }}
+              yProps={{
+                min: -100,
+                max: 100,
+              }}
+            />
           </DetailedImageHandler>
-          <ImageHandler
-            second={false}
-            image={firstImage}
-            setImage={setFirstImage}
-          />
-          <ImageHandler image={secondImage} setImage={setSecondImage} second />
+          <DetailedImageHandler
+            label="Second image"
+            name="secondImage"
+            image={secondImage}
+            setImage={setSecondImage}
+          >
+            <DetailedImageHandler.SizeHandler min="0.1" step="0.1" max="3" />
+            <DetailedImageHandler.CoordinatesHandler
+              pixelToUnitRatio={10}
+              xProps={{
+                min: -100,
+                max: 100,
+              }}
+              yProps={{
+                min: -100,
+                max: 100,
+              }}
+            />
+          </DetailedImageHandler>
         </div>
-        <div className="flex items-center justify-center py-8 sm:py-2 w-full ">
+        <div className="flex items-end justify-center py-8 sm:py-2 h-full ">
           <Canvas />
         </div>
       </div>

@@ -1,12 +1,12 @@
 import React, { InputHTMLAttributes, Dispatch, SetStateAction } from "react";
+import { stateSetter } from "../../src/types";
 
 type TextInputProps = InputHTMLAttributes<HTMLInputElement> & {
   value: string;
-  setValue: Dispatch<SetStateAction<string>>;
+  setValue: stateSetter<string>;
   name: string;
   label: string;
   className: string;
-  // children?: React.ReactNode;
 };
 
 const TextInput: React.FC<Omit<TextInputProps, "defaultValue">> = ({
