@@ -1,3 +1,5 @@
+import { Coordinates, Ctx2d } from "./types";
+
 export const loadAndCacheImage = async (
   url: string,
   cache: HTMLImageElement[]
@@ -16,6 +18,23 @@ export const loadAndCacheImage = async (
     return img;
   }
   return img;
+};
+
+export const drawTextWithMaxChars = (
+  ctx: Ctx2d,
+  content: string,
+  maxChars: number,
+  coordinates: Coordinates
+) => {
+  const wordRegex = new RegExp(`/[\s\S]{1,${maxChars}}(?!\S)/g`);
+  const modified = content.replace(wordRegex, "$&\n");
+  const lines = modified.split("\n");
+  lines.forEach((line, index) => {
+    const metrics = ctx.measureText(line);
+    const height =
+      metrics.actualBoundingBoxAscent + metrics.actualBoundingBoxDescent;
+    ctx.fillText(line, coordinates.x, coordinates.y + height * index);
+  });
 };
 
 // scale the image so that it reaches height or width without altering aspect ratio
@@ -37,17 +56,6 @@ export const getScaledWidthAndHeight = (
     width: naturalWidth * multiplier,
     height: naturalHeight * multiplier,
   };
-};
-
-export const loadFont = async (fontName: string, fontUrl: `url(${string})`) => {
-  if (typeof FontFace === "undefined") return;
-  const font = new FontFace(fontName, fontUrl);
-  try {
-    await font.load();
-  } catch (error) {
-    throw new Error(error);
-  }
-  document.fonts.add(font);
 };
 
 export function getMousePos(canvas: HTMLCanvasElement, evt: MouseEvent) {

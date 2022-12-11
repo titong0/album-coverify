@@ -11,9 +11,20 @@ export type DetailedImage = {
   size?: number;
 };
 export type TextOptions = {
-  color: CanvColor;
-  font: `${string} ${number}px `;
+  color?: CanvColor;
+  font?: `${number}px ${string}`;
+  textAlign?: CanvasTextAlign;
+  maxCharsPerLine?: number;
 };
+export type CanvasFilters =
+  | "blur"
+  | "contrast"
+  | "brightness"
+  | "grayscale"
+  | "invert"
+  | "opacity"
+  | "saturate"
+  | "sepia";
 export type ChangeOneProp<ObjType> = <
   T extends keyof ObjType, // <- T points to a key
   R extends ObjType[T] // <- R points to the type of that key

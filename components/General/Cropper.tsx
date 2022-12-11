@@ -6,13 +6,11 @@ import { canvasPreview, asyncBlob } from "../../src/utils";
 type CropperProps = {
   imageSrc: string;
   setImage: (string) => void;
-  CTAstyle: string;
   cropOptions?: Omit<ReactCropProps, "onChange">;
 };
 const Cropper: React.FC<CropperProps> = ({
   imageSrc,
   setImage,
-  CTAstyle,
   cropOptions,
 }) => {
   const croppedRef = useRef(null);
@@ -100,7 +98,7 @@ const Cropper: React.FC<CropperProps> = ({
             <button
               className={
                 !cropping
-                  ? `${CTAstyle} text-white p-2 w-full hover:outline outline-2 outline-offset-4 outline-black `
+                  ? `bg-red-600 text-white p-2 w-full hover:outline outline-2 outline-offset-4 outline-black `
                   : "w-full p-2 cursor-progress"
               }
               type={"button"}

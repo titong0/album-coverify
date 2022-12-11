@@ -51,7 +51,7 @@ const DetailedImageHandler: React.FC<ImageHandlerProps> & SubComponents = ({
   };
 
   return (
-    <form className="flex flex-col w-100 bg-gray-200 p-4 mr-2 my-4 border border-black border-l-0">
+    <div className="flex flex-col w-100 bg-gray-200 p-4 mr-2 my-4 border border-black border-l-0">
       <label htmlFor={name}>{label}</label>
       <input
         name="image"
@@ -64,7 +64,6 @@ const DetailedImageHandler: React.FC<ImageHandlerProps> & SubComponents = ({
         setImage={(url) => changeOneValue("srcUrl", url)}
         imageSrc={imageSrc}
         cropOptions={{ aspect: 3 / 2 }}
-        CTAstyle="bg-orange-500"
       />
 
       <ImageValuesCtx.Provider
@@ -72,7 +71,7 @@ const DetailedImageHandler: React.FC<ImageHandlerProps> & SubComponents = ({
       >
         {children}
       </ImageValuesCtx.Provider>
-    </form>
+    </div>
   );
 };
 
