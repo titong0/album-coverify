@@ -9,7 +9,7 @@ function MyApp({ Component, pageProps }) {
   const Router = useRouter();
   return (
     <>
-      <Head>
+      {/* <Head>
         {NO_AD_ROUTES.includes(Router.asPath) ? (
           console.log("NO ADS HERE")
         ) : (
@@ -19,7 +19,7 @@ function MyApp({ Component, pageProps }) {
             crossOrigin="anonymous"
           />
         )}
-      </Head>
+      </Head> */}
       <NavBar />
       <main>
         <Component {...pageProps} />
