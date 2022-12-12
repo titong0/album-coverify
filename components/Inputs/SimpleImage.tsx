@@ -7,12 +7,14 @@ type SimpleImageProps = {
   label?: string;
   srcUrl: string;
   setSrcUrl: stateSetter<string>;
+  aspect: number;
 };
 const SimpleImage: React.FC<SimpleImageProps> = ({
   name,
   label,
   setSrcUrl,
   srcUrl,
+  aspect,
 }) => {
   const [UncroppedImage, setUncroppedImage] = useState(srcUrl);
 
@@ -36,7 +38,7 @@ const SimpleImage: React.FC<SimpleImageProps> = ({
       <Cropper
         setImage={(url) => setSrcUrl(url)}
         imageSrc={UncroppedImage}
-        cropOptions={{ aspect: 3 / 2 }}
+        cropOptions={{ aspect }}
       />
     </div>
   );

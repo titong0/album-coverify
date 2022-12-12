@@ -41,8 +41,6 @@ const AltIgorEditor = () => {
         maxCharsPerLine: 41,
       }
     );
-    // Ctx.drawTitle(title);
-    // drawCredits(ctx, creditsText);
   };
 
   return (
@@ -68,11 +66,13 @@ const AltIgorEditor = () => {
             value={creditsText}
             setValue={setCreditsText}
           />
-          <SimpleImage setSrcUrl={setImageSrc} srcUrl={imageSrc} />
+          <SimpleImage
+            setSrcUrl={setImageSrc}
+            srcUrl={imageSrc}
+            aspect={1 / 1}
+          />
         </form>
-        <div className="flex w-full justify-center items-center">
-          <Canvas />
-        </div>
+        <Canvas />
       </div>
       <Download
         bg={"bg-pink-300"}

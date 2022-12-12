@@ -10,11 +10,12 @@ import {
 import { createContext, useContext } from "react";
 
 type ImageHandlerProps = {
-  name: string;
-  label: string;
+  name?: string;
+  label?: string;
   image: DetailedImage;
+  aspect: number;
   setImage: stateSetter<DetailedImage>;
-  children: React.ReactNode;
+  children?: React.ReactNode;
 };
 
 type SubComponents = {
@@ -31,6 +32,7 @@ const ImageValuesCtx = createContext<{
 const DetailedImageHandler: React.FC<ImageHandlerProps> & SubComponents = ({
   image,
   setImage,
+  aspect,
   label,
   name,
   children,
@@ -52,7 +54,7 @@ const DetailedImageHandler: React.FC<ImageHandlerProps> & SubComponents = ({
 
   return (
     <div className="flex flex-col w-100 bg-gray-200 p-4 mr-2 my-4 border border-black border-l-0">
-      <label htmlFor={name}>{label}</label>
+      <label htmlFor={name || "Image"}>{label || "Your image"}</label>
       <input
         name="image"
         type={"file"}
@@ -63,7 +65,7 @@ const DetailedImageHandler: React.FC<ImageHandlerProps> & SubComponents = ({
       <Cropper
         setImage={(url) => changeOneValue("srcUrl", url)}
         imageSrc={imageSrc}
-        cropOptions={{ aspect: 3 / 2 }}
+        cropOptions={{ aspect }}
       />
 
       <ImageValuesCtx.Provider
@@ -131,12 +133,13 @@ const CoordinatesHandler: React.FC<CoordinatesHandlerProps> = ({
       {image.coordinates.y !== undefined && (
         <>
           <label>
-            Y position: <strong> {image.coordinates.y}</strong>
+            Y position:{" "}
+            <strong> {image.coordinates.y / pixelToUnitRatio}</strong>
           </label>
           <input
             className="w-2/3"
             type="range"
-            value={image.coordinates.y}
+            value={image.coordinates.y / pixelToUnitRatio}
             onChange={(e) =>
               changeOneValue("coordinates", {
                 x: image.coordinates.x,

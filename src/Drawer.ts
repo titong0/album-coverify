@@ -5,9 +5,11 @@ import {
   Ctx2d,
   DetailedImage,
   Dimensions,
+  ImageOptions,
   TextOptions,
 } from "./types";
 import {
+  adjustCoordinates,
   drawTextWithMaxChars,
   getScaledWidthAndHeight,
   loadAndCacheImage,
@@ -54,10 +56,10 @@ export class Drawer {
   async drawFixedImage(
     srcUrl: string,
     coordinates: Coordinates,
-    dimensions: Dimensions
+    dimensions: Dimensions,
+    options?: ImageOptions
   ) {
     const img = await loadAndCacheImage(srcUrl, this.IMAGE_CACHE);
-
     this.ctx.drawImage(
       img,
       coordinates.x,
@@ -67,31 +69,32 @@ export class Drawer {
     );
   }
 
-  async drawScalableImage(image: DetailedImage, defaultDimensions: Dimensions) {
-    const { coordinates, srcUrl, size } = image;
-    Object.entries({
-      x: coordinates.x,
-      y: coordinates.y,
-      srcUrl,
-      size,
-    }).forEach(([key, value]) => {
-      if (!value) {
-        throw new Error(`the parameter for image.${key} is undefined`);
-      }
-    });
+  async drawScalableImage(
+    image: DetailedImage,
+    defaultDimensions: Dimensions,
+    options?: ImageOptions
+  ) {
+    const { srcUrl, size } = image;
 
     const img = await loadAndCacheImage(srcUrl, this.IMAGE_CACHE);
+
     const adjustedDimensions = getScaledWidthAndHeight(
       img,
-      defaultDimensions.width,
-      defaultDimensions.height
+      defaultDimensions.width * size,
+      defaultDimensions.height * size
+    );
+
+    const { x, y } = adjustCoordinates(
+      image,
+      { width: adjustedDimensions.width, height: adjustedDimensions.height },
+      options
     );
     this.ctx.drawImage(
       img,
-      coordinates.x,
-      coordinates.y,
-      adjustedDimensions.width * size,
-      adjustedDimensions.height * size
+      x,
+      y,
+      adjustedDimensions.width,
+      adjustedDimensions.height
     );
   }
   clearCanvas() {

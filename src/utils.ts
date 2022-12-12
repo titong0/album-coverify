@@ -1,4 +1,10 @@
-import { Coordinates, Ctx2d } from "./types";
+import {
+  Coordinates,
+  Ctx2d,
+  DetailedImage,
+  Dimensions,
+  ImageOptions,
+} from "./types";
 
 export const loadAndCacheImage = async (
   url: string,
@@ -37,6 +43,27 @@ export const drawTextWithMaxChars = (
   });
 };
 
+export const adjustCoordinates = (
+  image: DetailedImage,
+  dimensions: Dimensions,
+  options: ImageOptions
+) => {
+  let { x, y } = image.coordinates;
+  const { height, width } = dimensions;
+
+  if (options?.justify === "center") {
+    x = x - width / 2;
+  } else if (options?.justify === "right") {
+    x = x - width;
+  }
+  if (options?.align === "center") {
+    y = y - width / 2;
+  } else if (options?.align === "bottom") {
+    y = y - height;
+  }
+  return { x, y };
+};
+
 // scale the image so that it reaches height or width without altering aspect ratio
 export const getScaledWidthAndHeight = (
   img: HTMLImageElement,
@@ -44,7 +71,6 @@ export const getScaledWidthAndHeight = (
   intendedHeight: number
 ) => {
   const { naturalWidth, naturalHeight } = img;
-  console.log(naturalWidth, naturalHeight);
 
   let multiplier = 1;
   if (naturalWidth > naturalHeight) {

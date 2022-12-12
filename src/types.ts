@@ -16,6 +16,10 @@ export type TextOptions = {
   textAlign?: CanvasTextAlign;
   maxCharsPerLine?: number;
 };
+export type ImageOptions = {
+  align?: "center" | "bottom";
+  justify?: "center" | "right";
+};
 export type CanvasFilters =
   | "blur"
   | "contrast"
