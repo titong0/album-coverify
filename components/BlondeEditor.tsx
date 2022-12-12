@@ -5,6 +5,7 @@ import EditorContainer from "./General/EditorContainer";
 import { Drawer } from "../src/Drawer";
 import DetailedImageHandler from "./Inputs/DetailedImageHandler";
 import { DetailedImage } from "../src/types";
+import TextInput from "./Inputs/TextInput";
 
 const BlondeEditor = () => {
   const [image, setImage] = useState<DetailedImage>({
@@ -39,12 +40,12 @@ const BlondeEditor = () => {
     <EditorContainer drawMethod={draw} dependencies={[image, title]}>
       <div className="sm:grid grid-cols-2 mb-32">
         <div className="flex flex-col p-2">
-          <label className="flex items-center w-fit">Cover title</label>
-          <input
-            className="mt-2 p-2 border-b-2 border-black bg-yellow-900 text-gray-200 w-96"
-            type="text"
+          <TextInput
+            name="Title"
+            className="bg-amber-700"
+            label="Cover title"
             value={title}
-            onChange={(e) => setTitle(e.target.value)}
+            setValue={setTitle}
           />
           <DetailedImageHandler
             image={image}
