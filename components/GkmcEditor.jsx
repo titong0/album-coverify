@@ -52,9 +52,7 @@ const GkmcEditor = () => {
             setSelectedId={setSelectedId}
           />
         </div>
-        <div className="flex items-center justify-center w-full">
-          <Canvas canvasRef={canvasRef} />
-        </div>
+        <Canvas canvasRef={canvasRef} />
       </div>
       <Download
         fileName="GKMC"

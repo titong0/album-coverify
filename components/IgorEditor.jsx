@@ -33,9 +33,7 @@ const IgorEditor = () => {
           <AuthorHandler author={author} setAuthor={setAuthor} />
           <ImageHandler image={image} setImage={setImage} />
         </form>
-        <div className="flex w-full justify-center items-center">
-          <Canvas canvasRef={canvasRef} />
-        </div>
+        <Canvas canvasRef={canvasRef} />
       </div>
       <Download
         bg={"bg-pink-300"}

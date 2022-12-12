@@ -45,9 +45,7 @@ const MbdtfEditor = () => {
             setPixelation={setPixelation}
           />
         </form>
-        <div className="flex items-center justify-center w-full">
-          <Canvas canvasRef={canvasRef} />
-        </div>
+        <Canvas canvasRef={canvasRef} />
       </div>
       <Download
         fileName="MBDTF"

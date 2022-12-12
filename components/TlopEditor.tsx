@@ -14,7 +14,7 @@ const TlopEditor = ({}) => {
     srcUrl: "/assets/TLOP_DEFAULT_1.png",
     size: 1,
     coordinates: {
-      x: 10,
+      x: 100,
       y: 50,
     },
   });
@@ -23,8 +23,8 @@ const TlopEditor = ({}) => {
     srcUrl: "/assets/TLOP_DEFAULT_2.png",
     size: 1,
     coordinates: {
-      x: 40,
-      y: 20,
+      x: 450,
+      y: 650,
     },
   });
 
@@ -71,6 +71,7 @@ const TlopEditor = ({}) => {
             name="firstImage"
             image={firstImage}
             setImage={setFirstImage}
+            aspect={3 / 2}
           >
             <DetailedImageHandler.SizeHandler min="0.1" step="0.1" max="3" />
             <DetailedImageHandler.CoordinatesHandler
@@ -90,6 +91,7 @@ const TlopEditor = ({}) => {
             name="secondImage"
             image={secondImage}
             setImage={setSecondImage}
+            aspect={3 / 2}
           >
             <DetailedImageHandler.SizeHandler min="0.1" step="0.1" max="3" />
             <DetailedImageHandler.CoordinatesHandler
@@ -105,9 +107,7 @@ const TlopEditor = ({}) => {
             />
           </DetailedImageHandler>
         </div>
-        <div className="flex items-end justify-center py-8 sm:py-2 h-full ">
-          <Canvas />
-        </div>
+        <Canvas />
       </div>
       <Download
         fileName="PABLO"
