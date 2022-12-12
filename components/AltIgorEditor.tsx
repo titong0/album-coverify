@@ -1,7 +1,6 @@
 import { useState, useRef } from "react";
 import Canvas from "./General/Canvas";
 import Download from "./General/Download";
-import { drawCredits, drawMainImg } from "./ALT-IGOR/altIgorFunctions";
 import EditorContainer from "./General/EditorContainer";
 import { Drawer } from "../src/Drawer";
 import TextInput from "./Inputs/TextInput";
