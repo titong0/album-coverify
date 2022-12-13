@@ -60,7 +60,7 @@ const SocEditor = () => {
       drawMethod={draw}
     >
       <div className="sm:grid grid-cols-2 mb-32">
-        <form className="flex flex-col p-2 gap-1">
+        <div className="flex flex-col p-2 gap-1">
           <TextInput
             name="groupName"
             label="Group name"
@@ -81,7 +81,7 @@ const SocEditor = () => {
             srcUrl={image}
           />
           {/* <ImageHandler setImage={setImage} /> */}
-        </form>
+        </div>
         <Canvas />
       </div>
       <Download

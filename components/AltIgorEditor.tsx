@@ -16,6 +16,7 @@ const AltIgorEditor = () => {
 
   const draw = async (Ctx: Drawer) => {
     await Ctx.loadFont("IGOR", `url("/IGOR-BoldItalic.ttf")`);
+    Ctx.resetFilter();
     Ctx.colorBg("#f7b4c6");
     Ctx.addFilter("grayscale", 1);
     Ctx.addFilter("contrast", "180%");
