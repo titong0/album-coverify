@@ -38,10 +38,10 @@ export class Drawer {
 
   drawText(text: string, coordinates: Coordinates, options?: TextOptions) {
     this.ctx.save();
-    this.ctx.font = options.font;
-    this.ctx.fillStyle = options.color;
-    this.ctx.textAlign = options.textAlign;
-    if (options.maxCharsPerLine > text.length) {
+    this.ctx.font = options?.font;
+    this.ctx.fillStyle = options?.color;
+    this.ctx.textAlign = options?.textAlign;
+    if (options?.maxCharsPerLine > text.length) {
       drawTextWithMaxChars(
         this.ctx,
         text,
@@ -49,7 +49,7 @@ export class Drawer {
         coordinates
       );
     }
-    this.ctx.fillText(text, coordinates.x, coordinates.y);
+    this.ctx.fillText(text, coordinates.x, coordinates.y, options?.maxWidth);
     this.ctx.restore();
   }
 

@@ -9,7 +9,7 @@ type TextInputProps = InputHTMLAttributes<HTMLInputElement> & {
   className: string;
 };
 
-const TextInput: React.FC<Omit<TextInputProps, "defaultValue">> = ({
+const TextInput: React.FC<TextInputProps> = ({
   value,
   setValue,
   name,

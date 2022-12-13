@@ -13,6 +13,7 @@ export type DetailedImage = {
 export type TextOptions = {
   color?: CanvColor;
   font?: `${number}px ${string}`;
+  maxWidth?: number;
   textAlign?: CanvasTextAlign;
   maxCharsPerLine?: number;
 };
