@@ -17,7 +17,7 @@ import {
 
 export class Drawer {
   ctx: Ctx2d;
-  IMAGE_CACHE = [];
+  IMAGE_CACHE: Array<HTMLImageElement> = [];
 
   constructor(context: Ctx2d) {
     this.ctx = context;

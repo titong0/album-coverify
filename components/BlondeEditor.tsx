@@ -39,7 +39,7 @@ const BlondeEditor = () => {
   return (
     <EditorContainer drawMethod={draw} dependencies={[image, title]}>
       <div className="sm:grid grid-cols-2 mb-32">
-        <div className="flex flex-col p-2">
+        <div className="flex flex-col">
           <TextInput
             name="Title"
             className="bg-amber-700"

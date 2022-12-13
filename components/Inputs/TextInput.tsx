@@ -19,7 +19,7 @@ const TextInput: React.FC<Omit<TextInputProps, "defaultValue">> = ({
   ...props
 }) => {
   return (
-    <div className="flex flex-col w-100 p-2">
+    <div className="flex flex-col w-100 ml-2 ">
       <label htmlFor={name}>{label}</label>
       <input
         name={name}
