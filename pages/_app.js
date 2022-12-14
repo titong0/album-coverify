@@ -1,9 +1,8 @@
-import NavBar from "../components/General/NavBar";
+import NavBar from "../components/General/Landing/NavBar";
 import "../index.css";
 import "react-image-crop/dist/ReactCrop.css";
 import { useRouter } from "next/router";
-import Head from "next/head";
-const NO_AD_ROUTES = ["/contact", "/credits", "/"];
+// const NO_AD_ROUTES = ["/contact", "/credits", "/"];
 
 function MyApp({ Component, pageProps }) {
   const Router = useRouter();

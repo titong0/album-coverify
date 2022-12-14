@@ -1,3 +1,4 @@
+import React from "react";
 import AlbumCard from "./AlbumCard";
 
 const ALBUMS_INFO = [
@@ -51,7 +52,7 @@ const ALBUMS_INFO = [
   },
 ];
 
-const AlbumCardsDisplay = () => {
+const AlbumCardsDisplay: React.FC = () => {
   return (
     <div
       className={`grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 sm:m-12 justify-center`}

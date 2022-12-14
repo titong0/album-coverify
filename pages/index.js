@@ -1,5 +1,5 @@
 import Head from "next/head";
-import AlbumCardsDisplay from "../components/General/AlbumCardsDisplay";
+import AlbumCardsDisplay from "../components/General/Landing/AlbumCardsDisplay";
 const Index = () => {
   return (
     <>

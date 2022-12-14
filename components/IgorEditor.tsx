@@ -1,10 +1,7 @@
 import React, { useState, useRef } from "react";
-import ImageHandler from "./IGOR/ImageHandler";
 import Canvas from "./General/Canvas";
 // import { fillBg } from "./utils";
 import Download from "./General/Download";
-import AuthorHandler from "./IGOR/AuthorHandler";
-import { drawCredits, drawMainImg } from "./IGOR/igorFunctions";
 import EditorContainer from "./General/EditorContainer";
 import { Drawer } from "../src/Drawer";
 import SimpleImage from "./Inputs/SimpleImage";

@@ -1,10 +1,13 @@
 import Head from "next/head";
-
-const CustomHead = ({ name, url = name.toLowerCase() }) => {
+type CustomHeadProps = { name: string; url: string };
+const CustomHead: React.FC<CustomHeadProps> = ({
+  name,
+  url = name.toLowerCase(),
+}) => {
   return (
     <Head>
       {/* <!-- HTML Meta Tags --> */}
-      <title>{name} album cover generator</title>
+      <title>{`${name} album cover generator`}</title>
       <meta
         name="description"
         content={`Turn your photos into a cover like ${name}`}

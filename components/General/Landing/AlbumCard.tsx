@@ -2,7 +2,18 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 
-const AlbumCard = ({ title, author, href, imageUrl }) => {
+type AlbumCardProps = {
+  title: string;
+  author: string;
+  href: string;
+  imageUrl: string;
+};
+const AlbumCard: React.FC<AlbumCardProps> = ({
+  title,
+  author,
+  href,
+  imageUrl,
+}) => {
   return (
     <Link href={href} passHref>
       <a
