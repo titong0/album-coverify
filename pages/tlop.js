@@ -1,6 +1,6 @@
 import React from "react";
 import TlopEditor from "../components/TlopEditor";
-import CustomHead from "../components/General/CustomHead";
+import CustomHead from "../components/General/Landing/CustomHead";
 const TLOP = () => {
   return (
     <>

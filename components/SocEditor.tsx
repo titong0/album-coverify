@@ -12,7 +12,7 @@ const SocEditor = () => {
   const [image, setImage] = useState("/assets/SOC_DEFAULT.png");
 
   const draw = async (Ctx: Drawer) => {
-    await Ctx.loadFont("Mistral", `url("/Mistral.ttf")`);
+    await Ctx.utils.loadFont("Mistral", `url("/Mistral.ttf")`);
     await Ctx.drawFixedImage(
       image,
       { x: 0, y: 150 },

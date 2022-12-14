@@ -1,4 +1,4 @@
-import CustomHead from "../components/General/CustomHead";
+import CustomHead from "../components/General/Landing/CustomHead";
 import SocEditor from "../components/SocEditor";
 
 const SOC = () => {

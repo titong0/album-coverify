@@ -1,5 +1,5 @@
 import React from "react";
-import CustomHead from "../components/General/CustomHead";
+import CustomHead from "../components/General/Landing/CustomHead";
 import GkmcEditor from "../components/GkmcEditor";
 const Gkmc = () => {
   return (
