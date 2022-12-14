@@ -1,6 +1,6 @@
 import CustomHead from "../components/General/Landing/CustomHead";
 import RemoveBgAlert from "../components/General/Landing/RemoveBgAlert";
-import AltIgorEditor from "../components/AltIgorEditor";
+import AltIgorEditor from "../components/Editors/AltIgorEditor";
 
 const AltIgor = () => {
   return (

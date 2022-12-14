@@ -1,4 +1,4 @@
-import WlrEditor from "../components/WlrEditor";
+import WlrEditor from "../components/Editors/WlrEditor";
 import CustomHead from "../components/General/Landing/CustomHead";
 import RemoveBgAlert from "../components/General/Landing/RemoveBgAlert";
 

@@ -1,5 +1,5 @@
 import CustomHead from "../components/General/Landing/CustomHead";
-import SocEditor from "../components/SocEditor";
+import SocEditor from "../components/Editors/SocEditor";
 
 const SOC = () => {
   return (

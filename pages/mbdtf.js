@@ -1,5 +1,5 @@
 import React from "react";
-import MbdtfEditor from "../components/MbdtfEditor";
+import MbdtfEditor from "../components/Editors/MbdtfEditor";
 import CustomHead from "../components/General/Landing/CustomHead";
 const MBDTF = () => {
   return (
