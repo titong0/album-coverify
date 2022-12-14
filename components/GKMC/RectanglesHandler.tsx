@@ -1,43 +1,54 @@
-import React, { useState, useEffect } from "react";
-import { getMousePos } from "../utils";
+import React, { useState, useEffect, useContext } from "react";
+import { stateSetter } from "../../src/types";
+import { getMousePos } from "../../src/utils";
+import { CanvasRefContext } from "../General/EditorContainer";
 import RectangleControl from "./RectangleControl";
 
-const RectanglesHandler = ({
+type Rectangle = { x: number; y: number; ID: string };
+type RectanglesHandlerProps = {
+  rectanglesData: Rectangle[];
+  setRectanglesData: stateSetter<Rectangle[]>;
+  selectedId: string;
+  setSelectedId: stateSetter<string>;
+};
+const RectanglesHandler: React.FC<RectanglesHandlerProps> = ({
   rectanglesData,
   setRectanglesData,
-  canvas,
   selectedId,
   setSelectedId,
 }) => {
-  const newRect = (e) => {
-    e.preventDefault;
-    const newRect = { x: 200, y: 200 };
+  const canvas = useContext(CanvasRefContext).current;
+
+  const newRect = () => {
+    const newRect = { x: 200, y: 200, ID: null };
     newRect.ID = Date.now();
-    const newArr = [...rectanglesData, newRect];
+    const newArr: Array<Rectangle> = [...rectanglesData, newRect];
     setRectanglesData(newArr);
   };
 
-  const delRect = (rectId) => {
+  const delRect = (rectId: string) => {
     const filtered = rectanglesData.filter((i) => i.ID !== rectId);
     setRectanglesData(filtered);
   };
-  const changeRectPos = ({ x, y }) => {
+
+  const changeRectPos = ({ x, y }: { x: number; y: number }) => {
     if (!rectanglesData.find((i) => i.ID === selectedId)) return;
     const copy = [...rectanglesData];
     const rectIdx = copy.findIndex((i) => i.ID === selectedId);
+    // align horizontally and vertically
     copy[rectIdx].x = x - 65;
     copy[rectIdx].y = y - 12;
     setRectanglesData(copy);
   };
 
   useEffect(() => {
-    if (!canvas) return;
+    if (!canvas) return console.log("no canvas");
     canvas.onclick = (e) => changeRectPos(getMousePos(canvas, e));
   }, [canvas, rectanglesData, selectedId]);
 
   return (
-    <div className="flex flex-col bg-gray-500 p-2">
-      <label className="text-lg mb-2">Eye rectangles</label>
+    <div className="flex flex-col bg-slate-300   p-2">
+      <label className="font-bold text-lg mb-2">Eye rectangles</label>
       {rectanglesData.length ? (
         <p className="mb-1">Select a rectangle below and click on the image</p>
       ) : (
@@ -55,7 +66,11 @@ const RectanglesHandler = ({
           />
         ))}
       </div>
-      <button onClick={newRect} className="border p-2 bg-green-400 w-fit">
+      <button
+        type="button"
+        onClick={newRect}
+        className="border p-2 bg-green-500 w-fit hover:bg-green-400"
+      >
         ➕
       </button>
     </div>

@@ -45,7 +45,14 @@ export class Drawer {
     this.ctx.fillText(text, coordinates.x, coordinates.y, options?.maxWidth);
     this.ctx.restore();
   }
-
+  drawRect(coordinates: Coordinates, dimensions: Dimensions, color: CanvColor) {
+    this.ctx.save();
+    this.ctx.fillStyle = color;
+    const { x, y } = coordinates;
+    const { height, width } = dimensions;
+    this.ctx.fillRect(x, y, width, height);
+    this.ctx.restore();
+  }
   async drawFixedImage(
     srcUrl: string,
     coordinates: Coordinates,
@@ -125,9 +132,9 @@ export class Drawer {
     }
   }
   utils = {
-    loadFont: this.loadFont,
-    resetFilter: this.resetFilter,
-    clearCanvas: this.clearCanvas,
-    addFilter: this.addFilter,
+    loadFont: this.loadFont.bind(this),
+    resetFilter: this.resetFilter.bind(this),
+    clearCanvas: this.clearCanvas.bind(this),
+    addFilter: this.addFilter.bind(this),
   };
 }

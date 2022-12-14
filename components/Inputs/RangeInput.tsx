@@ -21,7 +21,7 @@ const RangeInput: React.FC<RangeInputProps> = ({
         name={name || "range"}
         type="range"
         className="sm:w-2/3"
-        onChange={(e) => setValue(parseInt(e.target.value))}
+        onChange={(e) => setValue(parseFloat(e.target.value))}
         value={value}
         {...inputProps}
       />

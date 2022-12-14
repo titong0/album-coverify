@@ -1,6 +1,14 @@
 import React from "react";
+import { stateSetter } from "../../src/types";
 
-const RectangleControl = ({
+type RectangleControlProps = {
+  setSelected: () => void;
+  selected: boolean;
+  cancelSelected: () => void;
+  deleteSelf: () => void;
+  number: number;
+};
+const RectangleControl: React.FC<RectangleControlProps> = ({
   setSelected,
   selected,
   cancelSelected,
@@ -8,8 +16,8 @@ const RectangleControl = ({
   number,
 }) => {
   const selectedStyle = selected
-    ? "bg-green-800 text-white"
-    : "bg-gray-300 hover:bg-gray-600";
+    ? "bg-green-600 text-white"
+    : "bg-gray-300 hover:bg-green-200";
   return (
     <div>
       <button
@@ -20,14 +28,14 @@ const RectangleControl = ({
       </button>
       <button
         onClick={deleteSelf}
-        className="w-8 p-1 ml-1 border border-black bg-gray-400"
+        className="w-8 p-1 ml-1 border border-black bg-red-400 hover:bg-red-500"
       >
         ✖
       </button>
       {selected && (
         <button
           onClick={cancelSelected}
-          className="w-8 p-1 ml-1 border text-red-400 border-black bg-gray-400"
+          className="w-8 p-1 ml-1 border text-red-400 border-black bg-green-300 hover:bg-green-400"
         >
           ✔
         </button>
