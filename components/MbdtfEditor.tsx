@@ -1,9 +1,7 @@
 import { useRef, useEffect, useState } from "react";
-import ImageHandler from "./MBDTF/ImageHandler";
 import Canvas from "./General/Canvas";
 import Download from "./General/Download";
 import EditorContainer from "./General/EditorContainer";
-import PixelationHandler from "./MBDTF/PixelationHandler";
 import SimpleImage from "./Inputs/SimpleImage";
 import { Drawer } from "../src/Drawer";
 import { applyPixelation } from "./MBDTF/mbdtfFunctions";
