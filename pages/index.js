@@ -49,7 +49,7 @@ const Index = () => {
       </Head>
       <div className="py-2 min-h-screen w-full landing-bg">
         <header className="p-3 py-4 sm:pl-12">
-          <h1 className="text-3xl">
+          <h1 className="text-3xl font-bold leading-relaxed">
             Easily turn your images into album covers
           </h1>
           <h2>No photo editing knowledge required</h2>
