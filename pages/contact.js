@@ -20,12 +20,12 @@ const Contact = () => {
             You can send me an email at:
             <span className="text-blue-500"> augustoerrecarte@gmail.com</span>
           </p>
-          <h1 className="font-bold text-lg leading-10 m-2">About the ads...</h1>
+          {/* <h1 className="font-bold text-lg leading-10 m-2">About the ads...</h1>
           <p className="m-2">
             Sorry, really. I hate ads just as much as you but I needed to add
             them. This site truly took a lot of time to make. I hope you can
             forgive me.
-          </p>
+          </p> */}
         </div>
       </div>
     </>
