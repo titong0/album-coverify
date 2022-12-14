@@ -6,7 +6,7 @@ const Blonde = () => {
   return (
     <>
       <CustomHead name="BLONDE" url="BLONDE" />
-      <div className="bg-zinc-200">
+      <div className="bg-zinc-300">
         <h2 className="p-12 text-4xl text-center">Blonde</h2>
         <RemoveBgAlert />
         <BlondeEditor />

@@ -17,7 +17,7 @@ const CheckBoxInput: React.FC<CheckboxInputProps> = ({
   ...inputProps
 }) => {
   return (
-    <div className={"flex items-center mt-2 w-fit ml-2 " + containerClassName}>
+    <div className={"flex items-center w-fit" + containerClassName}>
       <label htmlFor={name || "range"}>{label}</label>
       <input
         name={name || "checkbox"}

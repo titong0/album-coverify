@@ -55,11 +55,13 @@ const MbdtfEditor = () => {
             value={pixelation}
             setValue={setPixelation}
           />
-          <CheckBoxInput
-            label="Golden border"
-            checked={border}
-            setValue={setBorder}
-          />
+          <div className="flex items-center bg-amber-300 m-2 w-fit p-3">
+            <CheckBoxInput
+              label="Golden border"
+              checked={border}
+              setValue={setBorder}
+            />
+          </div>
         </form>
         <Canvas />
       </div>

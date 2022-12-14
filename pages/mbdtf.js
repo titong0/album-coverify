@@ -5,7 +5,7 @@ const MBDTF = () => {
   return (
     <>
       <CustomHead name="My Beautiful Dark Twisted Fantasy" url="mbdtf" />
-      <div className="bg-zinc-200">
+      <div className="bg-zinc-300">
         <h1 className="p-12 text-4xl text-center">
           My Beautiful Dark Twisted Fantasy
         </h1>

@@ -6,7 +6,7 @@ const Wlr = () => {
   return (
     <>
       <CustomHead name="Whole lotta red" url="wlr" />
-      <div className="bg-zinc-200">
+      <div className="bg-zinc-300">
         <h2 className="p-12 text-4xl text-center">Whole Lotta Red</h2>
         <RemoveBgAlert />
         <WlrEditor />

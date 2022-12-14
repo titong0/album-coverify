@@ -59,7 +59,7 @@ const DetailedImageHandler: React.FC<ImageHandlerProps> & SubComponents = ({
         name="image"
         type={"file"}
         accept="image/*"
-        className="w-full p-2 my-1  transition border border-black cursor-pointer bg-red-500 hover:bg-red-100"
+        className="w-full p-2 my-1  transition border border-black cursor-pointer bg-gray-700 text-white hover:bg-gray-500"
         onChange={changeImg}
       />
       <Cropper
