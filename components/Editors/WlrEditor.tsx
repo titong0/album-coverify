@@ -1,12 +1,12 @@
-import Canvas from "./General/Canvas";
-import { applyTreshold } from "./WLR/wlrFunctions";
+import Canvas from "../General/Canvas";
+import { applyTreshold } from "../WLR/wlrFunctions";
 import { useState } from "react";
-import Download from "./General/Download";
-import EditorContainer from "./General/EditorContainer";
-import TextInput from "./Inputs/TextInput";
-import RangeInput from "./Inputs/RangeInput";
-import SimpleImage from "./Inputs/SimpleImage";
-import { Drawer } from "../src/Drawer";
+import Download from "../General/Download";
+import EditorContainer from "../General/EditorContainer";
+import TextInput from "../Inputs/TextInput";
+import RangeInput from "../Inputs/RangeInput";
+import SimpleImage from "../Inputs/SimpleImage";
+import { Drawer } from "../../src/Drawer";
 
 const WlrEditor = () => {
   const [tresholdLimit, setTresholdLimit] = useState(140);

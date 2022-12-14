@@ -1,10 +1,10 @@
-import Canvas from "./General/Canvas";
+import Canvas from "../General/Canvas";
 import { useRef, useState } from "react";
-import Download from "./General/Download";
-import EditorContainer from "./General/EditorContainer";
-import { Drawer } from "../src/Drawer";
-import TextInput from "./Inputs/TextInput";
-import SimpleImage from "./Inputs/SimpleImage";
+import Download from "../General/Download";
+import EditorContainer from "../General/EditorContainer";
+import { Drawer } from "../../src/Drawer";
+import TextInput from "../Inputs/TextInput";
+import SimpleImage from "../Inputs/SimpleImage";
 
 const SocEditor = () => {
   const [groupName, setGroupName] = useState("N.W.A");

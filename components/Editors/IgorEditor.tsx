@@ -1,11 +1,11 @@
 import React, { useState, useRef } from "react";
-import Canvas from "./General/Canvas";
+import Canvas from "../General/Canvas";
 // import { fillBg } from "./utils";
-import Download from "./General/Download";
-import EditorContainer from "./General/EditorContainer";
-import { Drawer } from "../src/Drawer";
-import SimpleImage from "./Inputs/SimpleImage";
-import TextInput from "./Inputs/TextInput";
+import Download from "../General/Download";
+import EditorContainer from "../General/EditorContainer";
+import { Drawer } from "../../src/Drawer";
+import SimpleImage from "../Inputs/SimpleImage";
+import TextInput from "../Inputs/TextInput";
 
 const IgorEditor = () => {
   const [image, setImage] = useState("/assets/IGOR_DEFAULT.png");

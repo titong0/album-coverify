@@ -1,10 +1,10 @@
 import { useState, useRef } from "react";
-import Canvas from "./General/Canvas";
-import Download from "./General/Download";
-import EditorContainer from "./General/EditorContainer";
-import { Drawer } from "../src/Drawer";
-import TextInput from "./Inputs/TextInput";
-import SimpleImage from "./Inputs/SimpleImage";
+import Canvas from "../General/Canvas";
+import Download from "../General/Download";
+import EditorContainer from "../General/EditorContainer";
+import { Drawer } from "../../src/Drawer";
+import TextInput from "../Inputs/TextInput";
+import SimpleImage from "../Inputs/SimpleImage";
 
 const creditsDefault =
   "ALL SONGS WRITTEN, PRODUCED AND ARRANGED BY TYLER OKONMA";

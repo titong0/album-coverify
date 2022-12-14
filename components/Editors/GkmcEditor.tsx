@@ -1,11 +1,11 @@
 import { useRef, useState } from "react";
-import Canvas from "./General/Canvas";
-import Download from "./General/Download";
-import RectanglesHandler from "./GKMC/RectanglesHandler";
-import EditorContainer, { CanvasRefContext } from "./General/EditorContainer";
-import SimpleImage from "./Inputs/SimpleImage";
-import RangeInput from "./Inputs/RangeInput";
-import { Drawer } from "../src/Drawer";
+import Canvas from "../General/Canvas";
+import Download from "../General/Download";
+import RectanglesHandler from "../GKMC/RectanglesHandler";
+import EditorContainer, { CanvasRefContext } from "../General/EditorContainer";
+import SimpleImage from "../Inputs/SimpleImage";
+import RangeInput from "../Inputs/RangeInput";
+import { Drawer } from "../../src/Drawer";
 
 type Rectangle = { x: number; y: number; ID: string };
 

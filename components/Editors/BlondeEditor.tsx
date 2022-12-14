@@ -1,11 +1,11 @@
 import { useRef, useState } from "react";
-import Canvas from "./General/Canvas";
-import Download from "./General/Download";
-import EditorContainer from "./General/EditorContainer";
-import { Drawer } from "../src/Drawer";
-import DetailedImageHandler from "./Inputs/DetailedImageHandler";
-import { DetailedImage } from "../src/types";
-import TextInput from "./Inputs/TextInput";
+import Canvas from "../General/Canvas";
+import Download from "../General/Download";
+import EditorContainer from "../General/EditorContainer";
+import { Drawer } from "../../src/Drawer";
+import DetailedImageHandler from "../Inputs/DetailedImageHandler";
+import { DetailedImage } from "../../src/types";
+import TextInput from "../Inputs/TextInput";
 
 const BlondeEditor = () => {
   const [image, setImage] = useState<DetailedImage>({

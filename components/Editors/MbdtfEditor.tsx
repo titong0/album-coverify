@@ -1,12 +1,12 @@
 import { useRef, useEffect, useState } from "react";
-import Canvas from "./General/Canvas";
-import Download from "./General/Download";
-import EditorContainer from "./General/EditorContainer";
-import SimpleImage from "./Inputs/SimpleImage";
-import { Drawer } from "../src/Drawer";
-import { applyPixelation } from "./MBDTF/mbdtfFunctions";
-import RangeInput from "./Inputs/RangeInput";
-import CheckBoxInput from "./Inputs/CheckboxInput";
+import Canvas from "../General/Canvas";
+import Download from "../General/Download";
+import EditorContainer from "../General/EditorContainer";
+import SimpleImage from "../Inputs/SimpleImage";
+import { Drawer } from "../../src/Drawer";
+import { applyPixelation } from "../MBDTF/mbdtfFunctions";
+import RangeInput from "../Inputs/RangeInput";
+import CheckBoxInput from "../Inputs/CheckboxInput";
 
 const MbdtfEditor = () => {
   const [image, setImage] = useState("/assets/MBDTF_DEFAULT.png");
