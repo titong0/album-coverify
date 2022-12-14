@@ -1,16 +1,6 @@
 import { Coordinates, Ctx2d, Dimensions } from "../../src/types";
 import { loadAndCacheImage } from "../../src/utils";
 
-// export const drawMainImg = async (ctx, src, hasBorder, pixelation) => {
-//   pixelation = parseInt(pixelation);
-//   let img = await loadAndCacheImage(src, CACHED_IMAGES);
-//   ctx.drawImage(img, ...coords);
-
-//   if (pixelation !== 1) {
-//   }
-// };
-
-// applyPixelation(ctx, img, 33 - pixelation, coords);
 export const applyPixelation = async (
   ctx: Ctx2d,
   imgSrc: string,

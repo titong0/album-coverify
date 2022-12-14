@@ -1,7 +1,7 @@
 import React from "react";
 import CustomHead from "../components/General/Landing/CustomHead";
 import BlondeEditor from "../components/BlondeEditor";
-import RemoveBgAlert from "../components/General/RemoveBgAlert";
+import RemoveBgAlert from "../components/General/Landing/RemoveBgAlert";
 const Blonde = () => {
   return (
     <>
