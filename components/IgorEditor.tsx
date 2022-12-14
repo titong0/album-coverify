@@ -14,8 +14,8 @@ const IgorEditor = () => {
   const draw = async (Ctx: Drawer) => {
     Ctx.utils.resetFilter();
     Ctx.colorBg("#f7b4c6");
-    Ctx.addFilter("grayscale", 1);
-    Ctx.addFilter("contrast", "180%");
+    Ctx.utils.addFilter("grayscale", 1);
+    Ctx.utils.addFilter("contrast", "180%");
     await Ctx.drawFixedImage(
       image,
       { x: 75, y: 75 },

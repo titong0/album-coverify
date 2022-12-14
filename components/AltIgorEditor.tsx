@@ -18,8 +18,8 @@ const AltIgorEditor = () => {
     await Ctx.utils.loadFont("IGOR", `url("/IGOR-BoldItalic.ttf")`);
     Ctx.utils.resetFilter();
     Ctx.colorBg("#f7b4c6");
-    Ctx.addFilter("grayscale", 1);
-    Ctx.addFilter("contrast", "180%");
+    Ctx.utils.addFilter("grayscale", 1);
+    Ctx.utils.addFilter("contrast", "180%");
     await Ctx.drawFixedImage(
       imageSrc,
       { x: 260, y: 194 },
