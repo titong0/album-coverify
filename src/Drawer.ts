@@ -22,13 +22,6 @@ export class Drawer {
   constructor(context: Ctx2d) {
     this.ctx = context;
   }
-
-  colorText(text: string, x: number, y: number, color: CanvColor) {
-    this.ctx.save();
-    this.ctx.fillStyle = color;
-    this.ctx.fillText(text, x, y);
-    this.ctx.restore();
-  }
   colorBg(color: string) {
     this.ctx.save();
     this.ctx.fillStyle = color;
@@ -97,21 +90,6 @@ export class Drawer {
       adjustedDimensions.height
     );
   }
-  clearCanvas() {
-    this.ctx.clearRect(0, 0, 1000, 1000);
-  }
-  addFilter(filter: CanvasFilters, intensity: number | string) {
-    const filterStr = `${filter}(${intensity})`;
-    if (this.ctx.filter === "none") {
-      this.ctx.filter = filterStr;
-    } else {
-      this.ctx.filter += filterStr;
-    }
-  }
-
-  resetFilter() {
-    this.ctx.filter = "none";
-  }
 
   async imgBg(url: string) {
     const img = await loadAndCacheImage(url, this.IMAGE_CACHE);
@@ -122,7 +100,7 @@ export class Drawer {
     await customFn(this.ctx);
   }
 
-  async loadFont(fontName: string, fontUrl: `url(${string})`) {
+  private async loadFont(fontName: string, fontUrl: `url(${string})`) {
     if (typeof FontFace === "undefined") return;
     const font = new FontFace(fontName, fontUrl);
     try {
@@ -132,4 +110,24 @@ export class Drawer {
     }
     document.fonts.add(font);
   }
+  private resetFilter() {
+    this.ctx.filter = "none";
+  }
+  private clearCanvas() {
+    this.ctx.clearRect(0, 0, 1000, 1000);
+  }
+  private addFilter(filter: CanvasFilters, intensity: number | string) {
+    const filterStr = `${filter}(${intensity})`;
+    if (this.ctx.filter === "none") {
+      this.ctx.filter = filterStr;
+    } else {
+      this.ctx.filter += filterStr;
+    }
+  }
+  utils = {
+    loadFont: this.loadFont,
+    resetFilter: this.resetFilter,
+    clearCanvas: this.clearCanvas,
+    addFilter: this.addFilter,
+  };
 }
