@@ -16,7 +16,7 @@ const BlondeEditor = () => {
   const [title, setTitle] = useState("blond");
 
   const draw = async (Ctx: Drawer) => {
-    Ctx.utils.loadFont("Blonde", `url("/blonded_futura_lite.ttf")`);
+    Ctx.utils.loadFont("Blonde", `blonded_futura_lite.ttf`);
     await Ctx.imgBg("/assets/BLONDE_BG.png");
     await Ctx.drawScalableImage(
       image,

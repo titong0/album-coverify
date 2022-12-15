@@ -107,9 +107,10 @@ export class Drawer {
     await customFn(this.ctx);
   }
 
-  private async loadFont(fontName: string, fontUrl: `url(${string})`) {
+  private async loadFont(fontName: string, fontUrl: string) {
     if (typeof FontFace === "undefined") return;
-    const font = new FontFace(fontName, fontUrl);
+
+    const font = new FontFace(fontName, `url("/fonts/${fontUrl}")`);
     try {
       await font.load();
     } catch (error) {

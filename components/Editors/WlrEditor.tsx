@@ -13,7 +13,7 @@ const WlrEditor = () => {
   const [image, setImage] = useState("/assets/WLR_DEFAULT.png");
   const [titleText, setTitleText] = useState("Red");
   const draw = async (Ctx: Drawer) => {
-    await Ctx.utils.loadFont("Slash", `url("/Slash-Signature.ttf")`);
+    await Ctx.utils.loadFont("Slash", "Slash-Signature.ttf");
     await Ctx.imgBg("assets/WLR_BG.png");
     await Ctx.drawFixedImage(
       image,
