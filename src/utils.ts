@@ -44,11 +44,11 @@ export const drawTextWithMaxChars = (
 };
 
 export const adjustCoordinates = (
-  image: DetailedImage,
+  coordinates: Coordinates,
   dimensions: Dimensions,
   options: ImageOptions
 ) => {
-  let { x, y } = image.coordinates;
+  let { x, y } = coordinates;
   const { height, width } = dimensions;
 
   if (options?.justify === "center") {

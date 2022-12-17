@@ -60,13 +60,12 @@ export class Drawer {
     options?: ImageOptions
   ) {
     const img = await loadAndCacheImage(srcUrl, this.IMAGE_CACHE);
-    this.ctx.drawImage(
-      img,
-      coordinates.x,
-      coordinates.y,
-      dimensions.width,
-      dimensions.height
+    const { x, y } = adjustCoordinates(
+      coordinates,
+      { width: dimensions.width, height: dimensions.height },
+      options
     );
+    this.ctx.drawImage(img, x, y, dimensions.width, dimensions.height);
   }
 
   async drawScalableImage(
@@ -85,7 +84,7 @@ export class Drawer {
     );
 
     const { x, y } = adjustCoordinates(
-      image,
+      image.coordinates,
       { width: adjustedDimensions.width, height: adjustedDimensions.height },
       options
     );
