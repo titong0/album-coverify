@@ -9,7 +9,7 @@ import TextInput from "../Inputs/TextInput";
 
 const BlondeEditor = () => {
   const [image, setImage] = useState<DetailedImage>({
-    srcUrl: "/assets/BLONDE_DEFAULT.png",
+    srcUrl: "/defaults/BLONDE_DEFAULT.png",
     coordinates: { x: 500, y: 863 },
     size: 0.7,
   });

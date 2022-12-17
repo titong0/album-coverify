@@ -10,7 +10,7 @@ import { Drawer } from "../../src/Drawer";
 
 const WlrEditor = () => {
   const [tresholdLimit, setTresholdLimit] = useState(140);
-  const [image, setImage] = useState("/assets/WLR_DEFAULT.png");
+  const [image, setImage] = useState("defaults/WLR_DEFAULT.png");
   const [titleText, setTitleText] = useState("Red");
   const draw = async (Ctx: Drawer) => {
     await Ctx.utils.loadFont("Slash", "Slash-Signature.ttf");

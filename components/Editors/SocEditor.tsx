@@ -9,7 +9,7 @@ import SimpleImage from "../Inputs/SimpleImage";
 const SocEditor = () => {
   const [groupName, setGroupName] = useState("N.W.A");
   const [albumName, setAlbumName] = useState("STRAIGHT OUTTA COMPTON");
-  const [image, setImage] = useState("/assets/SOC_DEFAULT.png");
+  const [image, setImage] = useState("/defaults/SOC_DEFAULT.png");
 
   const draw = async (Ctx: Drawer) => {
     await Ctx.utils.loadFont("Mistral", `Mistral.ttf`);

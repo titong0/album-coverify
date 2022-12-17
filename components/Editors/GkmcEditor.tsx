@@ -10,7 +10,7 @@ import { Drawer } from "../../src/Drawer";
 type Rectangle = { x: number; y: number; ID: string };
 
 const GkmcEditor = () => {
-  const [image, setImage] = useState("/assets/GKMC_DEFAULT.png");
+  const [image, setImage] = useState("/defaults/GKMC_DEFAULT.png");
   const [rectanglesData, setRectanglesData] = useState<Array<Rectangle>>([]);
   const [selectedId, setSelectedId] = useState("");
   const [greenTintOpacity, setGreenTintOpacity] = useState(0.5);

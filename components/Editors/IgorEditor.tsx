@@ -8,7 +8,7 @@ import SimpleImage from "../Inputs/SimpleImage";
 import TextInput from "../Inputs/TextInput";
 
 const IgorEditor = () => {
-  const [image, setImage] = useState("/assets/IGOR_DEFAULT.png");
+  const [image, setImage] = useState("/defaults/IGOR_DEFAULT.png");
   const [author, setAuthor] = useState("TYLER OKONMA");
 
   const draw = async (Ctx: Drawer) => {

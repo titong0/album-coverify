@@ -11,7 +11,7 @@ import { DetailedImage } from "../../src/types";
 
 const TlopEditor = ({}) => {
   const [firstImage, setFirstImage] = useState<DetailedImage>({
-    srcUrl: "/assets/TLOP_DEFAULT_1.png",
+    srcUrl: "defaults/TLOP_DEFAULT_1.png",
     size: 1,
     coordinates: {
       x: 100,
@@ -20,7 +20,7 @@ const TlopEditor = ({}) => {
   });
 
   const [secondImage, setSecondImage] = useState<DetailedImage>({
-    srcUrl: "/assets/TLOP_DEFAULT_2.png",
+    srcUrl: "defaults/TLOP_DEFAULT_2.png",
     size: 1,
     coordinates: {
       x: 450,

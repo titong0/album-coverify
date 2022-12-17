@@ -9,7 +9,7 @@ import RangeInput from "../Inputs/RangeInput";
 import CheckBoxInput from "../Inputs/CheckboxInput";
 
 const MbdtfEditor = () => {
-  const [image, setImage] = useState("/assets/MBDTF_DEFAULT.png");
+  const [image, setImage] = useState("/defaults/MBDTF_DEFAULT.png");
   const [border, setBorder] = useState(true);
   const [pixelation, setPixelation] = useState(23);
   const draw = async (Ctx: Drawer) => {

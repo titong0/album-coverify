@@ -10,7 +10,7 @@ const creditsDefault =
   "ALL SONGS WRITTEN, PRODUCED AND ARRANGED BY TYLER OKONMA";
 
 const AltIgorEditor = () => {
-  const [imageSrc, setImageSrc] = useState("/assets/IGOR_DEFAULT.png");
+  const [imageSrc, setImageSrc] = useState("/defaults/IGOR_DEFAULT.png");
   const [creditsText, setCreditsText] = useState(creditsDefault);
   const [title, setTitle] = useState("IGOR");
 
