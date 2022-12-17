@@ -2,8 +2,9 @@ import React, { useEffect, useRef, createContext, useState } from "react";
 import { Drawer } from "../../src/Drawer";
 import { asyncBlob } from "../../src/utils";
 
-export const CanvasRefContext = createContext(null);
-export const FinishedImageContext = createContext(null);
+export const CanvasRefContext =
+  createContext<React.MutableRefObject<HTMLCanvasElement | null> | null>(null);
+export const FinishedImageContext = createContext<string | null>(null);
 
 type EditorContainerProps = {
   drawMethod: (draw: Drawer) => Promise<void>;
@@ -15,11 +16,12 @@ const EditorContainer: React.FC<EditorContainerProps> = ({
   dependencies,
   children,
 }) => {
-  const canvasRef = useRef<HTMLCanvasElement>();
-  const DrawerInstance = useRef<Drawer>(null);
-  const [finishedImage, setFinishedImage] = useState<string>(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const DrawerInstance = useRef<Drawer | null>(null);
+  const [finishedImage, setFinishedImage] = useState<string | null>(null);
 
   const handleDrawing = async (ignore: boolean) => {
+    if (!DrawerInstance.current || !canvasRef.current) return;
     await drawMethod(DrawerInstance.current);
     if (ignore) return;
     const finishedBlob = await asyncBlob(canvasRef.current);
@@ -44,7 +46,7 @@ const EditorContainer: React.FC<EditorContainerProps> = ({
   }, dependencies);
 
   useEffect(() => {
-    const ctx = canvasRef.current.getContext("2d");
+    const ctx = canvasRef?.current?.getContext("2d");
     if (!ctx) return;
     DrawerInstance.current = new Drawer(ctx);
   }, [canvasRef.current]);

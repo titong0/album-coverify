@@ -17,11 +17,12 @@ const RectanglesHandler: React.FC<RectanglesHandlerProps> = ({
   selectedId,
   setSelectedId,
 }) => {
-  const canvas = useContext(CanvasRefContext).current;
-
+  const canvasCtx = useContext(CanvasRefContext);
+  if (!canvasCtx?.current) return null;
+  const canvas = canvasCtx.current;
   const newRect = () => {
-    const newRect = { x: 200, y: 200, ID: null };
-    newRect.ID = Date.now();
+    const newRect = { x: 200, y: 200, ID: "" };
+    newRect.ID = Date.now().toString();
     const newArr: Array<Rectangle> = [...rectanglesData, newRect];
     setRectanglesData(newArr);
   };

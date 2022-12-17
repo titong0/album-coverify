@@ -3,6 +3,7 @@ export type CanvColor = CanvasFillStrokeStyles["fillStyle"];
 export type InputProps = React.InputHTMLAttributes<HTMLInputElement>;
 export type stateSetter<T> = React.Dispatch<React.SetStateAction<T>>;
 export type Coordinates = { x?: number; y?: number };
+export type BothCoordinates = { x: number; y: number };
 export type Dimensions = { width: number; height: number };
 export type DetailedImage = {
   srcUrl: string;
@@ -10,6 +11,13 @@ export type DetailedImage = {
   opacity?: number;
   size?: number;
 };
+export type ImgBothCordinates = {
+  srcUrl: string;
+  coordinates: BothCoordinates;
+  opacity?: number;
+  size?: number;
+};
+
 export type TextOptions = {
   color?: CanvColor;
   font?: `${number}px ${string}` | `${string} ${number}px ${string}`;
@@ -37,3 +45,7 @@ export type ChangeOneProp<ObjType> = <
   key: T,
   value: R
 ) => any;
+export type RequiredPick<T, K extends keyof T> = Required<Pick<T, K>>;
+export type Entries<T> = {
+  [K in keyof T]: [K, T[K]];
+}[keyof T][];

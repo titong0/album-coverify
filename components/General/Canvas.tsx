@@ -3,6 +3,7 @@ import { CanvasRefContext } from "./EditorContainer";
 
 const Canvas = () => {
   const canvasRef = useContext(CanvasRefContext);
+  if (!canvasRef) return null;
   return (
     <div className="flex items-end justify-center py-8 sm:py-2 h-full ">
       <canvas

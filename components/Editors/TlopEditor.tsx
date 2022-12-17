@@ -2,7 +2,7 @@ import { useState } from "react";
 import Canvas from "../General/Canvas";
 import ColorPicker from "../Inputs/ColorPicker";
 import Download from "../General/Download";
-import { drawTitleText, drawBelowText, drawImage } from "../TLOP/tlopFunctions";
+import { drawTitleText, drawBelowText } from "../TLOP/tlopFunctions";
 import EditorContainer from "../General/EditorContainer";
 import TextInput from "../Inputs/TextInput";
 import { Drawer } from "../../src/Drawer";
@@ -10,7 +10,7 @@ import DetailedImageHandler from "../Inputs/DetailedImageHandler";
 import { DetailedImage } from "../../src/types";
 
 const TlopEditor = ({}) => {
-  const [firstImage, setFirstImage] = useState<DetailedImage>({
+  const [firstImage, setFirstImage] = useState({
     srcUrl: "defaults/TLOP_DEFAULT_1.png",
     size: 1,
     coordinates: {
@@ -19,7 +19,7 @@ const TlopEditor = ({}) => {
     },
   });
 
-  const [secondImage, setSecondImage] = useState<DetailedImage>({
+  const [secondImage, setSecondImage] = useState({
     srcUrl: "defaults/TLOP_DEFAULT_2.png",
     size: 1,
     coordinates: {

@@ -1,7 +1,4 @@
 import { Ctx2d } from "../../src/types";
-import { loadAndCacheImage } from "../../src/utils";
-
-const CACHED_IMAGES = [];
 
 export const drawTitleText = (content: string, ctx: Ctx2d) => {
   for (let i = 1; i < 8; i++) {
@@ -13,7 +10,7 @@ export const drawTitleText = (content: string, ctx: Ctx2d) => {
   }
 };
 
-const drawPabloText = (text: string, x, y, ctx: Ctx2d) => {
+const drawPabloText = (text: string, x: number, y: number, ctx: Ctx2d) => {
   const separated = text.split(" ");
   const first = separated.slice(0, 3).join(" ");
   const second = separated.splice(3).join(" ");
@@ -38,24 +35,15 @@ export const drawBelowText = (content: string, ctx: Ctx2d) => {
   }
 };
 
-const drawWhichOneText = (content: string, x, y, ctx: Ctx2d) => {
+const drawWhichOneText = (
+  content: string,
+  x: number,
+  y: number,
+  ctx: Ctx2d
+) => {
   ctx.save();
   ctx.font = "bold 30px Helvetica";
   ctx.textAlign = "center";
   ctx.fillText(content, x, y + 90, 1000);
   ctx.restore();
-};
-
-export const drawImage = async (image, ctx: Ctx2d) => {
-  const { srcUrl, x, y, size } = image;
-  const img = await loadAndCacheImage(srcUrl, CACHED_IMAGES);
-
-  const multiplier = (300 / img.naturalWidth) * size;
-  ctx.drawImage(
-    img,
-    x * 10,
-    y * 10,
-    img.naturalWidth * multiplier,
-    img.naturalHeight * multiplier
-  );
 };

@@ -3,40 +3,42 @@ import React, { useState } from "react";
 import { imgFromInputEvent } from "../../src/utils";
 import {
   ChangeOneProp,
+  Coordinates,
   DetailedImage,
   InputProps,
+  RequiredPick,
   stateSetter,
 } from "../../src/types";
 import { createContext, useContext } from "react";
 
-type ImageHandlerProps = {
+type ImageHandlerProps<TImg extends DetailedImage> = {
   name?: string;
   label?: string;
-  image: DetailedImage;
+  image: TImg;
   aspect: number;
-  setImage: stateSetter<DetailedImage>;
+  setImage: stateSetter<TImg>;
   children?: React.ReactNode;
 };
 
 type SubComponents = {
-  SizeHandler: React.FC<SizeHandlerProps>;
-  CoordinatesHandler: React.FC<CoordinatesHandlerProps>;
-  OpacityHandler: React.FC<OpacityHandlerProps>;
+  SizeHandler?: React.FC<SizeHandlerProps>;
+  CoordinatesHandler?: React.FC<CoordinatesHandlerProps>;
+  OpacityHandler?: React.FC<OpacityHandlerProps>;
 };
 
 const ImageValuesCtx = createContext<{
   image: DetailedImage;
   changeOneValue: ChangeOneProp<DetailedImage>;
-}>(null);
+} | null>(null);
 
-const DetailedImageHandler: React.FC<ImageHandlerProps> & SubComponents = ({
+function DetailedImageHandler<T extends DetailedImage>({
   image,
   setImage,
   aspect,
   label,
   name,
   children,
-}) => {
+}: ImageHandlerProps<T> & SubComponents) {
   const [imageSrc, setImageSrc] = useState(image.srcUrl);
 
   const changeImg = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -75,11 +77,14 @@ const DetailedImageHandler: React.FC<ImageHandlerProps> & SubComponents = ({
       </ImageValuesCtx.Provider>
     </div>
   );
-};
+}
 
 type SizeHandlerProps = InputProps & {};
 const SizeHandler: React.FC<SizeHandlerProps> = ({ ...props }) => {
-  const { image, changeOneValue } = useContext(ImageValuesCtx);
+  const imageValues = useContext(ImageValuesCtx);
+  if (!imageValues) return null;
+  const { image, changeOneValue } = imageValues;
+
   return (
     <>
       <label htmlFor="image">
@@ -106,11 +111,22 @@ const CoordinatesHandler: React.FC<CoordinatesHandlerProps> = ({
   xProps,
   yProps,
 }) => {
-  const { image, changeOneValue } = useContext(ImageValuesCtx);
+  const imageValues = useContext(ImageValuesCtx);
+  if (!imageValues) return null;
+  const { image, changeOneValue } = imageValues;
 
+  const withChangedCoordinate = (
+    coordinate: keyof Coordinates,
+    newValue: number
+  ) => {
+    const copy = { ...image };
+    if (!copy.coordinates) return copy.coordinates;
+    copy.coordinates[coordinate] = newValue;
+    return copy.coordinates;
+  };
   return (
     <>
-      {image.coordinates.x !== undefined && (
+      {image.coordinates?.x !== undefined && (
         <>
           <label>
             X position:
@@ -121,16 +137,16 @@ const CoordinatesHandler: React.FC<CoordinatesHandlerProps> = ({
             type="range"
             value={image.coordinates.x / pixelToUnitRatio}
             onChange={(e) =>
-              changeOneValue("coordinates", {
-                x: parseInt(e.target.value) * pixelToUnitRatio,
-                y: image.coordinates.y,
-              })
+              changeOneValue(
+                "coordinates",
+                withChangedCoordinate("x", +e.target.value)
+              )
             }
             {...xProps}
           />
         </>
       )}
-      {image.coordinates.y !== undefined && (
+      {image.coordinates?.y !== undefined && (
         <>
           <label>
             Y position:{" "}
@@ -141,10 +157,10 @@ const CoordinatesHandler: React.FC<CoordinatesHandlerProps> = ({
             type="range"
             value={image.coordinates.y / pixelToUnitRatio}
             onChange={(e) =>
-              changeOneValue("coordinates", {
-                x: image.coordinates.x,
-                y: parseInt(e.target.value) * pixelToUnitRatio,
-              })
+              changeOneValue(
+                "coordinates",
+                withChangedCoordinate("y", +e.target.value)
+              )
             }
             {...yProps}
           />

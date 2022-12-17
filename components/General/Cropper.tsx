@@ -1,11 +1,11 @@
 import React, { useRef, useEffect, useState } from "react";
-import ReactCrop, { ReactCropProps } from "react-image-crop";
+import ReactCrop, { Crop, ReactCropProps } from "react-image-crop";
 import { stateSetter } from "../../src/types";
 import { canvasPreview, asyncBlob } from "../../src/utils";
 
 type CropperProps = {
   imageSrc: string;
-  setImage: (string) => void;
+  setImage: (imageUrl: string) => void;
   cropOptions?: Omit<ReactCropProps, "onChange">;
 };
 const Cropper: React.FC<CropperProps> = ({
@@ -13,30 +13,30 @@ const Cropper: React.FC<CropperProps> = ({
   setImage,
   cropOptions,
 }) => {
-  const croppedRef = useRef(null);
-  const srcRef = useRef(null);
-  const [crop, setCrop] = useState(null);
-  const [completedCrop, setCompletedCrop] = useState(null);
+  const croppedRef = useRef<HTMLCanvasElement | null>(null);
+  const srcRef = useRef<HTMLImageElement | null>(null);
+  const [crop, setCrop] = useState<Crop>();
+  const [completedCrop, setCompletedCrop] = useState<Crop>();
   const [usefixedAspect, toggleUseFixedAspect] = useState(true);
   const [showCropLabel, setShowCropLabel] = useState(true);
   const [cropping, setCropping] = useState(false);
 
-  const aspect = usefixedAspect ? cropOptions.aspect : null;
+  const aspect = usefixedAspect ? cropOptions?.aspect : null;
 
-  const cancelCrop = (e) => {
-    e.preventDefault();
-    setCompletedCrop(null);
-    setCrop(null);
+  const cancelCrop = () => {
+    setCompletedCrop(undefined);
+    setCrop(undefined);
   };
 
-  const cropImg = async (e) => {
+  const cropImg = async () => {
+    if (!completedCrop || !srcRef.current || !croppedRef.current) return;
     if (completedCrop.width === 0) return;
     setCropping(true);
     canvasPreview(srcRef.current, croppedRef.current, completedCrop);
     const blob = await asyncBlob(croppedRef.current);
     setImage(URL.createObjectURL(blob));
-    setCompletedCrop(null);
-    setCrop(null);
+    setCompletedCrop(undefined);
+    setCrop(undefined);
     setCropping(false);
   };
 
@@ -54,7 +54,7 @@ const Cropper: React.FC<CropperProps> = ({
 
       <div className="mt-2">
         <ReactCrop
-          aspect={aspect}
+          aspect={aspect || undefined}
           crop={crop}
           className="relative border border-black"
           onComplete={(c) => setCompletedCrop(c)}
@@ -91,6 +91,7 @@ const Cropper: React.FC<CropperProps> = ({
                   ? `border border-black p-2 hover:outline outline-2 outline-offset-4 outline-black`
                   : "border border-transparent p-2 cursor-progress"
               }
+              type="button"
               onClick={cancelCrop}
             >
               Cancel
@@ -102,8 +103,7 @@ const Cropper: React.FC<CropperProps> = ({
                   : "w-full p-2 cursor-progress"
               }
               type={"button"}
-              onClick={!cropping ? cropImg : null}
-              // onClick={() => setCropping(!cropping)}
+              onClick={!cropping ? cropImg : undefined}
             >
               Crop
             </button>

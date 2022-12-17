@@ -1,9 +1,12 @@
+import { Crop } from "react-image-crop";
 import {
+  BothCoordinates,
   Coordinates,
   Ctx2d,
-  DetailedImage,
   Dimensions,
+  Entries,
   ImageOptions,
+  TextOptions,
 } from "./types";
 
 export const loadAndCacheImage = async (
@@ -18,7 +21,7 @@ export const loadAndCacheImage = async (
     try {
       await img.decode();
     } catch (error) {
-      throw new Error(error);
+      throw new Error(error as string);
     }
     cache.push(img);
     return img;
@@ -30,11 +33,12 @@ export const drawTextWithMaxChars = (
   ctx: Ctx2d,
   content: string,
   maxChars: number,
-  coordinates: Coordinates
+  coordinates: BothCoordinates
 ) => {
   const wordRegex = new RegExp(`/[\s\S]{1,${maxChars}}(?!\S)/g`);
   const modified = content.replace(wordRegex, "$&\n");
   const lines = modified.split("\n");
+  coordinates.x;
   lines.forEach((line, index) => {
     const metrics = ctx.measureText(line);
     const height =
@@ -43,25 +47,31 @@ export const drawTextWithMaxChars = (
   });
 };
 
-export const adjustCoordinates = (
-  coordinates: Coordinates,
+export const adjustCoordinates = <T extends Coordinates>(
+  coordinates: T,
   dimensions: Dimensions,
   options: ImageOptions
-) => {
-  let { x, y } = coordinates;
+): T => {
+  let { x: xCopy, y: yCopy } = coordinates;
   const { height, width } = dimensions;
 
-  if (options?.justify === "center") {
-    x = x - width / 2;
-  } else if (options?.justify === "right") {
-    x = x - width;
+  if (xCopy) {
+    if (options?.justify === "center") {
+      xCopy = xCopy - width / 2;
+    } else if (options?.justify === "right") {
+      xCopy = xCopy - width;
+    }
   }
-  if (options?.align === "center") {
-    y = y - width / 2;
-  } else if (options?.align === "bottom") {
-    y = y - height;
+  if (yCopy) {
+    if (options?.align === "center") {
+      yCopy = yCopy - width / 2;
+    } else if (options?.align === "bottom") {
+      yCopy = yCopy - height;
+    }
   }
-  return { x, y };
+  coordinates.x = xCopy;
+  coordinates.y = yCopy;
+  return coordinates;
 };
 
 // scale the image so that it reaches height or width without altering aspect ratio
@@ -98,20 +108,43 @@ export function getMousePos(canvas: HTMLCanvasElement, evt: MouseEvent) {
 
 export const asyncBlob = async (element: HTMLCanvasElement) => {
   return new Promise((resolve) => {
-    element.toBlob((blob) => resolve(blob));
+    element.toBlob((blob) => {
+      if (blob === null) throw new Error("Failed to  turn into blob");
+      resolve(blob);
+    });
   }) as Promise<Blob>;
 };
 
-export const imgFromInputEvent = (e) => {
-  if (!e.target.files[0]) return;
+export const imgFromInputEvent = (e: React.ChangeEvent<HTMLInputElement>) => {
+  if (!e.target.files) return;
   if (e.target.files[0].size > 2097152) return alert("Image too big!");
   const img = e.target.files[0];
   return URL.createObjectURL(img);
 };
 
+export const assignTextOptions = <Opts extends TextOptions>(
+  ctx: Ctx2d,
+  options?: Opts
+) => {
+  if (!options) return ctx;
+  const ctxCopy = { ...ctx };
+  Object.entries(options).forEach(([key, value]) => {
+    if (key in ctxCopy) {
+      (ctxCopy as any)[key] = value;
+    }
+  });
+  return ctxCopy;
+};
+
 // original code is from https://github.com/DominicTobias/react-image-crop#example
 const TO_RADIANS = Math.PI / 180;
-export async function canvasPreview(image, canvas, crop, scale?, rotate?) {
+export async function canvasPreview(
+  image: HTMLImageElement,
+  canvas: HTMLCanvasElement,
+  crop: Crop,
+  scale: number = 1,
+  rotate: number = 1
+) {
   const ctx = canvas.getContext("2d");
 
   if (!ctx) {

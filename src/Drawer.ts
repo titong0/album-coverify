@@ -1,4 +1,5 @@
 import {
+  BothCoordinates,
   CanvasFilters,
   CanvColor,
   Coordinates,
@@ -6,10 +7,13 @@ import {
   DetailedImage,
   Dimensions,
   ImageOptions,
+  ImgBothCordinates,
+  RequiredPick,
   TextOptions,
 } from "./types";
 import {
   adjustCoordinates,
+  assignTextOptions,
   drawTextWithMaxChars,
   getScaledWidthAndHeight,
   loadAndCacheImage,
@@ -29,23 +33,25 @@ export class Drawer {
     this.ctx.restore();
   }
 
-  drawText(text: string, coordinates: Coordinates, options?: TextOptions) {
+  drawText(text: string, coordinates: BothCoordinates, options?: TextOptions) {
     this.ctx.save();
-    this.ctx.font = options?.font;
-    this.ctx.fillStyle = options?.color;
-    this.ctx.textAlign = options?.textAlign;
-    if (options?.maxCharsPerLine > text.length) {
+    this.ctx = assignTextOptions(this.ctx, options);
+    if (options?.maxCharsPerLine || -1 > text.length) {
       drawTextWithMaxChars(
         this.ctx,
         text,
-        options.maxCharsPerLine,
+        options?.maxCharsPerLine!,
         coordinates
       );
     }
     this.ctx.fillText(text, coordinates.x, coordinates.y, options?.maxWidth);
     this.ctx.restore();
   }
-  drawRect(coordinates: Coordinates, dimensions: Dimensions, color: CanvColor) {
+  drawRect(
+    coordinates: BothCoordinates,
+    dimensions: Dimensions,
+    color: CanvColor
+  ) {
     this.ctx.save();
     this.ctx.fillStyle = color;
     const { x, y } = coordinates;
@@ -55,7 +61,7 @@ export class Drawer {
   }
   async drawFixedImage(
     srcUrl: string,
-    coordinates: Coordinates,
+    coordinates: BothCoordinates,
     dimensions: Dimensions,
     options?: ImageOptions
   ) {
@@ -63,13 +69,13 @@ export class Drawer {
     const { x, y } = adjustCoordinates(
       coordinates,
       { width: dimensions.width, height: dimensions.height },
-      options
+      options || {}
     );
     this.ctx.drawImage(img, x, y, dimensions.width, dimensions.height);
   }
 
   async drawScalableImage(
-    image: DetailedImage,
+    image: RequiredPick<ImgBothCordinates, "coordinates" | "size" | "srcUrl">,
     defaultDimensions: Dimensions,
     options?: ImageOptions
   ) {
@@ -86,7 +92,7 @@ export class Drawer {
     const { x, y } = adjustCoordinates(
       image.coordinates,
       { width: adjustedDimensions.width, height: adjustedDimensions.height },
-      options
+      options || {}
     );
     this.ctx.drawImage(
       img,
@@ -113,7 +119,7 @@ export class Drawer {
     try {
       await font.load();
     } catch (error) {
-      throw new Error(error);
+      throw new Error(error as string);
     }
     document.fonts.add(font);
   }

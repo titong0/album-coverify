@@ -8,7 +8,7 @@ import { DetailedImage } from "../../src/types";
 import TextInput from "../Inputs/TextInput";
 
 const BlondeEditor = () => {
-  const [image, setImage] = useState<DetailedImage>({
+  const [image, setImage] = useState({
     srcUrl: "/defaults/BLONDE_DEFAULT.png",
     coordinates: { x: 500, y: 863 },
     size: 0.7,

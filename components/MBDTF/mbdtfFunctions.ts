@@ -1,11 +1,16 @@
-import { Coordinates, Ctx2d, Dimensions } from "../../src/types";
+import {
+  BothCoordinates,
+  Coordinates,
+  Ctx2d,
+  Dimensions,
+} from "../../src/types";
 import { loadAndCacheImage } from "../../src/utils";
 
 export const applyPixelation = async (
   ctx: Ctx2d,
   imgSrc: string,
   pixelation: number,
-  coordinates: Coordinates,
+  coordinates: BothCoordinates,
   dimensions: Dimensions,
   CACHE: Array<HTMLImageElement>
 ) => {
@@ -14,7 +19,7 @@ export const applyPixelation = async (
   hiddenCanvas.className = "pixelated";
   hiddenCanvas.width = pixelation;
   hiddenCanvas.height = pixelation;
-  const hiddenCtx = hiddenCanvas.getContext("2d");
+  const hiddenCtx = hiddenCanvas.getContext("2d")!;
 
   if ("webkitImageSmoothingEnabled" in ctx)
     ctx.webkitImageSmoothingEnabled = false;
