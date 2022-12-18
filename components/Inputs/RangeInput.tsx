@@ -5,7 +5,7 @@ type RangeInputProps = InputProps & {
   name?: string;
   label: string | React.ReactNode;
   value: number;
-  setValue: stateSetter<number>;
+  setValue: (arg0: number) => void;
 };
 const RangeInput: React.FC<RangeInputProps> = ({
   value,
@@ -15,7 +15,7 @@ const RangeInput: React.FC<RangeInputProps> = ({
   ...inputProps
 }) => {
   return (
-    <div className="flex flex-col mt-2 ml-2">
+    <div className="flex flex-col mt-2">
       <label htmlFor={name || "range"}>{label}</label>
       <input
         name={name || "range"}

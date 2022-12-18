@@ -27,7 +27,9 @@ const SimpleImage: React.FC<SimpleImageProps> = ({
 
   return (
     <div className="flex flex-col w-100 bg-gray-200 p-2 mr-2 my-4 border border-black border-l-0">
-      <label htmlFor={name}>{label}</label>
+      <label className="text-xl leading-10" htmlFor={name}>
+        {label}
+      </label>
       <input
         name="image"
         type={"file"}
