@@ -24,7 +24,7 @@ const GkmcEditor = () => {
       { x: 40, y: 42 },
       { width: 920, height: 790 }
     );
-    Ctx.utils.resetFilter();
+    Ctx.utils.resetFilters();
     Ctx.drawRect(
       { x: 40, y: 42 },
       { width: 920, height: 790 },

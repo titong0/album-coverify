@@ -12,7 +12,7 @@ const IgorEditor = () => {
   const [author, setAuthor] = useState("TYLER OKONMA");
 
   const draw = async (Ctx: Drawer) => {
-    Ctx.utils.resetFilter();
+    Ctx.utils.resetFilters();
     Ctx.colorBg("#f7b4c6");
     Ctx.utils.addFilter("grayscale", 1);
     Ctx.utils.addFilter("contrast", "180%");
@@ -21,7 +21,7 @@ const IgorEditor = () => {
       { x: 75, y: 75 },
       { height: 850, width: 850 }
     );
-    Ctx.utils.resetFilter();
+    Ctx.utils.resetFilters();
     Ctx.drawText(
       "ALL SONGS WRITTEN, PRODUCED AND ARRANGED BY",
       { x: 500, y: 970 },

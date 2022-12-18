@@ -16,7 +16,7 @@ const AltIgorEditor = () => {
 
   const draw = async (Ctx: Drawer) => {
     await Ctx.utils.loadFont("IGOR", `IGOR-BoldItalic.ttf`);
-    Ctx.utils.resetFilter();
+    Ctx.utils.resetFilters();
     Ctx.colorBg("#f7b4c6");
     Ctx.utils.addFilter("grayscale", 1);
     Ctx.utils.addFilter("contrast", "180%");
@@ -25,7 +25,7 @@ const AltIgorEditor = () => {
       { x: 260, y: 194 },
       { height: 510, width: 510 }
     );
-    Ctx.utils.resetFilter();
+    Ctx.utils.resetFilters();
     Ctx.drawText(
       title,
       { x: 500, y: 800 },
