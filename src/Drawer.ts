@@ -36,6 +36,7 @@ export class Drawer {
   drawText(text: string, coordinates: BothCoordinates, options?: TextOptions) {
     this.ctx.save();
     this.ctx = assignTextOptions(this.ctx, options);
+
     if (options?.maxCharsPerLine || -1 > text.length) {
       drawTextWithMaxChars(
         this.ctx,
@@ -123,7 +124,7 @@ export class Drawer {
     }
     document.fonts.add(font);
   }
-  private resetFilter() {
+  private resetFilters() {
     this.ctx.filter = "none";
   }
   private clearCanvas() {
@@ -139,7 +140,7 @@ export class Drawer {
   }
   utils = {
     loadFont: this.loadFont.bind(this),
-    resetFilter: this.resetFilter.bind(this),
+    resetFilters: this.resetFilters.bind(this),
     clearCanvas: this.clearCanvas.bind(this),
     addFilter: this.addFilter.bind(this),
   };

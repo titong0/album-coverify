@@ -12,6 +12,7 @@ const WlrEditor = () => {
   const [tresholdLimit, setTresholdLimit] = useState(140);
   const [image, setImage] = useState("defaults/WLR_DEFAULT.png");
   const [titleText, setTitleText] = useState("Red");
+
   const draw = async (Ctx: Drawer) => {
     await Ctx.utils.loadFont("Slash", "Slash-Signature.ttf");
     await Ctx.imgBg("assets/WLR_BG.png");
@@ -22,14 +23,13 @@ const WlrEditor = () => {
     );
     Ctx.customDraw((ctx) => applyTreshold(tresholdLimit, ctx));
     const titleFontSize = 240 - Math.log2(titleText.length) * 40;
-
     Ctx.drawText(
       titleText,
       { x: 502, y: 202 },
       {
-        font: `bold ${titleFontSize}px Slash`,
+        font: `bold ${Math.round(titleFontSize)}px Slash`,
         textAlign: "center",
-        color: "#ffffff",
+        fillStyle: "#ffffff",
         maxWidth: 600,
       }
     );
@@ -39,7 +39,7 @@ const WlrEditor = () => {
       {
         font: `bold ${titleFontSize}px Slash`,
         textAlign: "center",
-        color: "#ff2222",
+        fillStyle: "#ff2222",
         maxWidth: 600,
       }
     );

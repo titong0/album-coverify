@@ -1,6 +1,9 @@
 export type Ctx2d = CanvasRenderingContext2D;
 export type CanvColor = CanvasFillStrokeStyles["fillStyle"];
-export type InputProps = React.InputHTMLAttributes<HTMLInputElement>;
+export type InputProps = Omit<
+  React.InputHTMLAttributes<HTMLInputElement>,
+  "value"
+>;
 export type stateSetter<T> = React.Dispatch<React.SetStateAction<T>>;
 export type Coordinates = { x?: number; y?: number };
 export type BothCoordinates = { x: number; y: number };
@@ -19,7 +22,7 @@ export type ImgBothCordinates = {
 };
 
 export type TextOptions = {
-  color?: CanvColor;
+  fillStyle?: CanvColor;
   font?: `${number}px ${string}` | `${string} ${number}px ${string}`;
   maxWidth?: number;
   textAlign?: CanvasTextAlign;
