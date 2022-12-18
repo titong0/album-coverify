@@ -126,14 +126,13 @@ export const assignTextOptions = <Opts extends TextOptions>(
   ctx: Ctx2d,
   options?: Opts
 ) => {
-  if (!options) return ctx;
-  const ctxCopy = { ...ctx };
-  Object.entries(options).forEach(([key, value]) => {
-    if (key in ctxCopy) {
-      (ctxCopy as any)[key] = value;
+  if (!options || !ctx) return ctx;
+  Object.entries(options).forEach(([key, value]: any) => {
+    if (key in ctx) {
+      (ctx as any)[key] = value;
     }
   });
-  return ctxCopy;
+  return ctx;
 };
 
 // original code is from https://github.com/DominicTobias/react-image-crop#example
