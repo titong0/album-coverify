@@ -10,6 +10,7 @@ import {
   stateSetter,
 } from "../../src/types";
 import { createContext, useContext } from "react";
+import RangeInput from "./RangeInput";
 
 type ImageHandlerProps<TImg extends DetailedImage> = {
   name?: string;
@@ -127,51 +128,49 @@ const CoordinatesHandler: React.FC<CoordinatesHandlerProps> = ({
   return (
     <>
       {image.coordinates?.x !== undefined && (
-        <>
-          <label>
-            X position:
-            <strong> {image.coordinates.x / pixelToUnitRatio}</strong>
-          </label>
-          <input
-            className="w-2/3"
-            type="range"
-            value={image.coordinates.x / pixelToUnitRatio}
-            onChange={(e) =>
-              changeOneValue(
-                "coordinates",
-                withChangedCoordinate("x", +e.target.value)
-              )
-            }
-            {...xProps}
-          />
-        </>
+        <RangeInput
+          label={
+            <>
+              X position:
+              <strong> {image.coordinates.x / pixelToUnitRatio}</strong>
+            </>
+          }
+          value={image.coordinates.x}
+          setValue={(value) => {
+            changeOneValue("coordinates", withChangedCoordinate("x", value));
+          }}
+          {...xProps}
+        />
       )}
       {image.coordinates?.y !== undefined && (
-        <>
-          <label>
-            Y position:{" "}
-            <strong> {image.coordinates.y / pixelToUnitRatio}</strong>
-          </label>
-          <input
-            className="w-2/3"
-            type="range"
-            value={image.coordinates.y / pixelToUnitRatio}
-            onChange={(e) =>
-              changeOneValue(
-                "coordinates",
-                withChangedCoordinate("y", +e.target.value)
-              )
-            }
-            {...yProps}
-          />
-        </>
+        <RangeInput
+          label={
+            <>
+              y position:
+              <strong> {image.coordinates.y / pixelToUnitRatio}</strong>
+            </>
+          }
+          value={image.coordinates.y}
+          setValue={(value) => {
+            changeOneValue("coordinates", withChangedCoordinate("y", value));
+          }}
+          {...yProps}
+        />
       )}
     </>
   );
 };
 type OpacityHandlerProps = {};
 const OpacityHandler: React.FC<OpacityHandlerProps> = () => {
+  const imageValues = useContext(ImageValuesCtx);
+  if (!imageValues) return null;
+  const { image, changeOneValue } = imageValues;
+
   return null;
+  // <RangeInput
+  //   label="Opacity"
+  //   setValue={(num) => changeOneValue("opacity", num)}
+  // />
 };
 
 DetailedImageHandler.SizeHandler = SizeHandler;

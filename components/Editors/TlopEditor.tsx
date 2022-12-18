@@ -73,16 +73,18 @@ const TlopEditor = ({}) => {
             setImage={setFirstImage}
             aspect={3 / 2}
           >
-            <DetailedImageHandler.SizeHandler min="0.1" step="0.1" max="3" />
+            <DetailedImageHandler.SizeHandler min="0.5" step="0.1" max="1.5" />
             <DetailedImageHandler.CoordinatesHandler
               pixelToUnitRatio={10}
               xProps={{
-                min: -100,
-                max: 100,
+                step: 5,
+                min: -500,
+                max: 1000,
               }}
               yProps={{
-                min: -100,
-                max: 100,
+                step: 5,
+                min: -500,
+                max: 1000,
               }}
             />
           </DetailedImageHandler>
@@ -93,16 +95,18 @@ const TlopEditor = ({}) => {
             setImage={setSecondImage}
             aspect={3 / 2}
           >
-            <DetailedImageHandler.SizeHandler min="0.1" step="0.1" max="3" />
+            <DetailedImageHandler.SizeHandler min="0.5" step="0.1" max="1.5" />
             <DetailedImageHandler.CoordinatesHandler
               pixelToUnitRatio={10}
               xProps={{
-                min: -100,
-                max: 100,
+                step: 5,
+                min: -500,
+                max: 1000,
               }}
               yProps={{
-                min: -100,
-                max: 100,
+                step: 5,
+                min: -500,
+                max: 1000,
               }}
             />
           </DetailedImageHandler>
