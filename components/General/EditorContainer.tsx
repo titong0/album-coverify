@@ -30,7 +30,7 @@ const EditorContainer: React.FC<EditorContainerProps> = ({
   };
 
   useEffect(() => {
-    if (!DrawerInstance.current?.ctx.canvas) return console.log("NO CTX");
+    // if (!DrawerInstance.current?.ctx.canvas) return console.log("NO CTX");
     const updateRate = 100;
     let ignore = false;
     // wait 100ms between canvas draws to prevent
