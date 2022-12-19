@@ -1,10 +1,9 @@
-import { useRef, useState } from "react";
 import Canvas from "../General/Canvas";
-import Download from "../General/Download";
-import EditorContainer from "../General/EditorContainer";
+import { useState } from "react";
 import { Drawer } from "../../src/Drawer";
+import Download from "../General/Download";
 import SimpleImage from "../Inputs/SimpleImage";
-import { DetailedImage } from "../../src/types";
+import EditorContainer from "../General/EditorContainer";
 import DetailedImageHandler from "../Inputs/DetailedImageHandler";
 
 const WolfEditor = () => {
