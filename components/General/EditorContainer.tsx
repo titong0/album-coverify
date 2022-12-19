@@ -7,11 +7,13 @@ export const CanvasRefContext =
 export const FinishedImageContext = createContext<string | null>(null);
 
 type EditorContainerProps = {
+  willReadFrequently?: boolean;
   drawMethod: (draw: Drawer) => Promise<void>;
   dependencies: any[];
   children: React.ReactNode;
 };
 const EditorContainer: React.FC<EditorContainerProps> = ({
+  willReadFrequently,
   drawMethod,
   dependencies,
   children,
@@ -47,7 +49,9 @@ const EditorContainer: React.FC<EditorContainerProps> = ({
   }, dependencies);
 
   useEffect(() => {
-    const ctx = canvasRef?.current?.getContext("2d");
+    const ctx = canvasRef?.current?.getContext("2d", {
+      willReadFrequently: willReadFrequently || false,
+    });
     if (!ctx) return;
     DrawerInstance.current = new Drawer(ctx);
   }, [canvasRef.current]);

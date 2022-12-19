@@ -49,6 +49,7 @@ const WlrEditor = () => {
     <EditorContainer
       dependencies={[titleText, tresholdLimit, image]}
       drawMethod={draw}
+      willReadFrequently={true}
     >
       <div className="sm:grid grid-cols-2 mb-32">
         <div className="flex flex-col p-2">
