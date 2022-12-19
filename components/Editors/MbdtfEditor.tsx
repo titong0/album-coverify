@@ -38,20 +38,21 @@ const MbdtfEditor = () => {
       dependencies={[image, border, pixelation]}
     >
       <div className="sm:grid grid-cols-2 mb-32 my-2">
-        <form className="flex flex-col">
+        <form className="flex flex-col w-full">
           <SimpleImage srcUrl={image} setSrcUrl={setImage} aspect={1 / 1} />
           <RangeInput
+            className="mr-2 pl-4 p-2 bg-gray-200"
             label={
               <>
                 Pixelation rate:{" "}
                 <strong>
-                  {pixelation !== 1 ? `${33 - pixelation}` : "None"}
+                  {pixelation > 0 ? `${33 - pixelation}` : "None"}
                 </strong>
               </>
             }
-            min="1"
+            min="0"
             step="1"
-            max="28"
+            max="32"
             value={pixelation}
             setValue={setPixelation}
           />

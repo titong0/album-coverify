@@ -14,18 +14,21 @@ export const applyPixelation = async (
   dimensions: Dimensions,
   CACHE: Array<HTMLImageElement>
 ) => {
+  if (!pixelation) return;
+  const miniImageWidth = 33 - pixelation;
+
   const img = await loadAndCacheImage(imgSrc, CACHE);
   const hiddenCanvas = document.createElement("canvas");
   hiddenCanvas.className = "pixelated";
-  hiddenCanvas.width = pixelation;
-  hiddenCanvas.height = pixelation;
+  hiddenCanvas.width = miniImageWidth;
+  hiddenCanvas.height = miniImageWidth;
   const hiddenCtx = hiddenCanvas.getContext("2d")!;
 
   if ("webkitImageSmoothingEnabled" in ctx)
     ctx.webkitImageSmoothingEnabled = false;
   if ("mozImageSmoothingEnabled" in ctx) ctx.mozImageSmoothingEnabled = false;
   ctx.imageSmoothingEnabled = false;
-  hiddenCtx.drawImage(img, 0, 0, pixelation, pixelation);
+  hiddenCtx.drawImage(img, 0, 0, miniImageWidth, miniImageWidth);
   ctx.drawImage(
     hiddenCanvas,
     coordinates.x,
