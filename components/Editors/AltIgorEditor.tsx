@@ -29,13 +29,13 @@ const AltIgorEditor = () => {
     Ctx.drawText(
       title,
       { x: 500, y: 800 },
-      { color: "#222", font: "80px IGOR", textAlign: "center" }
+      { fillStyle: "#222", font: "80px IGOR", textAlign: "center" }
     );
     Ctx.drawText(
       creditsText,
       { x: 500, y: 850 },
       {
-        color: "#222",
+        fillStyle: "#222",
         font: "23px monospace",
         textAlign: "center",
         maxCharsPerLine: 41,

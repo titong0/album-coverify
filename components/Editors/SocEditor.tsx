@@ -26,7 +26,7 @@ const SocEditor = () => {
       { x: 500, y: 930 },
       {
         font: `${albumNameFontSize}px Mistral`,
-        color: "white",
+        fillStyle: "white",
         textAlign: "center",
       }
     );
@@ -37,7 +37,7 @@ const SocEditor = () => {
       { x: 505, y: 205 },
       {
         font: `${groupNameFontSize}px Mistral`,
-        color: "black",
+        fillStyle: "black",
         textAlign: "center",
         maxWidth: 800,
       }
@@ -47,7 +47,7 @@ const SocEditor = () => {
       { x: 500, y: 200 },
       {
         font: `${groupNameFontSize}px Mistral`,
-        color: "#f1373d",
+        fillStyle: "#f1373d",
         textAlign: "center",
         maxWidth: 800,
       }
