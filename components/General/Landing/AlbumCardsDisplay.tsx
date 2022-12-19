@@ -50,6 +50,12 @@ const ALBUMS_INFO = [
     href: "/soc",
     imageUrl: "SOC.png",
   },
+  {
+    title: "Wolf",
+    author: "Tyler, the creator",
+    href: "/wolf",
+    imageUrl: "WOLF.png",
+  },
 ];
 
 const AlbumCardsDisplay: React.FC = () => {

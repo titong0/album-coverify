@@ -6,7 +6,7 @@ import RemoveBgAlert from "../components/General/Landing/RemoveBgAlert";
 const Wolf = () => {
   return (
     <>
-      <CustomHead name="IGOR" />
+      <CustomHead name="Wolf" />
       <div className="bg-zinc-300">
         <h2 className="p-12 text-4xl text-center">Wolf</h2>
         <RemoveBgAlert />
