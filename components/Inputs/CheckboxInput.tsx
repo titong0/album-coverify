@@ -9,7 +9,7 @@ type CheckboxInputProps = InputProps & {
   setValue: stateSetter<boolean>;
 };
 const CheckBoxInput: React.FC<CheckboxInputProps> = ({
-  value,
+  checked,
   setValue,
   name,
   label,
@@ -24,7 +24,7 @@ const CheckBoxInput: React.FC<CheckboxInputProps> = ({
         type="checkbox"
         className={"ml-2 "}
         onChange={(e) => setValue(e.target.checked)}
-        value={value}
+        checked={checked}
         {...inputProps}
       />
     </div>
