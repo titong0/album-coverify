@@ -26,7 +26,7 @@ const CustomHead: React.FC<CustomHeadProps> = ({
       />
       <meta
         property="og:image"
-        content={`https://album-coverify.vercel.app/${url}.png`}
+        content={`https://album-coverify.vercel.app/examples/${url}.png`}
       />
 
       {/* <!-- Twitter Meta Tags --> */}
@@ -35,7 +35,7 @@ const CustomHead: React.FC<CustomHeadProps> = ({
       <meta property="twitter:domain" content="album-coverify.vercel.app" />
       <meta
         property="twitter:url"
-        content={`https://album-coverify.vercel.app/${url}/`}
+        content={`https://album-coverify.vercel.app/examples/${url}/`}
       />
       <meta name="twitter:title" content={`${name} album cover generator`} />
       <meta
@@ -44,13 +44,13 @@ const CustomHead: React.FC<CustomHeadProps> = ({
       />
       <meta
         name="twitter:image"
-        content={`https://album-coverify.vercel.app/${url}.png`}
+        content={`https://album-coverify.vercel.app/examples/${url}.png`}
       />
 
       {/* <!-- Meta Tags Generated via https://www.opengraph.xyz --> */}
       <meta
         property="og:image:secure_url"
-        content={`https://album-coverify.vercel.app/${url}.png`}
+        content={`https://album-coverify.vercel.app/examples/${url}.png`}
       />
       <meta property="og:image:type" content="image/png" />
       <meta property="og:image:alt" content={`Custom ${name} cover`} />
