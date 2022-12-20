@@ -57,8 +57,8 @@ const WolfEditor = () => {
       <Download
         fileName="WOLF"
         title=""
-        buttonStyle="text-black rounded-sm bg-green-500"
-        bg="bg-green-900"
+        buttonStyle="text-black rounded-sm bg-blue-300"
+        bg="bg-blue-900"
       />
     </EditorContainer>
   );
