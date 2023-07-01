@@ -67,17 +67,19 @@ const ALBUMS_INFO = [
 const AlbumCardsDisplay: React.FC = () => {
   return (
     <div
-      className={`grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 sm:m-12 justify-center`}
+      className={`grid grid-cols-[repeat(auto-fit,minmax(175px,1fr))] gap-4 sm:m-12 justify-center`}
     >
-      {ALBUMS_INFO.map((ALBUM) => (
-        <AlbumCard
-          title={ALBUM.title}
-          author={ALBUM.author}
-          href={`/editors${ALBUM.href}`}
-          imageUrl={`/examples/${ALBUM.imageUrl}`}
-          key={ALBUM.title}
-        />
-      ))}
+      {ALBUMS_INFO.sort((a, b) => a.author.localeCompare(b.author)).map(
+        (ALBUM) => (
+          <AlbumCard
+            title={ALBUM.title}
+            author={ALBUM.author}
+            href={`/editors${ALBUM.href}`}
+            imageUrl={`/examples/${ALBUM.imageUrl}`}
+            key={ALBUM.title}
+          />
+        )
+      )}
     </div>
   );
 };
