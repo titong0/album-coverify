@@ -80,7 +80,8 @@ export class Drawer {
     defaultDimensions: Dimensions,
     options?: ImageOptions
   ) {
-    const { srcUrl, size } = image;
+    const imgCopy = structuredClone(image);
+    const { srcUrl, size } = imgCopy;
 
     const img = await loadAndCacheImage(srcUrl, this.IMAGE_CACHE);
 
@@ -91,7 +92,7 @@ export class Drawer {
     );
 
     const { x, y } = adjustCoordinates(
-      image.coordinates,
+      imgCopy.coordinates,
       { width: adjustedDimensions.width, height: adjustedDimensions.height },
       options || {}
     );

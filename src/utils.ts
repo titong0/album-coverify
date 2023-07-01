@@ -54,7 +54,6 @@ export const adjustCoordinates = <T extends Coordinates>(
 ): T => {
   let { x: xCopy, y: yCopy } = coordinates;
   const { height, width } = dimensions;
-
   if (xCopy) {
     if (options?.justify === "center") {
       xCopy = xCopy - width / 2;
@@ -64,7 +63,7 @@ export const adjustCoordinates = <T extends Coordinates>(
   }
   if (yCopy) {
     if (options?.align === "center") {
-      yCopy = yCopy - width / 2;
+      yCopy = yCopy - height / 2;
     } else if (options?.align === "bottom") {
       yCopy = yCopy - height;
     }
@@ -116,7 +115,7 @@ export const asyncBlob = async (element: HTMLCanvasElement) => {
 };
 
 export const imgFromInputEvent = (e: React.ChangeEvent<HTMLInputElement>) => {
-  if (!e.target.files) return;
+  if (!e.target.files || !e.target.files[0]) return;
   if (e.target.files[0].size > 2097152) return alert("Image too big!");
   const img = e.target.files[0];
   return URL.createObjectURL(img);

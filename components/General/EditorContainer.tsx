@@ -24,10 +24,9 @@ const EditorContainer: React.FC<EditorContainerProps> = ({
 
   const handleDrawing = async (ignore: boolean) => {
     if (!DrawerInstance.current || !canvasRef.current) return;
+    if (ignore) return;
     await drawMethod(DrawerInstance.current);
-    if (ignore) return;
     const finishedBlob = await asyncBlob(canvasRef.current);
-    if (ignore) return;
     setFinishedImage(URL.createObjectURL(finishedBlob));
   };
 

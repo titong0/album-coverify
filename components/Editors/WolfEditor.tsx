@@ -33,7 +33,7 @@ const WolfEditor = () => {
 
   return (
     <EditorContainer drawMethod={draw} dependencies={[firstImage, secondImage]}>
-      <div className="sm:grid grid-cols-2 mb-32">
+      <div className="grid-cols-2 mb-32 sm:grid">
         <div className="flex flex-col">
           <SimpleImage
             label="First (big) image"

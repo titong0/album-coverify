@@ -13,6 +13,7 @@ const BlondeEditor = () => {
     coordinates: { x: 500, y: 863 },
     size: 0.7,
   });
+
   const [title, setTitle] = useState("blond");
 
   const draw = async (Ctx: Drawer) => {
@@ -20,12 +21,13 @@ const BlondeEditor = () => {
     await Ctx.imgBg("/assets/BLONDE_BG.png");
     await Ctx.drawScalableImage(
       image,
-      { width: 430, height: 660 },
+      { width: 475, height: 660 },
       {
         justify: "center",
         align: "bottom",
       }
     );
+
     Ctx.drawText(
       title,
       { x: 500, y: 120 },
@@ -35,10 +37,9 @@ const BlondeEditor = () => {
       }
     );
   };
-
   return (
     <EditorContainer drawMethod={draw} dependencies={[image, title]}>
-      <div className="sm:grid grid-cols-2 mb-32">
+      <div className="grid-cols-2 mb-32 sm:grid">
         <div className="flex flex-col">
           <TextInput
             name="Title"

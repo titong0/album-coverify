@@ -42,7 +42,7 @@ function DetailedImageHandler<T extends DetailedImage>({
 }: ImageHandlerProps<T> & SubComponents) {
   const [imageSrc, setImageSrc] = useState(image.srcUrl);
 
-  const changeImg = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const changeImgUrl = (e: React.ChangeEvent<HTMLInputElement>) => {
     const url = imgFromInputEvent(e);
     if (!url) return;
     changeOneValue("srcUrl", url);
@@ -50,20 +50,21 @@ function DetailedImageHandler<T extends DetailedImage>({
   };
 
   const changeOneValue: ChangeOneProp<typeof image> = (key, value) => {
+    console.log({ ...image });
     const copy = { ...image };
     copy[key] = value;
     setImage(copy);
   };
 
   return (
-    <div className="flex flex-col w-100 bg-gray-200 p-4 mr-2 my-4 border border-black border-l-0">
+    <div className="flex flex-col p-4 my-4 mr-2 bg-gray-200 border border-l-0 border-black w-100">
       <label htmlFor={name || "Image"}>{label || "Your image"}</label>
       <input
         name="image"
         type={"file"}
         accept="image/*"
-        className="w-full p-2 my-1  transition border border-black cursor-pointer bg-gray-700 text-white hover:bg-gray-500"
-        onChange={changeImg}
+        className="w-full p-2 my-1 text-white transition bg-gray-700 border border-black cursor-pointer hover:bg-gray-500"
+        onChange={changeImgUrl}
       />
       <Cropper
         setImage={(url) => changeOneValue("srcUrl", url)}
@@ -85,7 +86,6 @@ const SizeHandler: React.FC<SizeHandlerProps> = ({ ...props }) => {
   const imageValues = useContext(ImageValuesCtx);
   if (!imageValues) return null;
   const { image, changeOneValue } = imageValues;
-
   return (
     <>
       <label htmlFor="image">
