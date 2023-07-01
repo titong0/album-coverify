@@ -56,6 +56,12 @@ const ALBUMS_INFO = [
     href: "/wolf",
     imageUrl: "WOLF.png",
   },
+  {
+    title: "Flower Boy",
+    author: "Tyler, the creator",
+    href: "/flower-boy",
+    imageUrl: "FLOWER-BOY.png",
+  },
 ];
 
 const AlbumCardsDisplay: React.FC = () => {
