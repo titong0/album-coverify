@@ -2,8 +2,8 @@ import React from "react";
 
 const RemoveBgAlert = () => {
   return (
-    <div className="p-3 py-6 bg-black text-gray-300">
-      <h3 className="text-xl pb-3">
+    <div className="p-3 py-6 text-gray-300 bg-black">
+      <h3 className="pb-3 text-xl">
         This cover requires a{" "}
         <span className="text-amber-300">transparent background</span> to look
         properly.
@@ -12,9 +12,9 @@ const RemoveBgAlert = () => {
         You can remove your background in
         <a href="https://remove.bg" target="_blank">
           {" "}
-          <span className="text-amber-300 underline">remove.bg</span> and then
-          use this site.
+          <span className="underline text-amber-300">remove.bg</span>{" "}
         </a>
+        and then use this site.
       </p>
     </div>
   );

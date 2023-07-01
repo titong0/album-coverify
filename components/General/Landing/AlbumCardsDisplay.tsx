@@ -67,7 +67,7 @@ const AlbumCardsDisplay: React.FC = () => {
         <AlbumCard
           title={ALBUM.title}
           author={ALBUM.author}
-          href={ALBUM.href}
+          href={`/editors/${ALBUM.href}`}
           imageUrl={`/examples/${ALBUM.imageUrl}`}
           key={ALBUM.title}
         />

@@ -1,6 +1,6 @@
-import IgorEditor from "../components/Editors/IgorEditor";
-import CustomHead from "../components/General/Landing/CustomHead";
-import RemoveBgAlert from "../components/General/Landing/RemoveBgAlert";
+import IgorEditor from "../../components/Editors/IgorEditor";
+import CustomHead from "../../components/General/Landing/CustomHead";
+import RemoveBgAlert from "../../components/General/Landing/RemoveBgAlert";
 
 const IGOR = () => {
   return (

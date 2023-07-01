@@ -11,7 +11,7 @@ import { DetailedImage } from "../../src/types";
 
 const TlopEditor = ({}) => {
   const [firstImage, setFirstImage] = useState({
-    srcUrl: "defaults/TLOP_DEFAULT_1.png",
+    srcUrl: "/defaults/TLOP_DEFAULT_1.png",
     size: 1,
     coordinates: {
       x: 100,
@@ -20,7 +20,7 @@ const TlopEditor = ({}) => {
   });
 
   const [secondImage, setSecondImage] = useState({
-    srcUrl: "defaults/TLOP_DEFAULT_2.png",
+    srcUrl: "/defaults/TLOP_DEFAULT_2.png",
     size: 1,
     coordinates: {
       x: 450,
@@ -44,7 +44,7 @@ const TlopEditor = ({}) => {
       dependencies={[title, belowText, bgColor, firstImage, secondImage]}
       drawMethod={draw}
     >
-      <div className="grid sm:grid-cols-2 py-2">
+      <div className="grid py-2 sm:grid-cols-2">
         <div className="flex flex-col">
           <ColorPicker
             label="Background color"

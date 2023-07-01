@@ -1,6 +1,6 @@
 import React from "react";
-import CustomHead from "../components/General/Landing/CustomHead";
-import GkmcEditor from "../components/Editors/GkmcEditor";
+import CustomHead from "../../components/General/Landing/CustomHead";
+import GkmcEditor from "../../components/Editors/GkmcEditor";
 const Gkmc = () => {
   return (
     <>

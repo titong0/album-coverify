@@ -1,7 +1,7 @@
 import React from "react";
-import WolfEditor from "../components/Editors/WolfEditor";
-import CustomHead from "../components/General/Landing/CustomHead";
-import RemoveBgAlert from "../components/General/Landing/RemoveBgAlert";
+import WolfEditor from "../../components/Editors/WolfEditor";
+import CustomHead from "../../components/General/Landing/CustomHead";
+import RemoveBgAlert from "../../components/General/Landing/RemoveBgAlert";
 
 const Wolf = () => {
   return (
