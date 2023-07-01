@@ -5,10 +5,11 @@ import Download from "../General/Download";
 import SimpleImage from "../Inputs/SimpleImage";
 import EditorContainer from "../General/EditorContainer";
 import DetailedImageHandler from "../Inputs/DetailedImageHandler";
+import useImage from "../../hooks/useImage";
 
 const WolfEditor = () => {
   const [firstImage, setFirstImage] = useState("/defaults/WOLF_DEFAULT_1.png");
-  const [secondImage, setSecondImage] = useState({
+  const [secondImage, setSecondImage] = useImage({
     srcUrl: "/defaults/WOLF_DEFAULT_2.png",
     opacity: 0.5,
   });

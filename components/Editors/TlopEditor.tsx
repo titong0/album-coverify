@@ -8,9 +8,10 @@ import TextInput from "../Inputs/TextInput";
 import { Drawer } from "../../src/Drawer";
 import DetailedImageHandler from "../Inputs/DetailedImageHandler";
 import { DetailedImage } from "../../src/types";
+import useImage from "../../hooks/useImage";
 
 const TlopEditor = ({}) => {
-  const [firstImage, setFirstImage] = useState({
+  const [firstImage, setFirstImage] = useImage({
     srcUrl: "/defaults/TLOP_DEFAULT_1.png",
     size: 1,
     coordinates: {
@@ -19,7 +20,7 @@ const TlopEditor = ({}) => {
     },
   });
 
-  const [secondImage, setSecondImage] = useState({
+  const [secondImage, setSecondImage] = useImage({
     srcUrl: "/defaults/TLOP_DEFAULT_2.png",
     size: 1,
     coordinates: {

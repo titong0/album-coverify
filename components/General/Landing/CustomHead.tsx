@@ -2,7 +2,7 @@ import Head from "next/head";
 type CustomHeadProps = { name: string; url?: string };
 const CustomHead: React.FC<CustomHeadProps> = ({
   name,
-  url = name.toLowerCase(),
+  url = name.toLowerCase().replaceAll(" ", "-"),
 }) => {
   return (
     <Head>

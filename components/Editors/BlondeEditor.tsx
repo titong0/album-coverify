@@ -6,9 +6,10 @@ import { Drawer } from "../../src/Drawer";
 import DetailedImageHandler from "../Inputs/DetailedImageHandler";
 import { DetailedImage } from "../../src/types";
 import TextInput from "../Inputs/TextInput";
+import useImage from "../../hooks/useImage";
 
 const BlondeEditor = () => {
-  const [image, setImage] = useState({
+  const [image, setImage] = useImage({
     srcUrl: "/defaults/BLONDE_DEFAULT.png",
     coordinates: { x: 500, y: 863 },
     size: 0.7,
