@@ -36,8 +36,8 @@ const IgorEditor = () => {
 
   return (
     <EditorContainer drawMethod={draw} dependencies={[image, author]}>
-      <div className="sm:grid grid-cols-2 mb-32 min-h-screen">
-        <div className="flex flex-col p-2 gap-1">
+      <div className="min-h-screen grid-cols-2 mb-32 sm:grid">
+        <div className="flex flex-col gap-1 p-2">
           <TextInput
             className="bg-pink-300"
             label="Credited author"
@@ -50,10 +50,10 @@ const IgorEditor = () => {
         <Canvas />
       </div>
       <Download
-        bg={"bg-pink-300"}
+        bg={"bg-purple-500"}
         fileName="IGOR"
         title={author}
-        buttonStyle="bg-pink-400"
+        buttonStyle="text-black rounded-sm bg-gradient-to-b from-pink-300 to-fuchsia-300"
       />
     </EditorContainer>
   );

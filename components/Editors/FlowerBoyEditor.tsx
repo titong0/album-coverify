@@ -40,7 +40,7 @@ const FlowerBoyEditor = () => {
         title=""
         fileName="flower-boy"
         bg="bg-green-700"
-        buttonStyle="text-black rounded-sm bg-orange-400 hover:bg-orange-500"
+        buttonStyle="text-black rounded-sm bg-gradient-to-b from-amber-500 to-orange-600"
       />
     </EditorContainer>
   );

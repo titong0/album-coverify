@@ -48,7 +48,7 @@ const AltIgorEditor = () => {
       drawMethod={draw}
       dependencies={[imageSrc, creditsText, title]}
     >
-      <div className="sm:grid grid-cols-2 mb-32 min-h-screen">
+      <div className="min-h-screen grid-cols-2 mb-32 sm:grid">
         <form>
           <TextInput
             name="titleText"
@@ -78,7 +78,7 @@ const AltIgorEditor = () => {
         bg={"bg-pink-300"}
         fileName="IGOR"
         title={title}
-        buttonStyle="bg-pink-400"
+        buttonStyle="text-black rounded-sm bg-gradient-to-b from-pink-300 to-fuchsia-300"
       />
     </EditorContainer>
   );
