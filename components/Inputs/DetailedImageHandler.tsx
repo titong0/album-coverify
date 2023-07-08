@@ -39,7 +39,7 @@ function DetailedImageHandler<T extends DetailedImage>({
   label,
   name,
   children,
-}: ImageHandlerProps<T> & SubComponents) {
+}: ImageHandlerProps<T>) {
   const [imageSrc, setImageSrc] = useState(image.srcUrl);
 
   const changeImgUrl = (e: React.ChangeEvent<HTMLInputElement>) => {

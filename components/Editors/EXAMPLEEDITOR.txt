@@ -4,13 +4,15 @@ import { Drawer } from "../../src/Drawer";
 import Download from "../General/Download";
 import EditorContainer from "../General/EditorContainer";
 
-const WolfEditor = () => {
+const AAAAAAAAAAAAAA = () => {
   const draw = async (Ctx: Drawer) => {};
 
   return (
     <EditorContainer drawMethod={draw} dependencies={}>
       <div className="sm:grid grid-cols-2 mb-32">
-        <div className="flex flex-col"></div>
+        <div className="flex flex-col">
+        {/* inputs */}
+        </div>
         <Canvas />
       </div>
       <Download buttonStyle="text-black rounded-sm" />
@@ -18,4 +20,4 @@ const WolfEditor = () => {
   );
 };
 
-export default WolfEditor;
+export default AAAAAAAAAAAAAA;

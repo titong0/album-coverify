@@ -62,6 +62,12 @@ const ALBUMS_INFO = [
     href: "/flower-boy",
     imageUrl: "FLOWER-BOY.png",
   },
+  {
+    title: "Call Me If You Get Lost",
+    author: "Tyler, the creator",
+    href: "/cmiygl",
+    imageUrl: "CMIYGL.png",
+  },
 ];
 
 const AlbumCardsDisplay: React.FC = () => {

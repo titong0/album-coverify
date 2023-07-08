@@ -47,6 +47,9 @@ export const drawTextWithMaxChars = (
   });
 };
 
+/**
+ * if options.justify or options.align are present, this function makes them work
+ */
 export const adjustCoordinates = <T extends Coordinates>(
   coordinates: T,
   dimensions: Dimensions,

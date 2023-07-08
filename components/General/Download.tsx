@@ -3,7 +3,7 @@ import { FinishedImageContext } from "./EditorContainer";
 
 type DownloadProps = {
   fileName: string;
-  title: string;
+  title?: string;
   buttonStyle: string;
   bg: string;
 };
@@ -19,7 +19,7 @@ const Download: React.FC<DownloadProps> = ({
     <div
       className={`sm:flex justify-center w-full gap-2 sm:gap-2 p-2 py-6 mt-4 ${bg}`}
     >
-      <div className="flex flex-col max-w-md w-full border-4 rounded-sm">
+      <div className="flex flex-col w-full max-w-md border-4 rounded-sm">
         <img
           className="w-full bg-red-300 border-b-2"
           alt="Your custom cover"

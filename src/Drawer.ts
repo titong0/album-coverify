@@ -110,8 +110,13 @@ export class Drawer {
     this.ctx.drawImage(img, 0, 0, 1000, 1000);
   }
 
-  async customDraw(customFn: (ctx: Ctx2d) => Promise<any> | void) {
-    await customFn(this.ctx);
+  async customDraw(
+    customFn: (
+      ctx: Ctx2d,
+      cache: typeof this.IMAGE_CACHE
+    ) => Promise<any> | void
+  ) {
+    await customFn(this.ctx, this.IMAGE_CACHE);
   }
 
   private async loadFont(fontName: string, fontUrl: string) {
