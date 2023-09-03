@@ -7,11 +7,6 @@ import { useRouter } from "next/router";
 function MyApp({ Component, pageProps }) {
   return (
     <>
-      <script
-        async
-        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1954485960736219"
-        crossorigin="anonymous"
-      ></script>
       <NavBar />
       <main>
         <Component {...pageProps} />
