@@ -5,20 +5,13 @@ import { useRouter } from "next/router";
 // const NO_AD_ROUTES = ["/contact", "/credits", "/"];
 
 function MyApp({ Component, pageProps }) {
-  const Router = useRouter();
   return (
     <>
-      {/* <Head>
-        {NO_AD_ROUTES.includes(Router.asPath) ? (
-          console.log("NO ADS HERE")
-        ) : (
-          <script
-            async
-            src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${process.env.NEXT_PUBLIC_GOOGLE_ADSENSE}`}
-            crossOrigin="anonymous"
-          />
-        )}
-      </Head> */}
+      <script
+        async
+        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1954485960736219"
+        crossorigin="anonymous"
+      ></script>
       <NavBar />
       <main>
         <Component {...pageProps} />
