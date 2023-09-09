@@ -37,11 +37,6 @@ export default function Document() {
           href="/icons/favicon-16x16.png"
         />
         <link rel="manifest" href="/site.webmanifest" />
-        <script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1954485960736219"
-          crossorigin="anonymous"
-        ></script>
       </Head>
       <body>
         <Main />
