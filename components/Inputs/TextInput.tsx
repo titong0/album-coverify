@@ -7,6 +7,7 @@ type TextInputProps = InputHTMLAttributes<HTMLInputElement> & {
   name: string;
   label: string;
   className: string;
+  noLeftMargin?: boolean;
 };
 
 const TextInput: React.FC<TextInputProps> = ({
@@ -16,10 +17,12 @@ const TextInput: React.FC<TextInputProps> = ({
   label,
   children,
   className,
+  // I HATE THIS but I am too lazy to add the margins everywhere else
+  noLeftMargin,
   ...props
 }) => {
   return (
-    <div className="flex flex-col w-100 ml-2 ">
+    <div className={"flex flex-col w-100 " + (noLeftMargin ? "" : "ml-2")}>
       <label htmlFor={name}>{label}</label>
       <input
         name={name}
