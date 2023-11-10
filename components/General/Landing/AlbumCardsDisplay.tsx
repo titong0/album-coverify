@@ -9,6 +9,13 @@ const ALBUMS_INFO = [
     imageUrl: "TLOP.png",
   },
   {
+    title: "Graduation",
+    author: "Kanye West",
+    href: "/graduation",
+    imageUrl: "GRADUATION.png",
+  },
+
+  {
     title: "Whole Lotta Red",
     author: "Playboi Carti",
     href: "/wlr",
