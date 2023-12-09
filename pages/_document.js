@@ -9,6 +9,7 @@ export default function Document() {
           name="description"
           content="Turn your photos into famous album covers with no photo editing knowledge"
         />
+        <meta name="google-adsense-account" content="ca-pub-1954485960736219" />
         <link rel="canonical" href="https://album-coverify.vercel.app" />
         <meta name="robots" content="index, follow" />
         <meta property="og:type" content="website" />
@@ -41,6 +42,11 @@ export default function Document() {
       <body>
         <Main />
         <NextScript />
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1954485960736219"
+          crossorigin="anonymous"
+        />
       </body>
     </Html>
   );
